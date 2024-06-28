@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject playerSprite;
+    Animator anim;
+
     [Header("Movimiento")]
     private float moveX;
     private float moveY;
@@ -33,10 +36,18 @@ public class PlayerController : MonoBehaviour
     private float wallJumpDuration;
     [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 16f);
 
+    //crouch
+    bool isCrouching;
+    private CircleCollider2D circleColl;
+    [SerializeField] private float offsetCollider = 1f;
+    float collSizeIdle = 0.4f;
+    float collSizeCrouch = 0.26f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = playerSprite.GetComponent<Animator>();
+        circleColl = GetComponent<CircleCollider2D>();
     }
 
     void Update()
@@ -50,6 +61,20 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
         WallJump();
+
+        if(Input.GetKeyDown(KeyCode.LeftControl) && isGrounded)
+        {
+            isCrouching = true;
+            anim.SetBool("crouch", true);
+            Crouch(offsetCollider);
+            circleColl.radius = collSizeCrouch;
+        } else if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            isCrouching = false;
+            anim.SetBool("crouch", false);
+            Crouch(-offsetCollider);
+            circleColl.radius = collSizeIdle;
+        }
     }
 
     private bool DetectGround()
@@ -80,7 +105,14 @@ public class PlayerController : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
+        if(!isCrouching)
+        {
+            rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
+        } else
+        {
+            rb.velocity = new Vector2(moveX * speed/3, rb.velocity.y);
+        }
+        
     }
 
     private void Flip()
@@ -134,5 +166,10 @@ public class PlayerController : MonoBehaviour
     private void StopWallJump()
     {
         isWallJumping = false;
+    }
+
+    private void Crouch(float amount)
+    {
+        circleColl.offset = new Vector2(circleColl.offset.x, circleColl.offset.y + amount);
     }
 }
