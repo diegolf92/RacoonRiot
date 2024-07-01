@@ -583,7 +583,6 @@ GameObject:
   - component: {fileID: 474848507}
   - component: {fileID: 474848505}
   - component: {fileID: 474848506}
-  - component: {fileID: 474848508}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -766,22 +765,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.21, y: 0.39275855}
   m_Size: {x: 1.0900003, y: 0.7871445}
   m_Direction: 1
---- !u!114 &474848508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474848500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b62684ff1e6dcd43910971bc6b6c357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  boxMask:
-    serializedVersion: 2
-    m_Bits: 127
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,7 +1076,6 @@ GameObject:
   - component: {fileID: 709448901}
   - component: {fileID: 709448900}
   - component: {fileID: 709448899}
-  - component: {fileID: 709448903}
   - component: {fileID: 709448904}
   m_Layer: 0
   m_Name: pushable
@@ -1231,25 +1213,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!255 &709448903
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709448898}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -2.5682294, y: -0.55}
-  m_DampingRatio: 0
-  m_Frequency: 0
 --- !u!114 &709448904
 MonoBehaviour:
   m_ObjectHideFlags: 0

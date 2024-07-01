@@ -17,38 +17,49 @@ public class PlayerPush : MonoBehaviour
 
     private void Update()
     {
-        // Ensure raycasts don't start inside colliders
         Physics2D.queriesStartInColliders = false;
 
-        // Calculate the center of the player's collider
         Vector2 rayOrigin = playerCollider.bounds.center;
-
-        // Perform the raycast
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * transform.localScale.x, distance, boxMask);
 
-        // Check if the raycast hits a pushable object and the interaction key is pressed
-        if (hit.collider != null && hit.collider.CompareTag("pushable") && Input.GetKey(KeyCode.E))
+        if (hit.collider != null && hit.collider.CompareTag("Pushable") && Input.GetKey(KeyCode.E))
         {
-            // Get the hit object
             box = hit.collider.gameObject;
-
-            // Get or add the FixedJoint2D component
             boxJoint = box.GetComponent<FixedJoint2D>();
+
+            // Ensure the object is in dynamic state when interacting
+            PushableObject pushableObject = box.GetComponent<PushableObject>();
+            if (pushableObject != null)
+            {
+                // Only interact if the object can be pushed (and possibly pulled)
+                if (!pushableObject.canBePulled && Vector2.Dot(transform.localScale, (box.transform.position - transform.position).normalized) < 0)
+                {
+                    // Skip interaction if the object cannot be pulled
+                    return;
+                }
+
+                pushableObject.SetInteractedState(true);
+            }
+
             if (boxJoint == null)
             {
                 boxJoint = box.AddComponent<FixedJoint2D>();
             }
 
-            // Enable the FixedJoint2D and connect to the player
             boxJoint.enabled = true;
             boxJoint.connectedBody = this.GetComponent<Rigidbody2D>();
         }
         else if (Input.GetKeyUp(KeyCode.E))
         {
-            // Disable the FixedJoint2D when the interaction key is released
             if (box != null && boxJoint != null)
             {
                 boxJoint.enabled = false;
+
+                PushableObject pushableObject = box.GetComponent<PushableObject>();
+                if (pushableObject != null)
+                {
+                    pushableObject.SetInteractedState(false);
+                }
             }
         }
     }
@@ -60,10 +71,7 @@ public class PlayerPush : MonoBehaviour
             playerCollider = GetComponent<Collider2D>();
         }
 
-        // Calculate the center of the player's collider for drawing the ray
         Vector2 rayOrigin = playerCollider.bounds.center;
-
-        // Draw the raycast line for debugging purposes
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(rayOrigin, rayOrigin + Vector2.right * transform.localScale.x * distance);
     }
