@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactive
   - Pushable
+  - elevator
   layers:
   - Default
   - TransparentFX

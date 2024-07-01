@@ -16,14 +16,11 @@ public class PushableObject : MonoBehaviour
 
     void Update()
     {
-        // Check if the object has fallen
         if (!hasFallen && rb.velocity.y != 0)
         {
-            // If the object is falling, mark it as fallen
             hasFallen = true;
         }
 
-        // If the object has fallen, make it immovable
         if (hasFallen && Mathf.Approximately(rb.velocity.y, 0))
         {
             rb.bodyType = RigidbodyType2D.Static;

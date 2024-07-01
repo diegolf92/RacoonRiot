@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         anim = playerSprite.GetComponent<Animator>();
         circleColl = GetComponent<CircleCollider2D>();
     }
@@ -171,5 +172,20 @@ public class PlayerController : MonoBehaviour
     private void Crouch(float amount)
     {
         circleColl.offset = new Vector2(circleColl.offset.x, circleColl.offset.y + amount);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "elevator")
+        {
+            transform.parent = collision.gameObject.transform;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "elevator")
+        {
+            transform.parent = null;
+        }
     }
 }
