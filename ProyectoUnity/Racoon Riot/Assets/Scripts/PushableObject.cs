@@ -7,10 +7,14 @@ public class PushableObject : MonoBehaviour
     private Rigidbody2D rb;
     private bool hasFallen = false;
     private Vector2 initialPosition;
+    private SpriteRenderer spriteRenderer;
+    public Sprite newSprite;
+    private Sprite originalSprite;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         initialPosition = rb.position;
     }
 
@@ -24,6 +28,7 @@ public class PushableObject : MonoBehaviour
         if (hasFallen && Mathf.Approximately(rb.velocity.y, 0))
         {
             rb.bodyType = RigidbodyType2D.Static;
+            ChangeSprite();
         }
     }
 
@@ -33,5 +38,18 @@ public class PushableObject : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.position = initialPosition;
         hasFallen = false;
+        if (spriteRenderer != null && newSprite != null)
+        {
+            // Assuming you have a reference to the original sprite to reset it
+            spriteRenderer.sprite = originalSprite;
+        }
+    }
+
+    private void ChangeSprite()
+    {
+        if (newSprite != null)
+        {
+            spriteRenderer.sprite = newSprite;
+        }
     }
 }

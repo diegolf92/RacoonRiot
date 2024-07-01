@@ -4,41 +4,48 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {
-    public Transform player;
-    public Transform elevatorSwitch;
     public Transform downPos;
     public Transform upperPos;
-
     public float speed;
-    private bool isElevatorDown;
+
+    private bool isElevatorDown = true;
+    private bool isMoving = false;
 
     private void Update()
     {
-        StartElevator();
+        if (isMoving)
+        {
+            MoveElevator();
+        }
     }
 
-    private void StartElevator()
+    private void MoveElevator()
     {
-        if(Vector2.Distance(player.position, elevatorSwitch.position)<0.5f && Input.GetKeyDown(KeyCode.E))
+        if (isElevatorDown)
         {
-            if(transform.position.y <= downPos.position.y)
+            transform.position = Vector2.MoveTowards(transform.position, upperPos.position, speed * Time.deltaTime);
+            if (transform.position.y >= upperPos.position.y)
             {
-                isElevatorDown = true;
-            }
-            else if (transform.position.y >= upperPos.position.y)
-            { 
                 isElevatorDown = false;
+                isMoving = false;
             }
-
-        }
-
-        if(isElevatorDown)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, upperPos.position,speed * Time.deltaTime);
         }
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, downPos.position, speed * Time.deltaTime);
+            if (transform.position.y <= downPos.position.y)
+            {
+                isElevatorDown = true;
+                isMoving = false;
+            }
+        }
+    }
+
+    public void ToggleElevator()
+    {
+        if (!isMoving)
+        {
+            isMoving = true;
         }
     }
 }
