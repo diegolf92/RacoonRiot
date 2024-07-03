@@ -7,7 +7,7 @@ public class Collectable_Item : MonoBehaviour
 {
     public Item item;
     public static Action<Item, Vector3> OnCollect;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {

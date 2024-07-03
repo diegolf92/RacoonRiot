@@ -7,6 +7,8 @@ TagManager:
   - Interactive
   - Pushable
   - elevator
+  - KeyItem
+  - Goal
   layers:
   - Default
   - TransparentFX

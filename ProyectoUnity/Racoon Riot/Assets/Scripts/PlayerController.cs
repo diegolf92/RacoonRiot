@@ -20,10 +20,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     public float checkRadius = 0.03f;
     public Transform pivotPos;
-    [SerializeField] private bool isGrounded; 
+    [SerializeField] private bool isGrounded;
 
     //slide
-    [SerializeField] private Transform wallCheck; 
+    [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
     public float wallSlideSpeed = 2f;
     [SerializeField] private bool isWallSliding;
@@ -53,23 +53,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(!isWallJumping){Move();}
-        if(!isWallJumping){Flip();}
+        if (!isWallJumping) { Move(); }
+        if (!isWallJumping) { Flip(); }
         DetectGround();
         WallSlide();
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
         }
         WallJump();
 
-        if(Input.GetKeyDown(KeyCode.LeftControl) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded)
         {
             isCrouching = true;
             anim.SetBool("crouch", true);
             Crouch(offsetCollider);
             circleColl.radius = collSizeCrouch;
-        } else if(Input.GetKeyUp(KeyCode.LeftControl))
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             isCrouching = false;
             anim.SetBool("crouch", false);
@@ -91,11 +92,12 @@ public class PlayerController : MonoBehaviour
 
     private void WallSlide()
     {
-        if(DetectWall() && !DetectGround() && moveX !=0f)
+        if (DetectWall() && !DetectGround() && moveX != 0f)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
-        } else
+        }
+        else
         {
             isWallSliding = false;
         }
@@ -106,19 +108,20 @@ public class PlayerController : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
 
-        if(!isCrouching)
+        if (!isCrouching)
         {
             rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
-        } else
-        {
-            rb.velocity = new Vector2(moveX * speed/3, rb.velocity.y);
         }
-        
+        else
+        {
+            rb.velocity = new Vector2(moveX * speed / 3, rb.velocity.y);
+        }
+
     }
 
     private void Flip()
     {
-        if(isFacingRight && moveX < 0f || !isFacingRight && moveX > 0f)
+        if (isFacingRight && moveX < 0f || !isFacingRight && moveX > 0f)
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
@@ -134,25 +137,26 @@ public class PlayerController : MonoBehaviour
 
     private void WallJump()
     {
-        if(isWallSliding)
+        if (isWallSliding)
         {
             isWallJumping = false;
             wallJumpDirection = -transform.localScale.x;
             wallJumpCounter = wallJumpTime;
 
             CancelInvoke(nameof(StopWallJump));
-        } else 
+        }
+        else
         {
             wallJumpCounter -= Time.deltaTime;
         }
 
-        if(Input.GetButtonDown("Jump") && wallJumpCounter > 0f)
+        if (Input.GetButtonDown("Jump") && wallJumpCounter > 0f)
         {
             isWallJumping = true;
             rb.velocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
             wallJumpCounter = 0f;
 
-            if(transform.localScale.x !=wallJumpDirection)
+            if (transform.localScale.x != wallJumpDirection)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
@@ -176,7 +180,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "elevator")
+        if (collision.gameObject.tag == "elevator")
         {
             transform.parent = collision.gameObject.transform;
         }
