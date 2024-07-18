@@ -40,4 +40,20 @@ public class Player_Inventory : MonoBehaviour
     {
         Collectable_Item.OnCollect -= CollectItem;
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.transform.tag == "Enemy")
+        {
+            other.GetComponent<EnemyScript>().CapturingPlayer();
+        } 
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.transform.tag == "Enemy")
+        {
+            Debug.Log("Enemy scape");
+        } 
+    }
 }

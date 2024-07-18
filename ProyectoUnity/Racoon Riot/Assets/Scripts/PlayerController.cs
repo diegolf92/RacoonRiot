@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
     public Transform pivotPos;
     [SerializeField] private bool isGrounded;
 
+    //ceiling
+    [SerializeField] private LayerMask ceilingLayer;
+    public Transform ceilingPos;
+    [SerializeField] private bool isCeiling;
+
     //slide
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
@@ -37,18 +42,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 16f);
 
     //crouch
+    BoxCollider2D playerCollider;
     bool isCrouching;
-    private CircleCollider2D circleColl;
-    [SerializeField] private float offsetCollider = 1f;
-    float collSizeIdle = 0.4f;
-    float collSizeCrouch = 0.26f;
+    Vector2 boxColNormalSize;
+    public Vector2 boxColCrouchSize;
+    float offsetCollider = -0.4f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
         anim = playerSprite.GetComponent<Animator>();
-        circleColl = GetComponent<CircleCollider2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
+        boxColNormalSize = playerCollider.size;
     }
 
     void Update()
@@ -56,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if (!isWallJumping) { Move(); }
         if (!isWallJumping) { Flip(); }
         DetectGround();
+        DetectCeiling();
         WallSlide();
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -68,14 +74,14 @@ public class PlayerController : MonoBehaviour
             isCrouching = true;
             anim.SetBool("crouch", true);
             Crouch(offsetCollider);
-            circleColl.radius = collSizeCrouch;
+            playerCollider.size = boxColCrouchSize;
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             isCrouching = false;
             anim.SetBool("crouch", false);
             Crouch(-offsetCollider);
-            circleColl.radius = collSizeIdle;
+            playerCollider.size = boxColNormalSize;
         }
     }
 
@@ -83,6 +89,12 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(pivotPos.position, checkRadius, groundLayer);
         return isGrounded;
+    }
+
+    private bool DetectCeiling()
+    {
+        isCeiling = Physics2D.OverlapCircle(ceilingPos.position, checkRadius, ceilingLayer);
+        return isCeiling;
     }
 
     private bool DetectWall()
@@ -175,7 +187,7 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch(float amount)
     {
-        circleColl.offset = new Vector2(circleColl.offset.x, circleColl.offset.y + amount);
+        playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y + amount);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
