@@ -12,6 +12,7 @@ public class InteractiveObject : MonoBehaviour
         if(canTrigger && Input.GetKeyDown(KeyCode.E))
         {
             objectToTrigger.ActionsListInt();
+            //enemigo camine hacia objectToTrigger
         }
     }
 

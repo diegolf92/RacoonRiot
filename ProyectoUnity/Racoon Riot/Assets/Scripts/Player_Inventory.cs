@@ -46,7 +46,10 @@ public class Player_Inventory : MonoBehaviour
         if(other.transform.tag == "Enemy")
         {
             other.GetComponent<EnemyScript>().CapturingPlayer();
-        } 
+        } else if (other.transform.tag == "MovingEnemy")
+        {
+            other.GetComponent<MovingEnemy>().CapturingPlayer();
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)

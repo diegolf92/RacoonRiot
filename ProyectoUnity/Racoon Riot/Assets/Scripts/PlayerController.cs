@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
             Crouch(offsetCollider);
             playerCollider.size = boxColCrouchSize;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        else if (Input.GetKeyUp(KeyCode.LeftControl) && !isCeiling)
         {
             isCrouching = false;
             anim.SetBool("crouch", false);
