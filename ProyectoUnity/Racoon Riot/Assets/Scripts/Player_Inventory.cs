@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Player_Inventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour
 {
     public Inventory inventory;
 
     private void Start()
     {
-        Collectable_Item.OnCollect += CollectItem;
+        CollectableItem.OnCollect += CollectItem;
     }
 
     private void CollectItem(Item item, Vector3 position)
@@ -38,7 +38,7 @@ public class Player_Inventory : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Collectable_Item.OnCollect -= CollectItem;
+        CollectableItem.OnCollect -= CollectItem;
     }
 
     void OnTriggerEnter2D(Collider2D other)

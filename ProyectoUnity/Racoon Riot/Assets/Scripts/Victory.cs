@@ -5,11 +5,11 @@ using UnityEngine;
 public class Victory : MonoBehaviour
 {
     public List<Item> keyItems; // Lista de ítems clave requeridos para ganar
-    private Player_Inventory playerInventory;
+    private PlayerInventory playerInventory;
 
     void Start()
     {
-        playerInventory = GetComponent<Player_Inventory>();
+        playerInventory = GetComponent<PlayerInventory>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
