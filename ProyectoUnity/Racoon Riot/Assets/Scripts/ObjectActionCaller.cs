@@ -8,14 +8,24 @@ public class ObjectActionCaller : MonoBehaviour
 
     public void ActionsListInt()
     {
-        if(actionInt == 0)
+        switch (actionInt)
         {
-            ActionOne();
+            case 1: ElevatorObject();
+                break;
+
+            default: ActionDefault();
+                    break;
+        
         }
     }
 
-    public void ActionOne()
+    public void ActionDefault()
     {
         Debug.Log("Turn on TV");
+    }
+
+    public void ElevatorObject()
+    {
+        GetComponent<Elevator>().MoveElevator();
     }
 }

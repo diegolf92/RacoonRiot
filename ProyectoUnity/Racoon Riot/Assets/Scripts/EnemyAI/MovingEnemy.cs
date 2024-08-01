@@ -15,6 +15,7 @@ public class MovingEnemy : MonoBehaviour
     bool isChasing;
     public float lostPlayerGuardTime = 3.0f; // Time to guard after losing the player
     public LayerMask stopEnemyLayer;
+    public LayerMask groundLayer;
     private Vector3 lastSeenPosition;
 
     public float visionRange = 10f;
@@ -78,7 +79,7 @@ public class MovingEnemy : MonoBehaviour
             float currentAngle = startingAngle + (angleStep * i);
             Vector2 direction = DirectionFromAngle(currentAngle);
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, visionRange, playerLayer | stopEnemyLayer);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, visionRange, playerLayer | stopEnemyLayer | groundLayer);
             if (hit.collider != null)
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -86,7 +87,7 @@ public class MovingEnemy : MonoBehaviour
                     player = hit.collider.transform;
                     currentState = EnemyState.PERSIGUIENDO;
                 }
-                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("StopEnemy"))
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("StopEnemy") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     // Stop the ray at the obstacle
                     Debug.DrawLine(transform.position, hit.point, Color.red);
@@ -142,7 +143,7 @@ public class MovingEnemy : MonoBehaviour
                 Vector2 targetPosition = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
                 rb.MovePosition(targetPosition);
                 Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
-                RaycastHit2D wallHit = Physics2D.Raycast(target.transform.position, direction, visionRange / 8, stopEnemyLayer);
+                RaycastHit2D wallHit = Physics2D.Raycast(target.transform.position, direction, visionRange / 16, stopEnemyLayer);
                 if (wallHit.collider != null)
                 {
                     //lastSeenPosition = transform.position;

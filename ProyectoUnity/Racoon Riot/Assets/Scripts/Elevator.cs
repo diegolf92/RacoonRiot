@@ -19,7 +19,7 @@ public class Elevator : MonoBehaviour
         }
     }
 
-    private void MoveElevator()
+    public void MoveElevator()
     {
         if (isElevatorDown)
         {

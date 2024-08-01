@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class InteractiveObject : MonoBehaviour
 {
-    public ObjectActionCaller objectToTrigger;
+    //public ObjectActionCaller objectToTrigger;
+    public GameObject objectToTrigger;
     bool canTrigger;
 
     void Update()
     {
         if(canTrigger && Input.GetKeyDown(KeyCode.E))
         {
-            objectToTrigger.ActionsListInt();
+            //objectToTrigger.ActionsListInt();
             //enemigo camine hacia objectToTrigger
+            if (objectToTrigger.name == "Platform")
+            {
+                objectToTrigger.GetComponent<ElevatorSc>().ActivateElevator();
+            }
         }
     }
 

@@ -204,4 +204,22 @@ public class PlayerController : MonoBehaviour
             transform.parent = null;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SecretWall"))
+        {
+            //smooth out fade
+            collision.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SecretWall"))
+        {
+            //smooth out fade
+            collision.GetComponent<SpriteRenderer>().color = new Color(0.69f, 0.75f, 1, 1);
+        }
+    }
 }
