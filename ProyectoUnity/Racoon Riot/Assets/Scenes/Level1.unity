@@ -38209,7 +38209,7 @@ Transform:
   m_GameObject: {fileID: 246158493}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.6, y: -4, z: 0}
+  m_LocalPosition: {x: 28.18, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40027,7 +40027,7 @@ Transform:
   m_GameObject: {fileID: 474848500}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.2, y: 1.55, z: 0}
+  m_LocalPosition: {x: -7.18, y: -2.7, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41828,7 +41828,6 @@ GameObject:
   - component: {fileID: 795864271}
   - component: {fileID: 795864273}
   - component: {fileID: 795864272}
-  - component: {fileID: 795864274}
   m_Layer: 0
   m_Name: jaula2
   m_TagString: Untagged
@@ -41949,24 +41948,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &795864274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795864270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 692ab5f5443d544439aaccd7a470d5bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 474848504}
-  interactionDistance: 2
-  interactionKey: 101
-  noiseClip: {fileID: 0}
-  noiseRadius: 10
-  cooldownTime: 2
 --- !u!1 &807508761
 GameObject:
   m_ObjectHideFlags: 0
@@ -43089,8 +43070,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 584409809
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1248325843, guid: 3391ac1a91813634f9b51b4f291a54ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -54532,7 +54513,6 @@ GameObject:
   - component: {fileID: 1356890619}
   - component: {fileID: 1356890618}
   - component: {fileID: 1356890620}
-  - component: {fileID: 1356890621}
   m_Layer: 0
   m_Name: jaula1
   m_TagString: Untagged
@@ -54653,24 +54633,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &1356890621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356890617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 692ab5f5443d544439aaccd7a470d5bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 474848504}
-  interactionDistance: 2
-  interactionKey: 101
-  noiseClip: {fileID: 0}
-  noiseRadius: 10
-  cooldownTime: 2
 --- !u!1 &1372801143
 GameObject:
   m_ObjectHideFlags: 0
@@ -55221,7 +55183,7 @@ Transform:
   m_GameObject: {fileID: 1411698542}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.46, y: -0.66, z: 0.03617398}
+  m_LocalPosition: {x: -2.36, y: -0.66, z: 0.03617398}
   m_LocalScale: {x: 0.5187, y: 4.0275, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -59568,7 +59530,6 @@ GameObject:
   - component: {fileID: 2145181730}
   - component: {fileID: 2145181732}
   - component: {fileID: 2145181731}
-  - component: {fileID: 2145181733}
   m_Layer: 0
   m_Name: jaula3
   m_TagString: Untagged
@@ -59689,24 +59650,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2145181733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145181729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 692ab5f5443d544439aaccd7a470d5bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 474848504}
-  interactionDistance: 2
-  interactionKey: 101
-  noiseClip: {fileID: 0}
-  noiseRadius: 10
-  cooldownTime: 2
 --- !u!1001 &2932168013157752286
 PrefabInstance:
   m_ObjectHideFlags: 0
