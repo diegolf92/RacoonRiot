@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
     public Transform pivotPos;
     [SerializeField] private bool isGrounded;
 
+    [Header("Sonido")]
+    public AudioSource audioSource;  
+    public AudioClip jumpSound;      
+
+
     //ceiling
     [SerializeField] private LayerMask ceilingLayer;
     public Transform ceilingPos;
@@ -145,6 +150,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (audioSource != null && jumpSound != null)
+        {
+            audioSource.PlayOneShot(jumpSound);
+        }
     }
 
     private void WallJump()
