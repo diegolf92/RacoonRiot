@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject playerSprite;
+    public bool coroutineStopper;
+    EnemyAi enemyChasing;
+    int parryCount;
     Animator anim;
 
     [Header("Movimiento")]
@@ -14,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     [SerializeField] private Rigidbody2D rb;
     bool isFacingRight = true;
+    public bool isJumping;
+    [SerializeField] PhysicsMaterial2D[] raccoonMaterial;
 
     [Header("Deteccion de contacto")]
     //ground
@@ -23,8 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isGrounded;
 
     [Header("Sonido")]
-    public AudioSource audioSource;  
-    public AudioClip jumpSound;      
+    public AudioSource audioSource;
+    public AudioClip jumpSound;
 
 
     //ceiling
@@ -38,20 +44,28 @@ public class PlayerController : MonoBehaviour
     public float wallSlideSpeed = 2f;
     [SerializeField] private bool isWallSliding;
 
-    //wall jump
+    [Header("Wall Jump")]
     private bool isWallJumping;
-    private float wallJumpDirection;
+    public float wallJumpDirection;
     private float wallJumpTime = 0.2f;
     private float wallJumpCounter;
     private float wallJumpDuration;
     [SerializeField] private Vector2 wallJumpPower = new Vector2(8f, 16f);
-
+    
     //crouch
     BoxCollider2D playerCollider;
-    bool isCrouching;
+    public bool isCrouching;
     Vector2 boxColNormalSize;
     public Vector2 boxColCrouchSize;
-    float offsetCollider = -0.4f;
+    public Vector2 boxColSlideSize;
+
+    public enum PlayerState
+    {
+        NORMAL,
+        CAPTURADO
+    }
+
+    public PlayerState currentState;
 
     void Start()
     {
@@ -59,33 +73,112 @@ public class PlayerController : MonoBehaviour
         anim = playerSprite.GetComponent<Animator>();
         playerCollider = GetComponent<BoxCollider2D>();
         boxColNormalSize = playerCollider.size;
+        currentState = PlayerState.NORMAL;
     }
 
     void Update()
     {
-        if (!isWallJumping) { Move(); }
-        if (!isWallJumping) { Flip(); }
-        DetectGround();
-        DetectCeiling();
-        WallSlide();
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        switch (currentState)
         {
-            Jump();
-        }
-        WallJump();
+            case PlayerState.NORMAL:
+                if (isGrounded)
+                {
+                    isJumping = false;
+                    anim.SetBool("isJumping", false);
+                    isWallJumping = false;
+                    isWallSliding = false;
+                    anim.SetBool("isWallSliding", false);
+                }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded)
-        {
-            isCrouching = true;
-            anim.SetBool("crouch", true);
-            Crouch(offsetCollider);
-            playerCollider.size = boxColCrouchSize;
+                if (!isWallJumping) { Move(); }
+                if (!isWallJumping) { Flip(); }
+
+                Crouch();
+                DetectGround();
+                DetectCeiling();
+                WallSlide();
+                WallJump();
+
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    Jump();
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    isCrouching = !isCrouching;
+                }
+                break;
+
+
+            case PlayerState.CAPTURADO:
+                StartCoroutine(ParryCoroutine());
+                break;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftControl) && !isCeiling)
+    }
+
+    IEnumerator ParryCoroutine()
+    {
+        if (coroutineStopper)
+        {
+            Debug.Log("it shouldnt lose");
+            yield break; // Exit the coroutine if it has already run
+        }
+
+            playerSprite.GetComponent<SpriteRenderer>().enabled = false;
+        //if you get caught and parry 3 times while enemy canParry is true you escape, else you lose
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            parryCount++;
+        }
+
+        if (parryCount > 5)
+        {
+            coroutineStopper = true;
+            currentState = PlayerState.NORMAL;
+            enemyChasing.ChangeEnemyState(1);
+            StartCoroutine(EscapeTime());
+            yield break;
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        if(!coroutineStopper)Debug.Log("You LOSE");
+    }
+
+    IEnumerator EscapeTime()
+    {
+        playerSprite.GetComponent<SpriteRenderer>().enabled = true;
+        playerSprite.GetComponent<SpriteRenderer>().color = Color.gray;
+        gameObject.layer = 0;
+        yield return new WaitForSeconds(3f);
+        coroutineStopper = false;
+        playerSprite.GetComponent<SpriteRenderer>().color = Color.white;
+        gameObject.layer = 7;
+    }
+
+    void Crouch()
+    {
+        if (isCrouching || isCeiling)
+        {
+            playerCollider.size = boxColCrouchSize;
+            if (moveX != 0)
+            {
+                anim.SetBool("crouch", false);
+                anim.SetBool("crouchMove", true);
+            }
+            else
+            {
+                anim.SetBool("crouch", true);
+                anim.SetBool("crouchMove", false);
+            }
+        }
+
+        if(!isCrouching)
         {
             isCrouching = false;
             anim.SetBool("crouch", false);
-            Crouch(-offsetCollider);
+            anim.SetBool("crouchMove", false);
             playerCollider.size = boxColNormalSize;
         }
     }
@@ -109,14 +202,22 @@ public class PlayerController : MonoBehaviour
 
     private void WallSlide()
     {
-        if (DetectWall() && !DetectGround() && moveX != 0f)
+        if (DetectWall() && !isGrounded)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+            playerCollider.size = boxColSlideSize;
+            playerSprite.GetComponent<SpriteRenderer>().flipX = true;
+            playerCollider.sharedMaterial = raccoonMaterial[1];
+            anim.SetBool("isWallSliding", true); 
         }
         else
         {
             isWallSliding = false;
+            //playerCollider.size = boxColNormalSize;
+            playerSprite.GetComponent<SpriteRenderer>().flipX = false;
+            playerCollider.sharedMaterial = raccoonMaterial[0];
+            anim.SetBool("isWallSliding", false);
         }
     }
 
@@ -128,10 +229,19 @@ public class PlayerController : MonoBehaviour
         if (!isCrouching)
         {
             rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
+            if (moveX != 0 && isGrounded)
+            {
+                anim.SetBool("run", true);
+            }
+            else
+            {
+                anim.SetBool("run", false);
+            }
         }
         else
         {
             rb.velocity = new Vector2(moveX * speed / 3, rb.velocity.y);
+            anim.SetBool("run", false);
         }
 
     }
@@ -149,6 +259,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        isJumping = true;
+        anim.SetTrigger("jump");
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         if (audioSource != null && jumpSound != null)
         {
@@ -164,7 +276,7 @@ public class PlayerController : MonoBehaviour
             wallJumpDirection = -transform.localScale.x;
             wallJumpCounter = wallJumpTime;
 
-            CancelInvoke(nameof(StopWallJump));
+            CancelInvoke(nameof(StopWallJumping));
         }
         else
         {
@@ -173,6 +285,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && wallJumpCounter > 0f)
         {
+            anim.SetTrigger("wallJump");
             isWallJumping = true;
             rb.velocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
             wallJumpCounter = 0f;
@@ -184,19 +297,13 @@ public class PlayerController : MonoBehaviour
                 localScale.x *= -1f;
                 transform.localScale = localScale;
             }
-
-            Invoke(nameof(StopWallJump), wallJumpDuration);
+            Invoke(nameof(StopWallJumping), wallJumpDuration);
         }
     }
 
-    private void StopWallJump()
+    private void StopWallJumping()
     {
         isWallJumping = false;
-    }
-
-    private void Crouch(float amount)
-    {
-        playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y + amount);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -221,6 +328,13 @@ public class PlayerController : MonoBehaviour
             //smooth out fade
             collision.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
         }
+
+        if (collision.CompareTag("Enemy"))
+        {
+            enemyChasing = collision.GetComponent<EnemyAi>();
+            enemyChasing.ChangeEnemyState(0);
+            currentState = PlayerState.CAPTURADO;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -230,5 +344,13 @@ public class PlayerController : MonoBehaviour
             //smooth out fade
             collision.GetComponent<SpriteRenderer>().color = new Color(0.69f, 0.75f, 1, 1);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(pivotPos.transform.position, checkRadius);
+        Gizmos.DrawSphere(wallCheck.transform.position, checkRadius);
+        Gizmos.DrawSphere(ceilingPos.transform.position, checkRadius);
     }
 }

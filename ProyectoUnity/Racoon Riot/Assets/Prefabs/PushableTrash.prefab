@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2549371622703225196}
   - component: {fileID: 146902726515710837}
   - component: {fileID: 8409832018333690602}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PushableTrash
-  m_TagString: Pushable
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,4 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223a905b8b944c9469e2616c5a9494ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasFallen: 0
   newSprite: {fileID: -1291983627, guid: 70acce2867177684daf1feac9cb3c45b, type: 3}
+  enemyScript: {fileID: 0}
+  speedSensitivity: -10

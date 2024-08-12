@@ -5,11 +5,13 @@ using UnityEngine;
 public class PushableObject : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private bool hasFallen = false;
+    public bool hasFallen = false;
     private Vector2 initialPosition;
     private SpriteRenderer spriteRenderer;
     public Sprite newSprite;
     private Sprite originalSprite;
+    public EnemyAi enemyScript;
+    public float speedSensitivity = -10f;
 
     void Start()
     {
@@ -20,7 +22,7 @@ public class PushableObject : MonoBehaviour
 
     void Update()
     {
-        if (!hasFallen && rb.velocity.y != 0)
+        if (!hasFallen && rb.velocity.y < speedSensitivity)
         {
             hasFallen = true;
         }
@@ -28,6 +30,9 @@ public class PushableObject : MonoBehaviour
         if (hasFallen && Mathf.Approximately(rb.velocity.y, 0))
         {
             rb.bodyType = RigidbodyType2D.Static;
+            if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) enemyScript.DistractEnemy(transform);
+            hasFallen = false;
+            
             ChangeSprite();
         }
     }
