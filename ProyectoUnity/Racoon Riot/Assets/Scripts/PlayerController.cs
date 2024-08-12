@@ -155,6 +155,8 @@ public class PlayerController : MonoBehaviour
         coroutineStopper = false;
         playerSprite.GetComponent<SpriteRenderer>().color = Color.white;
         gameObject.layer = 7;
+        enemyChasing = null;
+        parryCount = 0;
     }
 
     void Crouch()
