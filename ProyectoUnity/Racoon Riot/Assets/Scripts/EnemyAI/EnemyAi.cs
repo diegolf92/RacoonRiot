@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyAi : MonoBehaviour
 {
@@ -19,20 +21,28 @@ public class EnemyAi : MonoBehaviour
     public bool canMove = false;
     public Vector3 velocity;
     private Vector3 previousPosition;
-    bool isFacingRight;
+    public bool isFacingRight;
     public int flipDuration = 60;
     int flipTimeRemaining;
     public bool flipCountingDown = false;
     public bool canParry = false;
-    public float visionRange = 10f;
-    public float visionAngle = 60f;
-    public int rayCount = 10;
-    bool coroutineStopper;
+    public bool coroutineStopper;
     public bool isCapturing;
 
     [Header("Layers")]
     public LayerMask playerLayer;
     public LayerMask objectLayer;
+    public LayerMask groundLayer;
+
+    [Header("Field Of View")]
+    public SpriteRenderer FOV;
+    Color whiteColor = new Color(1,1,1,0.3f);
+    Color yellowColor = new Color(1, 1, 0, 0.3f);
+    Color redColor = new Color(1, 0, 0, 0.3f);
+    public float visionRange = 10f;
+    public float visionAngle = 60f;
+    public int rayCount = 10;
+    public float losePlayer;
 
     public enum EnemyState
     {
@@ -57,28 +67,57 @@ public class EnemyAi : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.VIGILANDO:
+                FOV.color = whiteColor;
                 if (!canMove) Vigilar();
-                else Patrullar();
+                else StartCoroutine(Patrullar()); RayosDePatrullaje();
                 break;
             case EnemyState.REVISANDO:
+                FOV.color = yellowColor;
                 StartCoroutine(MoverseHaciaObjeto());
                 break;
             case EnemyState.PERSIGUIENDO:
+                FOV.color = redColor;
                 StartCoroutine(PerseguirAlJugador());
                 break;
             case EnemyState.CAPTURANDO:
+                FOV.color = Color.clear;
                 anim.SetBool("playerCaptured", true);
                 //StartCoroutine(EnemigoCapturado());
                 break;
             case EnemyState.JUGADOR_ESCAPO:
+                FOV.color = yellowColor;
                 anim.SetBool("playerCaptured", false);
                 isCapturing = false;
                 StartCoroutine(CheckObjectThenGoBack());
                 break;
             case EnemyState.REGRESANDO:
+                FOV.color = yellowColor;
                 coroutineStopper = true;
                 break;
         }
+    }
+
+    Vector3 CheckIfEnemyWithinBoundaries(Transform positionToTest)
+    {
+        if (positionToTest.position.x < limitPoints[0].position.x)
+        {
+            //this position is outside of boundaries
+            return limitPoints[0].position;
+        } else if (positionToTest.position.x > limitPoints[1].position.x)
+        {
+            return limitPoints[1].position;
+        }
+        else {
+            //this position is inside of boundaries
+            return positionToTest.position;
+        }
+    }
+
+    Vector3 ConvertAngleToVector3(float angle)
+    {
+        //angle = 0 -> 360
+        float angleRad = angle * (Mathf.PI/180f);
+        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
     }
 
     public void ChangeEnemyState(int state)
@@ -97,7 +136,6 @@ public class EnemyAi : MonoBehaviour
         }
     }
 
-
     private void Vigilar()
     {
         anim.SetBool("isWalking", false);
@@ -112,9 +150,11 @@ public class EnemyAi : MonoBehaviour
         //genera rayos en distintos angulos
         float angleStep = visionAngle / (rayCount - 1);
         float startingAngle = isFacingRight ? -visionAngle / 2 : -visionAngle / 2;
+
         //informacion de cada rayo 
         for (int i = 0; i < rayCount; i++)
         {
+            //creando cono de vision
             float currentAngle = startingAngle + (angleStep * i);
             Vector2 direction = DirectionFromAngle(currentAngle);
 
@@ -183,43 +223,102 @@ public class EnemyAi : MonoBehaviour
         localScale.x *= -1;
         transform.localScale = localScale;
         isFacingRight = !isFacingRight;
+        coroutineStopper = false;
     }
 
-    private void Patrullar()
+    private IEnumerator Patrullar()
     {
-        target = limitPoints[0].position;
-        Movement();
-    }
-
-    void Movement()
-    {
-        velocity = ((transform.position - previousPosition)/ Time.deltaTime);
-        previousPosition = transform.position;
-        anim.SetBool("isWalking", true);
-
-        if (transform.position != target)
+        //moverse hacia punto de patrullaje dependiendo del bool isFacingRight
+        if (isFacingRight)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            Vector3 targetPos = new Vector3(limitPoints[1].position.x, transform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            //chequear distancia hasta objeto
+            float distanceToObject = Vector3.Distance(transform.position, targetPos);
+            Debug.DrawLine(transform.position, targetPos, Color.blue);
+
+            if (distanceToObject < 1f)
+            { //esto se reproduce cuando alcanza el distractor
+                StartCoroutine(StareThenContinuePatrol());
+                yield return null;
+            } else
+            { //mientras va hacia el distractor
+                //objectOnSight = null;
+                anim.SetBool("isWalking", true);
+            }
+
         }
         else
         {
-            if (target == limitPoints[0].position)
+            Vector3 targetPos = new Vector3(limitPoints[0].position.x, transform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            //chequear distancia hasta objeto
+            float distanceToObject = Vector3.Distance(transform.position, targetPos);
+            Debug.DrawLine(transform.position, targetPos, Color.blue);
+
+            if (distanceToObject < 1f)
+            { //esto se reproduce cuando alcanza el distractor
+                StartCoroutine(StareThenContinuePatrol());
+                yield return null;
+            }else
+            { //mientras va hacia el distractor
+                //objectOnSight = null;
+                anim.SetBool("isWalking", true);
+            }
+        }
+    }
+
+    private void RayosDePatrullaje()
+    {
+        //genera rayos en distintos angulos
+        float angleStep = visionAngle / (rayCount - 1);
+        float startingAngle = isFacingRight ? -visionAngle / 2 : -visionAngle / 2;
+        //informacion de cada rayo 
+        for (int i = 0; i < rayCount; i++)
+        {
+            float currentAngle = startingAngle + (angleStep * i);
+            Vector2 direction = DirectionFromAngle(currentAngle);
+
+            //si el rayo toca uno de estos layers activa un nuevo enemystate
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, visionRange, playerLayer | objectLayer | groundLayer);
+            if (hit.collider != null)
             {
-                if (isFacingRight)
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
-                    isFacingRight = !isFacingRight;
-                    StartCoroutine("SetTarget", limitPoints[1].position);
+                    objectOnSight = hit.transform.gameObject;
+                    //coroutineStopper = true;
+                    //objectOnSight.GetComponent<PlayerController>().BeingChasedBy(gameObject);
+                    anim.SetBool("isWalking", true);
+                    currentState = EnemyState.PERSIGUIENDO;
+                }
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Object"))
+                {
+                    objectOnSight = hit.transform.gameObject;
+                    coroutineStopper = true;
+                    //go check it out
+                    currentState = EnemyState.REVISANDO;
+                }
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    // Stop the ray at the obstacle
+                    Debug.DrawLine(transform.position, hit.point, Color.red);
                 }
             }
             else
             {
-                if (!isFacingRight)
-                {
-                    isFacingRight = !isFacingRight;
-                    StartCoroutine("SetTarget", limitPoints[0].position);
-                }
+                Debug.DrawLine(transform.position, (Vector2)transform.position + direction * visionRange, Color.green);
             }
         }
+    }
+
+    IEnumerator StareThenContinuePatrol()
+    {
+        if (coroutineStopper) yield break;
+            coroutineStopper = true;
+        Debug.Log("stare");
+        anim.SetBool("isWalking", false);
+        yield return new WaitForSeconds(4f);
+        FlipWithoutCoroutine();
     }
 
     IEnumerator SetTarget(Vector3 position)
@@ -245,8 +344,10 @@ public class EnemyAi : MonoBehaviour
         if(coroutineStopper) yield break;
         if (objectOnSight != null)
         {
+            Vector3 boundaryTest = CheckIfEnemyWithinBoundaries(objectOnSight.transform); //chequea si objeto a seguir no se sale de los limites de movimiento del enemigo
             //moverse hacia objeto
-            Vector3 target = new Vector3(objectOnSight.transform.position.x, transform.position.y, transform.position.z);
+            Vector3 target = new Vector3(boundaryTest.x, transform.position.y, transform.position.z);
+            
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             
             //chequear distancia hasta objeto
@@ -273,14 +374,16 @@ public class EnemyAi : MonoBehaviour
         if (coroutineStopper) yield break;
         if (objectOnSight != null)
         {
-            
+            Vector3 boundaryTest = CheckIfEnemyWithinBoundaries(objectOnSight.transform); //chequea si jugador no se sale de los limites de movimiento del enemigo
             //moverse hacia jugador
-            Vector3 target = new Vector3(objectOnSight.transform.position.x, transform.position.y, transform.position.z);
+            Vector3 target = new Vector3(boundaryTest.x, transform.position.y, transform.position.z);
             transform.position = Vector3.MoveTowards(transform.position, target, chaseSpeed * Time.deltaTime);
 
             //calcular distancia hacia jugador
             Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
             float distanceToObject = Vector3.Distance(transform.position, target);
+            float distanceToPlayer = Vector3.Distance(transform.position, objectOnSight.transform.position);
+            if (distanceToPlayer > losePlayer) { ChangeEnemyState(1); } else { Debug.Log("onsight"); }
             Debug.DrawLine(transform.position, objectOnSight.transform.position, Color.blue);
             yield return null;
         }

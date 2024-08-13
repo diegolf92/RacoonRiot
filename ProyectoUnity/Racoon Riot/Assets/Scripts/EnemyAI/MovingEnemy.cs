@@ -91,12 +91,6 @@ public class MovingEnemy : MonoBehaviour
                 {
                     // Stop the ray at the obstacle
                     Debug.DrawLine(transform.position, hit.point, Color.red);
-                    float distanceToWall = Vector3.Distance(transform.position, hit.collider.transform.position);
-                    if (distanceToWall < 1f)
-                    {
-                        Vector2 targetPosition = Vector2.MoveTowards(transform.position, originalPosition, speed * Time.deltaTime);
-                        rb.MovePosition(targetPosition);
-                    }
                 }
             }
             else
