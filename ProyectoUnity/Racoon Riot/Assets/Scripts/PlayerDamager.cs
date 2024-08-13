@@ -94,6 +94,7 @@ public class PlayerDamager : MonoBehaviour
     void HandlePlayerDeath()
     {
         Debug.Log("Game Over");
+
         gameObject.SetActive(false); // Desactivar el jugador
 
         // Activar el menú de muerte
