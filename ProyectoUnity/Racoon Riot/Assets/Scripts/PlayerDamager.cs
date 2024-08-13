@@ -7,6 +7,8 @@ public class PlayerDamager : MonoBehaviour
 {
     public CheckPointManager checkpoint;
 
+    Animator anim;
+
     [Header("Vidas del Jugador")]
     public int vidas = 3;  // Número inicial de vidas
     public List<Image> vidaImages; // Lista de imágenes que representan las vidas
@@ -94,12 +96,25 @@ public class PlayerDamager : MonoBehaviour
     void HandlePlayerDeath()
     {
         Debug.Log("Game Over");
-        gameObject.SetActive(false); // Desactivar el jugador
+        gameObject.SetActive(false); // Desactivar el jugador.
+
+        
+        // Detener el juego
+        Time.timeScale = 0f;
 
         // Activar el menú de muerte
         if (deathMenu != null)
         {
             deathMenu.SetActive(true);
+        }
+    }
+
+    public void AddTime(float extraTime)
+    {
+        currentTime += extraTime; // Añadir tiempo adicional
+        if (timeSlider != null)
+        {
+            timeSlider.value = currentTime; // Actualizar el slider
         }
     }
 }
