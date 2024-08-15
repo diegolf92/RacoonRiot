@@ -58,11 +58,13 @@ public class PlayerController : MonoBehaviour
     Vector2 boxColNormalSize;
     public Vector2 boxColCrouchSize;
     public Vector2 boxColSlideSize;
+    public PlayerDamager damage;
 
     public enum PlayerState
     {
         NORMAL,
-        CAPTURADO
+        CAPTURADO,
+        MURIENDO
     }
 
     public PlayerState currentState;
@@ -114,6 +116,9 @@ public class PlayerController : MonoBehaviour
             case PlayerState.CAPTURADO:
                 StartCoroutine(ParryCoroutine());
                 break;
+
+            case PlayerState.MURIENDO:
+                break;
         }
     }
 
@@ -143,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        if(!coroutineStopper)Debug.Log("You LOSE");
+        if(!coroutineStopper)damage.ApplyDamage();
     }
 
     IEnumerator EscapeTime()
@@ -306,6 +311,13 @@ public class PlayerController : MonoBehaviour
     private void StopWallJumping()
     {
         isWallJumping = false;
+    }
+
+    public void Die()
+    {
+        currentState = PlayerState.MURIENDO;
+        Debug.Log("muerte");
+        anim.SetBool("muerteHambre", true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
