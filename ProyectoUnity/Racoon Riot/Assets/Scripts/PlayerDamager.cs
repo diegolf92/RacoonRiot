@@ -23,6 +23,7 @@ public class PlayerDamager : MonoBehaviour
     public float maxTime = 30f; // Tiempo máximo ajustable en el editor
     private float currentTime; // Tiempo actual
     public PlayerController player;
+    bool isDead = false;
 
     void Start()
     {
@@ -47,7 +48,11 @@ public class PlayerDamager : MonoBehaviour
 
             if (currentTime <= 0)
             {
-                HandlePlayerDeath(); // Aplicar daño al jugador
+                if (!isDead)
+                {
+                    isDead = true;
+                    StartCoroutine(HandlePlayerDeath()); // Aplicar daño al jugador
+                }
             }
         }
     }
@@ -92,11 +97,12 @@ public class PlayerDamager : MonoBehaviour
         }
     }
 
-    void HandlePlayerDeath()
+    IEnumerator HandlePlayerDeath()
     {
         //gameObject.SetActive(false); // Desactivar el jugador
         player.Die();
         //checkpoint.Reviver();
+        yield return new WaitForSeconds(3f);
         if (deathMenu != null)
         {
             deathMenu.SetActive(true);

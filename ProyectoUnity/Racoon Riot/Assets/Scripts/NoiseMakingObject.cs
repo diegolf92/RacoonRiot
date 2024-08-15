@@ -12,6 +12,7 @@ public class NoiseMakingObject : MonoBehaviour
     private AudioSource audioSource;
     public float cooldownTime = 2f;
     private bool isOnCooldown = false;
+    public EnemyAi enemyScript;
 
     void Start()
     {
@@ -31,6 +32,11 @@ public class NoiseMakingObject : MonoBehaviour
     void MakeNoise()
     {
         audioSource.Play();
+        if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) 
+        {
+            enemyScript.DistractEnemy(transform);
+            enemyScript.ChangeEnemyState(2, gameObject);
+        } 
         StartCoroutine(Cooldown());
         //AlertEnemies();
     }
@@ -60,4 +66,24 @@ public class NoiseMakingObject : MonoBehaviour
         }
     }
     */
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            MakeNoise();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Finish"))
+        {
+            if (enemyScript.currentState == EnemyAi.EnemyState.REVISANDO)
+            {
+                enemyScript.objectOnSight = null;
+                enemyScript.ChangeEnemyState(4);
+            }
+        }
+    }
 }

@@ -316,7 +316,6 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         currentState = PlayerState.MURIENDO;
-        Debug.Log("muerte");
         anim.SetBool("muerteHambre", true);
     }
 
@@ -356,7 +355,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("SecretWall"))
         {
             //smooth out fade
-            collision.GetComponent<SpriteRenderer>().color = new Color(0.69f, 0.75f, 1, 1);
+            collision.GetComponent<SpriteRenderer>().color = new Color(0.26f, 0.3f, 0.33f, 1);
         }
     }
 
