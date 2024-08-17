@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     EnemyAi enemyChasing;
     int parryCount;
     Animator anim;
+    public GameObject taco;
 
     [Header("Movimiento")]
     private float moveX;
@@ -347,6 +348,12 @@ public class PlayerController : MonoBehaviour
             enemyChasing = collision.GetComponent<EnemyAi>();
             enemyChasing.ChangeEnemyState(0);
             currentState = PlayerState.CAPTURADO;
+        }
+
+        if (collision.CompareTag("Goal"))
+        {
+            anim.SetBool("muerteHambre", true);
+            taco.SetActive(true);
         }
     }
 
