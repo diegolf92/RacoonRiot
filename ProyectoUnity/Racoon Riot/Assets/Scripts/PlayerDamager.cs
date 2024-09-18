@@ -103,6 +103,7 @@ public class PlayerDamager : MonoBehaviour
         player.Die();
         //checkpoint.Reviver();
         yield return new WaitForSeconds(3f);
+
         if (deathMenu != null)
         {
             deathMenu.SetActive(true);

@@ -6,10 +6,12 @@ public class Victory : MonoBehaviour
 {
     public List<Item> keyItems; // Lista de ítems clave requeridos para ganar
     private Player_Inventory playerInventory;
+    public GameObject victoryMenu; // Referencia al menú de victoria
 
     void Start()
     {
         playerInventory = GetComponent<Player_Inventory>();
+        victoryMenu.SetActive(false); // Asegurarse de que el menú esté desactivado al inicio
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -45,7 +47,10 @@ public class Victory : MonoBehaviour
 
     void Victoria()
     {
-        // Aquí puedes implementar la lógica de victoria, como cargar una nueva escena o mostrar un mensaje de victoria
+        // Mostrar el menú de victoria
+        victoryMenu.SetActive(true);
+        // Pausar el juego si es necesario
+        Time.timeScale = 0f;
         Debug.Log("¡Victoria! Has recogido todos los objetos clave y has llegado a la meta.");
     }
 }
