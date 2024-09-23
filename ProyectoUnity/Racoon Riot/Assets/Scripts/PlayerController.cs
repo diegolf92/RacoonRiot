@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     EnemyAi enemyChasing;
     int parryCount;
     Animator anim;
+    public GameObject taco;
 
     [Header("Movimiento")]
     private float moveX;
@@ -58,11 +59,13 @@ public class PlayerController : MonoBehaviour
     Vector2 boxColNormalSize;
     public Vector2 boxColCrouchSize;
     public Vector2 boxColSlideSize;
+    public PlayerDamager damage;
 
     public enum PlayerState
     {
         NORMAL,
-        CAPTURADO
+        CAPTURADO,
+        MURIENDO
     }
 
     public PlayerState currentState;
@@ -114,6 +117,9 @@ public class PlayerController : MonoBehaviour
             case PlayerState.CAPTURADO:
                 StartCoroutine(ParryCoroutine());
                 break;
+
+            case PlayerState.MURIENDO:
+                break;
         }
     }
 
@@ -143,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        if(!coroutineStopper)Debug.Log("You LOSE");
+        if(!coroutineStopper)damage.ApplyDamage();
     }
 
     IEnumerator EscapeTime()
@@ -308,6 +314,12 @@ public class PlayerController : MonoBehaviour
         isWallJumping = false;
     }
 
+    public void Die()
+    {
+        currentState = PlayerState.MURIENDO;
+        anim.SetBool("muerteHambre", true);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "elevator")
@@ -337,6 +349,12 @@ public class PlayerController : MonoBehaviour
             enemyChasing.ChangeEnemyState(0);
             currentState = PlayerState.CAPTURADO;
         }
+
+        if (collision.CompareTag("Goal"))
+        {
+            anim.SetBool("muerteHambre", true);
+            taco.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -344,7 +362,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("SecretWall"))
         {
             //smooth out fade
-            collision.GetComponent<SpriteRenderer>().color = new Color(0.69f, 0.75f, 1, 1);
+            collision.GetComponent<SpriteRenderer>().color = new Color(0.26f, 0.3f, 0.33f, 1);
         }
     }
 

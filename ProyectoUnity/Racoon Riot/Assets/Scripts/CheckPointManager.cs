@@ -12,6 +12,11 @@ public class CheckPointManager : MonoBehaviour
         currentCheckpoint = startingCheckpoint;
     }
 
+    public void GoToStart()
+    {
+        player.gameObject.transform.position = startingCheckpoint.transform.position;
+    }
+
     public void ChangeCheckPoint(CheckPoint point)
     {
         currentCheckpoint = point;

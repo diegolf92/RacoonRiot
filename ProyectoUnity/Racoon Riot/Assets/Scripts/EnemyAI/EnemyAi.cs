@@ -134,6 +134,31 @@ public class EnemyAi : MonoBehaviour
             currentState = EnemyState.JUGADOR_ESCAPO;
             coroutineStopper = false;
         }
+        else if (state == 2)
+        {
+            currentState = EnemyState.REVISANDO;
+            coroutineStopper = false;
+        }
+        else if (state == 3)
+        {
+            currentState = EnemyState.REGRESANDO;
+            coroutineStopper = false;
+        }
+        else if (state == 4)
+        {
+            currentState = EnemyState.VIGILANDO;
+            coroutineStopper = false;
+        }
+    }
+
+    public void ChangeEnemyState(int state, GameObject posXToMove)
+    {
+        if (state == 2)
+        {
+            objectOnSight = posXToMove;
+            currentState = EnemyState.REVISANDO;
+            coroutineStopper = true;
+        }
     }
 
     private void Vigilar()
@@ -188,7 +213,7 @@ public class EnemyAi : MonoBehaviour
     public void DistractEnemy(Transform objectPos)
     {
         coroutineStopper = true;
-        if(objectPos.position.x < transform.position.x && isFacingRight) FlipWithoutCoroutine();
+        if(objectPos.position.x < transform.position.x && isFacingRight || objectPos.position.x > transform.position.x && !isFacingRight) FlipWithoutCoroutine();
     }
 
     Vector2 DirectionFromAngle(float angle)
@@ -315,7 +340,6 @@ public class EnemyAi : MonoBehaviour
     {
         if (coroutineStopper) yield break;
             coroutineStopper = true;
-        Debug.Log("stare");
         anim.SetBool("isWalking", false);
         yield return new WaitForSeconds(4f);
         FlipWithoutCoroutine();
@@ -358,7 +382,7 @@ public class EnemyAi : MonoBehaviour
             while (distanceToObject < 1.5f)
             { //esto se reproduce cuando alcanza el distractor
                 
-                objectOnSight.GetComponent<CircleCollider2D>().isTrigger = true; 
+                if(objectOnSight.GetComponent<CircleCollider2D>() !=null) objectOnSight.GetComponent<CircleCollider2D>().isTrigger = true; 
                 //StartCoroutine(CheckObjectThenGoBack());
                 yield return null;
             }
@@ -404,7 +428,7 @@ public class EnemyAi : MonoBehaviour
         if(objectOnSight == null) yield break;
         anim.SetBool("isWalking", false);
         yield return new WaitForSeconds(4f);
-        if(objectOnSight.layer != 7)objectOnSight.gameObject.layer = 0;
+        if(objectOnSight.layer != 7 && objectOnSight != null)objectOnSight.gameObject.layer = 0;
         objectOnSight = null;
         FlipWithoutCoroutine();
         StartCoroutine(ReturnToInitialPosition());
