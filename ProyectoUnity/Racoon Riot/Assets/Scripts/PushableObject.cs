@@ -29,10 +29,10 @@ public class PushableObject : MonoBehaviour
 
         if (hasFallen && Mathf.Approximately(rb.velocity.y, 0))
         {
+
             rb.bodyType = RigidbodyType2D.Static;
             if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) enemyScript.DistractEnemy(transform);
             hasFallen = false;
-            
             ChangeSprite();
         }
     }
@@ -55,6 +55,20 @@ public class PushableObject : MonoBehaviour
         if (newSprite != null)
         {
             spriteRenderer.sprite = newSprite;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Pushable"))
+        {
+            if (hasFallen && Mathf.Approximately(rb.velocity.y, 0))
+            {
+                ChangeSprite();
+                rb.bodyType = RigidbodyType2D.Static;
+                if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) enemyScript.DistractEnemy(transform);
+                hasFallen = false;
+            }
         }
     }
 }

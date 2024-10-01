@@ -20,7 +20,7 @@ public class PlayerDamager : MonoBehaviour
 
     [Header("Barra de Tiempo")]
     public Slider timeSlider;  // Slider que representa la barra de tiempo
-    public float maxTime = 30f; // Tiempo máximo ajustable en el editor
+    public float maxTime = 100f; // Tiempo máximo ajustable en el editor
     private float currentTime; // Tiempo actual
     public PlayerController player;
     bool isDead = false;
@@ -57,23 +57,15 @@ public class PlayerDamager : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player") && other.gameObject.activeInHierarchy)
-        {
-            ApplyDamage();
-        }
-    }
-
     public void ApplyDamage()
     {
         vidas--;  // Restar una vida
 
-        // Reproducir sonido de muerte
+        /* Reproducir sonido de muerte
         if (audioSource != null && deathSound != null)
         {
             audioSource.PlayOneShot(deathSound);
-        }
+        }*/
 
         // Actualizar imágenes de vida
         if (vidaImages.Count > vidas && vidas >= 0)
@@ -95,6 +87,19 @@ public class PlayerDamager : MonoBehaviour
         {
             HandlePlayerDeath();
         }
+    }
+
+    public void TimeSliderAdd()
+    {
+        if ((currentTime > maxTime))
+        {
+            currentTime += 25f;
+        }
+        else
+        {
+            currentTime = maxTime;
+        }
+        
     }
 
     IEnumerator HandlePlayerDeath()

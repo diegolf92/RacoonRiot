@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Victory : MonoBehaviour
@@ -20,6 +21,12 @@ public class Victory : MonoBehaviour
         if (other.CompareTag("Goal"))
         {
             CheckVictoryCondition();
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().anim.SetBool("muerteHambre", true);
+            StartCoroutine(Victoria());
         }
     }
 
@@ -45,12 +52,12 @@ public class Victory : MonoBehaviour
         }
     }
 
-    void Victoria()
+    IEnumerator Victoria()
     {
+        yield return new WaitForSeconds(2f);
         // Mostrar el menú de victoria
         victoryMenu.SetActive(true);
         // Pausar el juego si es necesario
         Time.timeScale = 0f;
-        Debug.Log("¡Victoria! Has recogido todos los objetos clave y has llegado a la meta.");
     }
 }

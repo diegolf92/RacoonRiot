@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public bool coroutineStopper;
     EnemyAi enemyChasing;
     int parryCount;
-    Animator anim;
+    public Animator anim;
     public GameObject taco;
 
     [Header("Movimiento")]
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     public float checkRadius = 0.03f;
     public Transform pivotPos;
+    public Transform pivotPosTwo;
     [SerializeField] private bool isGrounded;
 
     [Header("Sonido")]
@@ -194,6 +195,8 @@ public class PlayerController : MonoBehaviour
     private bool DetectGround()
     {
         isGrounded = Physics2D.OverlapCircle(pivotPos.position, checkRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(pivotPosTwo.position, checkRadius, groundLayer);
+        anim.SetBool("grounded", isGrounded);
         return isGrounded;
     }
 
@@ -233,6 +236,9 @@ public class PlayerController : MonoBehaviour
     {
         moveX = Input.GetAxis("Horizontal");
         moveY = Input.GetAxis("Vertical");
+
+        anim.SetFloat("speedX", Mathf.Abs(moveX));
+        anim.SetFloat("speedY", rb.velocity.y);
 
         if (!isCrouching)
         {
@@ -326,6 +332,12 @@ public class PlayerController : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform;
         }
+
+        if (collision.gameObject.tag == ("KillZone"))
+        {
+            damage.ApplyDamage();
+        }
+        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -348,6 +360,12 @@ public class PlayerController : MonoBehaviour
             enemyChasing = collision.GetComponent<EnemyAi>();
             enemyChasing.ChangeEnemyState(0);
             currentState = PlayerState.CAPTURADO;
+        }
+
+        if (collision.CompareTag("Food"))
+        {
+            damage.TimeSliderAdd();
+            Destroy(collision.gameObject);
         }
 
         if (collision.CompareTag("Goal"))

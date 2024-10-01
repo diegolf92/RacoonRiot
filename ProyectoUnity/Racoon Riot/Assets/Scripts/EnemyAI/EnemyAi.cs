@@ -428,7 +428,8 @@ public class EnemyAi : MonoBehaviour
         if(objectOnSight == null) yield break;
         anim.SetBool("isWalking", false);
         yield return new WaitForSeconds(4f);
-        if(objectOnSight.layer != 7 && objectOnSight != null)objectOnSight.gameObject.layer = 0;
+        if (objectOnSight.layer != 7) objectOnSight.gameObject.layer = 0;
+        else if (objectOnSight == null) Debug.Log("Nothing On Sight");
         objectOnSight = null;
         FlipWithoutCoroutine();
         StartCoroutine(ReturnToInitialPosition());

@@ -8,6 +8,10 @@ public class MenuGameOver: MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void Nivel2()
+    {
+        SceneManager.LoadScene(2);
+    }
     public void MenuInicial(string nombre)
     {
         SceneManager.LoadScene(nombre);

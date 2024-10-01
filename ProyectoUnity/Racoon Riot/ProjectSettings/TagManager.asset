@@ -13,6 +13,8 @@ TagManager:
   - MovingEnemy
   - SecretWall
   - Object
+  - Food
+  - KillZone
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - Ceiling
   - StopEnemy
   - Object
-  - 
+  - Food
   - 
   - 
   - 
