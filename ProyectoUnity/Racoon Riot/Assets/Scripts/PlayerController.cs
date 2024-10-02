@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce;
     [SerializeField] private Rigidbody2D rb;
-    bool isFacingRight = true;
+    public bool isFacingRight = true;
     public bool isJumping;
     [SerializeField] PhysicsMaterial2D[] raccoonMaterial;
 
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public Transform pivotPos;
     public Transform pivotPosTwo;
     [SerializeField] private bool isGrounded;
+    bool coolDown;
 
     [Header("Sonido")]
     public AudioSource audioSource;
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour
         switch (currentState)
         {
             case PlayerState.NORMAL:
+                
                 if (isGrounded)
                 {
                     isJumping = false;
@@ -116,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
 
             case PlayerState.CAPTURADO:
+                gameObject.layer = 0;
                 StartCoroutine(ParryCoroutine());
                 break;
 
@@ -128,11 +131,11 @@ public class PlayerController : MonoBehaviour
     {
         if (coroutineStopper)
         {
-            Debug.Log("it shouldnt lose");
             yield break; // Exit the coroutine if it has already run
         }
 
-            playerSprite.GetComponent<SpriteRenderer>().enabled = false;
+        playerSprite.GetComponent<SpriteRenderer>().enabled = false;
+        
         //if you get caught and parry 3 times while enemy canParry is true you escape, else you lose
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -142,7 +145,6 @@ public class PlayerController : MonoBehaviour
         if (parryCount > 5)
         {
             coroutineStopper = true;
-            currentState = PlayerState.NORMAL;
             enemyChasing.ChangeEnemyState(1);
             StartCoroutine(EscapeTime());
             yield break;
@@ -150,20 +152,40 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        if(!coroutineStopper)damage.ApplyDamage();
+        if (!coroutineStopper)
+        {
+            damage.ApplyDamage();
+            currentState = PlayerState.NORMAL;
+            gameObject.layer = 7;
+            playerSprite.GetComponent<SpriteRenderer>().enabled = true;
+            enemyChasing.ChangeEnemyState(1); 
+            enemyChasing = null;
+            yield break;
+        }
     }
 
     IEnumerator EscapeTime()
     {
+        coolDown = true;
+        currentState = PlayerState.NORMAL;
+        if (isFacingRight)
+        {
+            Vector3 offset = new Vector3(2f, 0, 0);
+            transform.position = enemyChasing.transform.position + offset;
+        }
+        else {
+            Vector3 offset = new Vector3(-2f, 0, 0);
+            transform.position = enemyChasing.transform.position + offset;
+        }
         playerSprite.GetComponent<SpriteRenderer>().enabled = true;
         playerSprite.GetComponent<SpriteRenderer>().color = Color.gray;
-        gameObject.layer = 0;
         yield return new WaitForSeconds(3f);
+        gameObject.layer = 7;
         coroutineStopper = false;
         playerSprite.GetComponent<SpriteRenderer>().color = Color.white;
-        gameObject.layer = 7;
         enemyChasing = null;
         parryCount = 0;
+        coolDown = false;
     }
 
     void Crouch()
@@ -355,11 +377,16 @@ public class PlayerController : MonoBehaviour
             collision.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
         }
 
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && !coolDown)
         {
             enemyChasing = collision.GetComponent<EnemyAi>();
             enemyChasing.ChangeEnemyState(0);
             currentState = PlayerState.CAPTURADO;
+        }
+        else if (collision.CompareTag("Enemy") && coolDown)
+        {
+            enemyChasing = collision.GetComponent<EnemyAi>();
+            enemyChasing.ChangeEnemyState(1);
         }
 
         if (collision.CompareTag("Food"))

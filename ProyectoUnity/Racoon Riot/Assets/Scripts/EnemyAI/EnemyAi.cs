@@ -184,7 +184,7 @@ public class EnemyAi : MonoBehaviour
             Vector2 direction = DirectionFromAngle(currentAngle);
 
             //si el rayo toca uno de estos layers activa un nuevo enemystate
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, visionRange, playerLayer | objectLayer);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, visionRange, playerLayer | objectLayer | groundLayer);
             if (hit.collider != null)
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -201,6 +201,14 @@ public class EnemyAi : MonoBehaviour
                     coroutineStopper = true;
                     //go check it out
                     currentState = EnemyState.REVISANDO;
+                }
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    // Stop the ray at the obstacle
+                    Vector2 a = new Vector2(transform.position.x, transform.position.y);
+                    Vector2 b = new Vector2(hit.transform.position.x, hit.transform.position.y);
+                    float distanceToHitPoint = Vector2.Distance(a, b);
+                    Debug.DrawLine(transform.position, hit.point, Color.red);
                 }
             }
             else
@@ -281,7 +289,7 @@ public class EnemyAi : MonoBehaviour
             float distanceToObject = Vector3.Distance(transform.position, targetPos);
             Debug.DrawLine(transform.position, targetPos, Color.blue);
 
-            if (distanceToObject < 1f)
+            if (distanceToObject < 0.01f)
             { //esto se reproduce cuando alcanza el distractor
                 StartCoroutine(StareThenContinuePatrol());
                 yield return null;
@@ -326,6 +334,9 @@ public class EnemyAi : MonoBehaviour
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     // Stop the ray at the obstacle
+                    Vector2 a = new Vector2(transform.position.x, transform.position.y);
+                    Vector2 b = new Vector2(hit.transform.position.x, hit.transform.position.y);
+                    float distanceToHitPoint = Vector2.Distance(a, b); 
                     Debug.DrawLine(transform.position, hit.point, Color.red);
                 }
             }
@@ -390,6 +401,12 @@ public class EnemyAi : MonoBehaviour
                 //objectOnSight = null;
                 anim.SetBool("isWalking", true);
             }
+
+            if (objectOnSight.gameObject.layer == 7)
+            {
+                yield return new WaitForSeconds(2f);
+                currentState = EnemyState.VIGILANDO;
+            }
         }
     }
 
@@ -407,9 +424,10 @@ public class EnemyAi : MonoBehaviour
             Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
             float distanceToObject = Vector3.Distance(transform.position, target);
             float distanceToPlayer = Vector3.Distance(transform.position, objectOnSight.transform.position);
-            if (distanceToPlayer > losePlayer) { ChangeEnemyState(1); } else { Debug.Log("onsight"); }
+            
             Debug.DrawLine(transform.position, objectOnSight.transform.position, Color.blue);
-            yield return null;
+            yield return new WaitForSeconds(2f);
+            currentState = EnemyState.REVISANDO;
         }
     }
 
@@ -425,14 +443,22 @@ public class EnemyAi : MonoBehaviour
 
     IEnumerator CheckObjectThenGoBack()
     {
-        if(objectOnSight == null) yield break;
-        anim.SetBool("isWalking", false);
-        yield return new WaitForSeconds(4f);
-        if (objectOnSight.layer != 7) objectOnSight.gameObject.layer = 0;
-        else if (objectOnSight == null) Debug.Log("Nothing On Sight");
-        objectOnSight = null;
-        FlipWithoutCoroutine();
-        StartCoroutine(ReturnToInitialPosition());
+        
+        if (objectOnSight == null)
+        {
+            yield return new WaitForSeconds(2f);
+            FlipWithoutCoroutine();
+            StartCoroutine(ReturnToInitialPosition());
+        }
+        else
+        {
+            yield return new WaitForSeconds(2f);
+            if (objectOnSight.layer != 7) objectOnSight.gameObject.layer = 0;
+            else if (objectOnSight == null) Debug.Log("Nothing On Sight");
+            objectOnSight = null;
+            FlipWithoutCoroutine();
+            StartCoroutine(ReturnToInitialPosition());
+        }
     }
 
     public IEnumerator ReturnToInitialPosition()

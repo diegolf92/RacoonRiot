@@ -42522,11 +42522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6775240973459796494, guid: 6fc667f8ade9b5e4b80d263ecc7dce6e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 68.48
+      value: 68.479996
       objectReference: {fileID: 0}
     - target: {fileID: 6775240973459796494, guid: 6fc667f8ade9b5e4b80d263ecc7dce6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59
+      value: 0.5899999
       objectReference: {fileID: 0}
     - target: {fileID: 6775240973459796494, guid: 6fc667f8ade9b5e4b80d263ecc7dce6e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43144,9 +43144,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1251518340}
-  - {fileID: 607157840}
   - {fileID: 1248139998}
   - {fileID: 1768072526}
+  - {fileID: 607157840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697834545
@@ -43392,6 +43392,10 @@ PrefabInstance:
     - target: {fileID: 3667499692915520020, guid: 6fc667f8ade9b5e4b80d263ecc7dce6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401681862832873505, guid: 6fc667f8ade9b5e4b80d263ecc7dce6e, type: 3}
+      propertyPath: visionRange
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 6775240973459796494, guid: 6fc667f8ade9b5e4b80d263ecc7dce6e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43947,7 +43951,7 @@ GameObject:
   - component: {fileID: 785472087}
   - component: {fileID: 785472089}
   - component: {fileID: 785472088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: nivel1_props_decorations_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62894,7 +62898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &2011860997
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64383,11 +64387,11 @@ PrefabInstance:
       objectReference: {fileID: 197418896}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 64.3
+      value: -7.29
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: -3.47
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
