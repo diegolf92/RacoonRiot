@@ -230,4 +230,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeDuration: 2
   inactiveDuration: 2
+  startDelay: 0
   laserSprite: {fileID: 2233707764630033230}
