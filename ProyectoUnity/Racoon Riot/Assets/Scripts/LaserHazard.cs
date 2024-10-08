@@ -5,12 +5,12 @@ using UnityEngine;
 public class LaserHazard : MonoBehaviour
 {
 
-    public float activeDuration = 2f;  // Time laser stays active
-    public float inactiveDuration = 2f;  // Time laser stays inactive
-    public float startDelay = 0f;  // Custom delay for each laser
-    private bool isActive = false;  // Whether the laser is currently active
-    private Collider2D laserCollider;  // Collider of the laser
-    public SpriteRenderer laserSprite;  // Visual representation of the laser
+    public float activeDuration = 2f; 
+    public float inactiveDuration = 2f; 
+    public float startDelay = 0f;  
+    private bool isActive = false; 
+    private Collider2D laserCollider; 
+    public SpriteRenderer laserSprite; 
 
     private void Start()
     {
@@ -28,13 +28,13 @@ public class LaserHazard : MonoBehaviour
             // Turn laser on
             isActive = true;
             laserCollider.enabled = true;
-            laserSprite.enabled = true;  // Show laser visually
+            laserSprite.enabled = true;  
             yield return new WaitForSeconds(activeDuration);
 
             // Turn laser off
             isActive = false;
             laserCollider.enabled = false;
-            laserSprite.enabled = false;  // Hide laser visually
+            laserSprite.enabled = false;  
             yield return new WaitForSeconds(inactiveDuration);
         }
     }
@@ -46,7 +46,7 @@ public class LaserHazard : MonoBehaviour
             PlayerDamager playerDamager = other.GetComponent<PlayerDamager>();
             if (playerDamager != null)
             {
-                playerDamager.ApplyDamage();  // Apply damage to the player when laser is active
+                playerDamager.ApplyDamage(); 
             }
         }
     }
