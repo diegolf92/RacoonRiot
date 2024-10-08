@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 6575615806620507220}
   - component: {fileID: 113536721008397521}
   - component: {fileID: 6319778923258195255}
-  - component: {fileID: 7186225833847128559}
+  - component: {fileID: 7981176780823859448}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -283,6 +283,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 12
   rb: {fileID: 6532993247304029374}
+  isFacingRight: 1
   isJumping: 0
   raccoonMaterial:
   - {fileID: 6200000, guid: 14fc9edb12b239d459668b1a3b897b7e, type: 2}
@@ -312,7 +313,7 @@ MonoBehaviour:
   isCrouching: 0
   boxColCrouchSize: {x: 0.75, y: 0.43}
   boxColSlideSize: {x: 0.4, y: 0.54}
-  damage: {fileID: 7186225833847128559}
+  damage: {fileID: 0}
   currentState: 0
 --- !u!82 &6319778923258195255
 AudioSource:
@@ -410,7 +411,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7186225833847128559
+--- !u!114 &7981176780823859448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,7 +420,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2267176713318269432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7ab6bf89d42ae498e812d89534ce55, type: 3}
+  m_Script: {fileID: 11500000, guid: 97479187784f83841a59973dcbdfca23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 0}
@@ -490,7 +491,7 @@ Transform:
   m_GameObject: {fileID: 6294723983184762870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.295, y: -0.071, z: 0}
+  m_LocalPosition: {x: 0.093, y: -0.071, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -521,7 +522,7 @@ Transform:
   m_GameObject: {fileID: 7507040160017484048}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.453, y: -0.071, z: 0}
+  m_LocalPosition: {x: 0.521, y: -0.071, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

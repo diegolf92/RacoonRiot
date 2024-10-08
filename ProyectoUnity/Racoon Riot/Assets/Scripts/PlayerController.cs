@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public Transform pivotPosTwo;
     [SerializeField] private bool isGrounded;
     bool coolDown;
+    public bool isCaptured = false;
 
     [Header("Sonido")]
     public AudioSource audioSource;
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
     Vector2 boxColNormalSize;
     public Vector2 boxColCrouchSize;
     public Vector2 boxColSlideSize;
-    public PlayerDamager damage;
+    public PlayerLife damage;
 
     public enum PlayerState
     {
@@ -123,12 +124,14 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerState.MURIENDO:
+                Die();
                 break;
         }
     }
 
     IEnumerator ParryCoroutine()
     {
+        isCaptured = true;
         if (coroutineStopper)
         {
             yield break; // Exit the coroutine if it has already run
@@ -152,14 +155,16 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        if (!coroutineStopper)
+        if (isCaptured)
         {
-            damage.ApplyDamage();
+            damage.EnemyDamage();
             currentState = PlayerState.NORMAL;
             gameObject.layer = 7;
             playerSprite.GetComponent<SpriteRenderer>().enabled = true;
-            enemyChasing.ChangeEnemyState(1); 
+            enemyChasing.ChangeEnemyState(1);
+            StartCoroutine(EscapeTime());
             enemyChasing = null;
+            isCaptured = false;
             yield break;
         }
     }
@@ -344,8 +349,8 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        currentState = PlayerState.MURIENDO;
         anim.SetBool("muerteHambre", true);
+        anim.SetBool("isJumping", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -359,7 +364,6 @@ public class PlayerController : MonoBehaviour
         {
             damage.ApplyDamage();
         }
-        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -397,7 +401,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.CompareTag("Goal"))
         {
-            anim.SetBool("muerteHambre", true);
+            anim.SetBool("washing", true);
             taco.SetActive(true);
         }
     }

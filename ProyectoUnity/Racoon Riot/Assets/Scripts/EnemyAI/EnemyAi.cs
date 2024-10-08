@@ -270,7 +270,7 @@ public class EnemyAi : MonoBehaviour
             float distanceToObject = Vector3.Distance(transform.position, targetPos);
             Debug.DrawLine(transform.position, targetPos, Color.blue);
 
-            if (distanceToObject < 1f)
+            if (distanceToObject < 0.01f)
             { //esto se reproduce cuando alcanza el distractor
                 StartCoroutine(StareThenContinuePatrol());
                 yield return null;
@@ -405,6 +405,7 @@ public class EnemyAi : MonoBehaviour
             if (objectOnSight.gameObject.layer == 7)
             {
                 yield return new WaitForSeconds(2f);
+                objectOnSight = null;
                 currentState = EnemyState.VIGILANDO;
             }
         }

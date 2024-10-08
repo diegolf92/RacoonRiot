@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static PlayerController;
 
-public class PlayerDamager : MonoBehaviour
+public class PlayerLife : MonoBehaviour
 {
     public CheckPointManager checkpoint;
 
@@ -55,27 +56,20 @@ public class PlayerDamager : MonoBehaviour
                 }
             }
         }
+        else { }
     }
 
     public void ApplyDamage()
     {
-        vidas--;  // Restar una vida
-
-        /* Reproducir sonido de muerte
-        if (audioSource != null && deathSound != null)
-        {
-            audioSource.PlayOneShot(deathSound);
-        }*/
-
-        // Actualizar imágenes de vida
-        if (vidaImages.Count > vidas && vidas >= 0)
-        {
-            vidaImages[vidas].enabled = false; // Desactivar la imagen correspondiente
-        }
-
         // Si el jugador aún tiene vidas, reiniciar el tiempo
         if (vidas > 0)
         {
+            vidas--;  // Restar una vida
+                      // Actualizar imágenes de vida
+            if (vidaImages.Count > vidas && vidas >= 0)
+            {
+                vidaImages[vidas].enabled = false; // Desactivar la imagen correspondiente
+            }
             checkpoint.Reviver();
             currentTime = maxTime; // Reiniciar el tiempo
             if (timeSlider != null)
@@ -83,9 +77,37 @@ public class PlayerDamager : MonoBehaviour
                 timeSlider.value = currentTime; // Actualizar el slider
             }
         }
-        else
+        else if (vidas == 0){
+            checkpoint.Reviver();
+            isDead = true;
+            StartCoroutine(HandlePlayerDeath()); // Aplicar daño al jugador
+        }
+    }
+
+    public void EnemyDamage()
+    {
+        // Si el jugador aún tiene vidas, reiniciar el tiempo
+        if (vidas > 0)
         {
-            HandlePlayerDeath();
+            vidas--;  // Restar una vida
+                      // Actualizar imágenes de vida
+            if (vidaImages.Count > vidas && vidas >= 0)
+            {
+                vidaImages[vidas].enabled = false; // Desactivar la imagen correspondiente
+            }
+            currentTime = maxTime; // Reiniciar el tiempo
+            if (timeSlider != null)
+            {
+                timeSlider.value = currentTime; // Actualizar el slider
+            }
+        }
+        else if (vidas == 0)
+        {
+            isDead = true;
+            if (deathMenu != null)
+            {
+                deathMenu.SetActive(true);
+            }
         }
     }
 
@@ -99,13 +121,13 @@ public class PlayerDamager : MonoBehaviour
         {
             currentTime = maxTime;
         }
-        
+
     }
 
     IEnumerator HandlePlayerDeath()
     {
         //gameObject.SetActive(false); // Desactivar el jugador
-        player.Die();
+        player.currentState = PlayerState.MURIENDO;
         //checkpoint.Reviver();
         yield return new WaitForSeconds(3f);
 
