@@ -151,13 +151,12 @@ public class EnemyAi : MonoBehaviour
         }
     }
 
-    public void ChangeEnemyState(int state, GameObject posXToMove)
+    public void ChangeEnemyState(int state, Transform posXToMove)
     {
         if (state == 2)
         {
-            objectOnSight = posXToMove;
+            target = posXToMove.position;
             currentState = EnemyState.REVISANDO;
-            coroutineStopper = true;
         }
     }
 
@@ -377,8 +376,10 @@ public class EnemyAi : MonoBehaviour
     IEnumerator MoverseHaciaObjeto()
     {
         if(coroutineStopper) yield break;
+        
         if (objectOnSight != null)
         {
+            
             Vector3 boundaryTest = CheckIfEnemyWithinBoundaries(objectOnSight.transform); //chequea si objeto a seguir no se sale de los limites de movimiento del enemigo
             //moverse hacia objeto
             Vector3 target = new Vector3(boundaryTest.x, transform.position.y, transform.position.z);
@@ -407,6 +408,21 @@ public class EnemyAi : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 objectOnSight = null;
                 currentState = EnemyState.VIGILANDO;
+            }
+        } else
+        {
+            
+            //chequear distancia hasta objeto
+            Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
+            float distanceToObject = Vector3.Distance(transform.position, target);
+            while (distanceToObject < 0.1f)
+            { //esto se reproduce cuando alcanza el distractor
+                currentState = EnemyState.VIGILANDO;
+                yield return null;
+            }
+            { //mientras va hacia el distractor
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                anim.SetBool("isWalking", true);
             }
         }
     }
@@ -444,15 +460,16 @@ public class EnemyAi : MonoBehaviour
 
     IEnumerator CheckObjectThenGoBack()
     {
-        
         if (objectOnSight == null)
         {
+
             yield return new WaitForSeconds(2f);
             FlipWithoutCoroutine();
             StartCoroutine(ReturnToInitialPosition());
         }
         else
         {
+            anim.SetBool("isWalking", false);
             yield return new WaitForSeconds(2f);
             if (objectOnSight.layer != 7) objectOnSight.gameObject.layer = 0;
             else if (objectOnSight == null) Debug.Log("Nothing On Sight");

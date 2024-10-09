@@ -295,6 +295,7 @@ MonoBehaviour:
   pivotPos: {fileID: 1244567044655982504}
   pivotPosTwo: {fileID: 3228320898094635678}
   isGrounded: 0
+  isCaptured: 0
   audioSource: {fileID: 6319778923258195255}
   jumpSound: {fileID: 8300000, guid: f583f74fb161eb9448079d2b0a5365ee, type: 3}
   ceilingLayer:
@@ -313,7 +314,7 @@ MonoBehaviour:
   isCrouching: 0
   boxColCrouchSize: {x: 0.75, y: 0.43}
   boxColSlideSize: {x: 0.4, y: 0.54}
-  damage: {fileID: 0}
+  damage: {fileID: 7981176780823859448}
   currentState: 0
 --- !u!82 &6319778923258195255
 AudioSource:
@@ -424,7 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 0}
-  vidas: 3
+  vidas: 2
   vidaImages:
   - {fileID: 0}
   - {fileID: 0}

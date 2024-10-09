@@ -11,6 +11,7 @@ public class PlayerLife : MonoBehaviour
     [Header("Vidas del Jugador")]
     public int vidas = 3;  // Número inicial de vidas
     public List<Image> vidaImages; // Lista de imágenes que representan las vidas
+    int vidaCount = 2;
 
     [Header("Sonido de Muerte")]
     public AudioSource audioSource;  // Fuente de audio para reproducir el sonido
@@ -66,10 +67,10 @@ public class PlayerLife : MonoBehaviour
         {
             vidas--;  // Restar una vida
                       // Actualizar imágenes de vida
-            if (vidaImages.Count > vidas && vidas >= 0)
-            {
-                vidaImages[vidas].enabled = false; // Desactivar la imagen correspondiente
-            }
+            
+             vidaImages[vidaCount].enabled = false; // Desactivar la imagen correspondiente
+             vidaCount--;
+            
             checkpoint.Reviver();
             currentTime = maxTime; // Reiniciar el tiempo
             if (timeSlider != null)
@@ -78,6 +79,7 @@ public class PlayerLife : MonoBehaviour
             }
         }
         else if (vidas == 0){
+            vidaImages[vidaCount].enabled = false; // Desactivar la imagen correspondiente
             checkpoint.Reviver();
             isDead = true;
             StartCoroutine(HandlePlayerDeath()); // Aplicar daño al jugador
@@ -91,10 +93,10 @@ public class PlayerLife : MonoBehaviour
         {
             vidas--;  // Restar una vida
                       // Actualizar imágenes de vida
-            if (vidaImages.Count > vidas && vidas >= 0)
-            {
-                vidaImages[vidas].enabled = false; // Desactivar la imagen correspondiente
-            }
+            
+             vidaImages[vidaCount].enabled = false; // Desactivar la imagen correspondiente
+             vidaCount--;
+            
             currentTime = maxTime; // Reiniciar el tiempo
             if (timeSlider != null)
             {

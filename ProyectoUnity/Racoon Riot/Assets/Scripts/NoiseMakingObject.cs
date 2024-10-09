@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NoiseMakingObject : MonoBehaviour
 {
-    public Transform player;
+    public Transform soundXAxis;
     public float interactionDistance = 2f;
     public KeyCode interactionKey = KeyCode.E;
     public AudioClip noiseClip;
@@ -23,10 +23,10 @@ public class NoiseMakingObject : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(player.position, transform.position) < interactionDistance && Input.GetKeyDown(interactionKey) && !isOnCooldown)
+        /*if (Vector2.Distance(player.position, transform.position) < interactionDistance && Input.GetKeyDown(interactionKey) && !isOnCooldown)
         {
             MakeNoise();
-        }
+        }*/
     }
 
     void MakeNoise()
@@ -35,7 +35,7 @@ public class NoiseMakingObject : MonoBehaviour
         if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) 
         {
             enemyScript.DistractEnemy(transform);
-            enemyScript.ChangeEnemyState(2, gameObject);
+            enemyScript.ChangeEnemyState(2, soundXAxis);
         } 
         StartCoroutine(Cooldown());
         //AlertEnemies();
