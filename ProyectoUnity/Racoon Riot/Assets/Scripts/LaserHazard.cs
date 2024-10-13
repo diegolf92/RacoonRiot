@@ -43,7 +43,7 @@ public class LaserHazard : MonoBehaviour
     {
         if (isActive && other.CompareTag("Player"))
         {
-            PlayerDamager playerDamager = other.GetComponent<PlayerDamager>();
+            PlayerLife playerDamager = other.GetComponent<PlayerLife>();
             if (playerDamager != null)
             {
                 playerDamager.ApplyDamage(); 

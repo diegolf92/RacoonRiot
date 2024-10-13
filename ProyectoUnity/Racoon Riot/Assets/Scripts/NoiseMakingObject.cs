@@ -34,7 +34,6 @@ public class NoiseMakingObject : MonoBehaviour
         audioSource.Play();
         if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) 
         {
-            enemyScript.DistractEnemy(transform);
             enemyScript.ChangeEnemyState(2, soundXAxis);
         } 
         StartCoroutine(Cooldown());
@@ -71,19 +70,7 @@ public class NoiseMakingObject : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            MakeNoise();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Finish"))
-        {
-            if (enemyScript.currentState == EnemyAi.EnemyState.REVISANDO)
-            {
-                enemyScript.objectOnSight = null;
-                enemyScript.ChangeEnemyState(4);
-            }
+            if(!isOnCooldown) MakeNoise();
         }
     }
 }

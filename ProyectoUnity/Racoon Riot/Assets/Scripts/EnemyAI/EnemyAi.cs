@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.UIElements;
 
 public class EnemyAi : MonoBehaviour
@@ -155,7 +156,8 @@ public class EnemyAi : MonoBehaviour
     {
         if (state == 2)
         {
-            target = posXToMove.position;
+            objectOnSight = posXToMove.gameObject;
+            if (objectOnSight.transform.position.x < transform.position.x && isFacingRight || objectOnSight.transform.position.x > transform.position.x && !isFacingRight) FlipWithoutCoroutine();
             currentState = EnemyState.REVISANDO;
         }
     }
@@ -231,22 +233,24 @@ public class EnemyAi : MonoBehaviour
 
     IEnumerator Flip()
     {
-        while(flipTimeRemaining > 0)
-        {
-            flipTimeRemaining--;
-            if (coroutineStopper)
+            while (flipTimeRemaining > 0)
             {
-                coroutineStopper = false;
-                yield break;
+                flipTimeRemaining--;
+                if (coroutineStopper)
+                {
+                    coroutineStopper = false;
+                    yield break;
+                }
+                yield return null;
             }
-            yield return null;
-        }{
-            flipCountingDown = false;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1;
-            transform.localScale = localScale;
-            isFacingRight = !isFacingRight;
-        }
+            {
+                flipCountingDown = false;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1;
+                transform.localScale = localScale;
+                isFacingRight = !isFacingRight;
+            }
+        
     }
 
     void FlipWithoutCoroutine()
@@ -379,15 +383,14 @@ public class EnemyAi : MonoBehaviour
         
         if (objectOnSight != null)
         {
-            
             Vector3 boundaryTest = CheckIfEnemyWithinBoundaries(objectOnSight.transform); //chequea si objeto a seguir no se sale de los limites de movimiento del enemigo
             //moverse hacia objeto
             Vector3 target = new Vector3(boundaryTest.x, transform.position.y, transform.position.z);
             
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            
+
             //chequear distancia hasta objeto
-            Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
+            Vector2 direction = isFacingRight ? Vector2.right : Vector2.up;
             float distanceToObject = Vector3.Distance(transform.position, target);
             Debug.DrawLine(transform.position, objectOnSight.transform.position, Color.blue);
 
