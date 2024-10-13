@@ -43262,8 +43262,8 @@ PolygonCollider2D:
     - - {x: -0.04449463, y: 6.1748033}
       - {x: -5.616461, y: 6.053948}
       - {x: -7.109231, y: -4.8449297}
-      - {x: 6.9255257, y: -4.8023505}
-      - {x: 6.2781625, y: 5.926211}
+      - {x: 6.194145, y: -4.7299485}
+      - {x: 5.8746414, y: 5.9020762}
   m_UseDelaunayMesh: 0
 --- !u!114 &692137622
 MonoBehaviour:
@@ -64855,11 +64855,11 @@ PrefabInstance:
       objectReference: {fileID: 197418896}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.38
+      value: 44.5
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.68
+      value: -2.23
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z

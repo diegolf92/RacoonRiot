@@ -52,12 +52,12 @@ public class PlayerLife : MonoBehaviour
             {
                 if (!isDead)
                 {
+                    Debug.Log("Se deberia morir");
                     isDead = true;
                     StartCoroutine(HandlePlayerDeath()); // Aplicar daño al jugador
                 }
             }
         }
-        else { }
     }
 
     public void ApplyDamage()
