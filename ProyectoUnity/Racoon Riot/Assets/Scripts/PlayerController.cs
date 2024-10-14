@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isGrounded;
     bool coolDown;
     public bool isCaptured = false;
+    bool canCrouch = true;
 
     [Header("Sonido")]
     public AudioSource audioSource;
@@ -111,7 +112,7 @@ public class PlayerController : MonoBehaviour
                     Jump();
                 }
 
-                if (Input.GetKeyDown(KeyCode.LeftControl))
+                if (Input.GetKeyDown(KeyCode.LeftControl) && canCrouch)
                 {
                     isCrouching = !isCrouching;
                 }
@@ -381,6 +382,11 @@ public class PlayerController : MonoBehaviour
             collision.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
         }
 
+        if (collision.CompareTag("NoCrouchZone"))
+        {
+            canCrouch = false;
+        }
+
         if (collision.CompareTag("Enemy") && !coolDown)
         {
             enemyChasing = collision.GetComponent<EnemyAi>();
@@ -398,12 +404,6 @@ public class PlayerController : MonoBehaviour
             damage.TimeSliderAdd();
             Destroy(collision.gameObject);
         }
-
-        if (collision.CompareTag("Goal"))
-        {
-            anim.SetBool("washing", true);
-            taco.SetActive(true);
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -412,6 +412,11 @@ public class PlayerController : MonoBehaviour
         {
             //smooth out fade
             collision.GetComponent<SpriteRenderer>().color = new Color(0.26f, 0.3f, 0.33f, 1);
+        }
+
+        if (collision.CompareTag("NoCrouchZone"))
+        {
+            canCrouch = true;
         }
     }
 

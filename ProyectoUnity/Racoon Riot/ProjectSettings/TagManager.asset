@@ -15,6 +15,7 @@ TagManager:
   - Object
   - Food
   - KillZone
+  - NoCrouchZone
   layers:
   - Default
   - TransparentFX
