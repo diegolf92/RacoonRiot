@@ -14,7 +14,6 @@ public class Inventory : ScriptableObject
 
 public class ItemStack
 {
-
     public Item item;
     public int quantity;
     public bool stackeable;

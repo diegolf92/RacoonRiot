@@ -36,6 +36,7 @@ public class Player_Inventory : MonoBehaviour
     {
         inventory.items.Add(new ItemStack { item = item, quantity = 1, stackeable = stackeable });
     }
+
     private void OnDestroy()
     {
         Collectable_Item.OnCollect -= CollectItem;

@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     public Transform pivotPosTwo;
     [SerializeField] private bool isGrounded;
     bool coolDown;
+    public bool isCaptured = false;
+    bool canCrouch = true;
 
     [Header("Sonido")]
     public AudioSource audioSource;
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
     Vector2 boxColNormalSize;
     public Vector2 boxColCrouchSize;
     public Vector2 boxColSlideSize;
-    public PlayerDamager damage;
+    public PlayerLife damage;
 
     public enum PlayerState
     {
@@ -110,7 +112,7 @@ public class PlayerController : MonoBehaviour
                     Jump();
                 }
 
-                if (Input.GetKeyDown(KeyCode.LeftControl))
+                if (Input.GetKeyDown(KeyCode.LeftControl) && canCrouch)
                 {
                     isCrouching = !isCrouching;
                 }
@@ -123,12 +125,14 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerState.MURIENDO:
+                Die();
                 break;
         }
     }
 
     IEnumerator ParryCoroutine()
     {
+        isCaptured = true;
         if (coroutineStopper)
         {
             yield break; // Exit the coroutine if it has already run
@@ -152,14 +156,16 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        if (!coroutineStopper)
+        if (isCaptured)
         {
-            damage.ApplyDamage();
+            damage.EnemyDamage();
             currentState = PlayerState.NORMAL;
             gameObject.layer = 7;
             playerSprite.GetComponent<SpriteRenderer>().enabled = true;
-            enemyChasing.ChangeEnemyState(1); 
+            enemyChasing.ChangeEnemyState(1);
+            StartCoroutine(EscapeTime());
             enemyChasing = null;
+            isCaptured = false;
             yield break;
         }
     }
@@ -344,8 +350,8 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        currentState = PlayerState.MURIENDO;
         anim.SetBool("muerteHambre", true);
+        anim.SetBool("isJumping", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -359,7 +365,6 @@ public class PlayerController : MonoBehaviour
         {
             damage.ApplyDamage();
         }
-        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -375,6 +380,11 @@ public class PlayerController : MonoBehaviour
         {
             //smooth out fade
             collision.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        }
+
+        if (collision.CompareTag("NoCrouchZone"))
+        {
+            canCrouch = false;
         }
 
         if (collision.CompareTag("Enemy") && !coolDown)
@@ -394,12 +404,6 @@ public class PlayerController : MonoBehaviour
             damage.TimeSliderAdd();
             Destroy(collision.gameObject);
         }
-
-        if (collision.CompareTag("Goal"))
-        {
-            anim.SetBool("muerteHambre", true);
-            taco.SetActive(true);
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -408,6 +412,11 @@ public class PlayerController : MonoBehaviour
         {
             //smooth out fade
             collision.GetComponent<SpriteRenderer>().color = new Color(0.26f, 0.3f, 0.33f, 1);
+        }
+
+        if (collision.CompareTag("NoCrouchZone"))
+        {
+            canCrouch = true;
         }
     }
 

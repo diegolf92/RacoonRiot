@@ -8,6 +8,8 @@ public class Victory : MonoBehaviour
     public List<Item> keyItems; // Lista de ítems clave requeridos para ganar
     private Player_Inventory playerInventory;
     public GameObject victoryMenu; // Referencia al menú de victoria
+    PlayerController playerController;
+    public bool canWin;
 
     void Start()
     {
@@ -17,16 +19,14 @@ public class Victory : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Comprobar si el jugador llega al punto de meta
-        if (other.CompareTag("Goal"))
+        if (other.CompareTag("Player") && canWin)
         {
-            CheckVictoryCondition();
-        }
-
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerController>().anim.SetBool("muerteHambre", true);
+            playerController = other.GetComponent<PlayerController>();
             StartCoroutine(Victoria());
+        }
+        else if(other.CompareTag("Player") && !canWin)
+        {
+            Debug.Log("Aún no has recogido todos los objetos clave. Sigue buscando.");
         }
     }
 
@@ -44,7 +44,7 @@ public class Victory : MonoBehaviour
 
         if (hasAllKeyItems)
         {
-            Victoria();
+            StartCoroutine(Victoria());
         }
         else
         {
@@ -54,7 +54,9 @@ public class Victory : MonoBehaviour
 
     IEnumerator Victoria()
     {
-        yield return new WaitForSeconds(2f);
+        playerController.GetComponent<PlayerController>().anim.SetBool("washing", true);
+        yield return new WaitForSeconds(3f);
+        playerController.GetComponent<PlayerController>().anim.SetBool("washing", false);
         // Mostrar el menú de victoria
         victoryMenu.SetActive(true);
         // Pausar el juego si es necesario

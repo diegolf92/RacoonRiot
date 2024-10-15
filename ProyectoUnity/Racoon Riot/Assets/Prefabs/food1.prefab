@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8963108946502219039}
   - component: {fileID: 4770153787635134323}
   - component: {fileID: 6133039034381840944}
-  - component: {fileID: 4063597239264226848}
-  m_Layer: 3
+  - component: {fileID: 1494671686293133251}
+  m_Layer: 11
   m_Name: food1
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &4063597239264226848
+--- !u!114 &1494671686293133251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,9 +168,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5058455791584953719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d32b9d65b225a429f236a69ab74de8, type: 3}
+  m_Script: {fileID: 11500000, guid: 22946b1c475fd0e4a8d2641fee5c23f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 19cbaa954ecdc3744a41ea928ef59ad1, type: 2}
-  amplitude: 0.5
+  amplitude: 0.2
   frequency: 1
+  isKeyItem: 0
+  victory: {fileID: 0}

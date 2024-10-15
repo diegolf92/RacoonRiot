@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed872c9acbce0bd408850200c690a406, type: 3}
   m_Name: KeyItem
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: WinItem
   stackeable: 0
