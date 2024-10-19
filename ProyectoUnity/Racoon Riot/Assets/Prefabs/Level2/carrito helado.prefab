@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7728159738104733441}
   - component: {fileID: 4578260295477641826}
   - component: {fileID: 9048209199185733559}
+  - component: {fileID: 133427070137321803}
   m_Layer: 3
   m_Name: carrito helado
   m_TagString: Untagged
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1813705, y: 0.16960144}
   m_EdgeRadius: 0
+--- !u!114 &133427070137321803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725379215462770149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b208209ee50caf40b51af9faf7bf84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceForce: 17
