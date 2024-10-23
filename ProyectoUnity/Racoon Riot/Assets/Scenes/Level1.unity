@@ -72936,6 +72936,7 @@ MonoBehaviour:
   - {fileID: 1686529554058124086}
   canMove: 0
   isOldMan: 1
+  specialOn: 0
   oldManTeeth: {fileID: 2014426218}
   speed: 0.7
   chaseSpeed: 4
@@ -73257,11 +73258,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 90.9
+      value: 90.15
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.03
+      value: 11.4
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
