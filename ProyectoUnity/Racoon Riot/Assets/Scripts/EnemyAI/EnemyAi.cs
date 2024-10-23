@@ -17,18 +17,25 @@ public class EnemyAi : MonoBehaviour
     private Vector3 lastSeenPosition;
 
     [Header("Variables")]
+    public bool canMove = false;
+    public bool isOldMan;
+    public bool specialOn;
+    [SerializeField] GameObject oldManTeeth;
     public float speed;
     public float chaseSpeed;
-    public bool canMove = false;
+    
     public Vector3 velocity;
     private Vector3 previousPosition;
-    public bool isFacingRight;
+    
     public int flipDuration = 60;
     int flipTimeRemaining;
+
+    public bool isFacingRight;
     public bool flipCountingDown = false;
     public bool canParry = false;
     public bool coroutineStopper;
     public bool isCapturing;
+    
 
     [Header("Layers")]
     public LayerMask playerLayer;
@@ -52,7 +59,8 @@ public class EnemyAi : MonoBehaviour
         PERSIGUIENDO,
         CAPTURANDO,
         JUGADOR_ESCAPO,
-        REGRESANDO
+        REGRESANDO,
+        ATAQUE_ESPECIAL_OLDMAN
     }
 
     public EnemyState currentState;
@@ -78,7 +86,16 @@ public class EnemyAi : MonoBehaviour
                 break;
             case EnemyState.PERSIGUIENDO:
                 FOV.color = redColor;
-                StartCoroutine(PerseguirAlJugador());
+                if (!isOldMan)
+                {
+                    StartCoroutine(PerseguirAlJugador());
+                }
+                else if (isOldMan && !specialOn)
+                {
+                    anim.SetTrigger("specialAttack");
+                    OldManLongRangeAttack(); 
+                }
+                
                 break;
             case EnemyState.CAPTURANDO:
                 FOV.color = Color.clear;
@@ -449,6 +466,26 @@ public class EnemyAi : MonoBehaviour
             yield return new WaitForSeconds(2f);
             currentState = EnemyState.REVISANDO;
         }
+    }
+
+    void OldManLongRangeAttack()
+    {
+        //boomerang locks on player transform
+        specialOn = true;
+        Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
+        Vector3 target = new Vector3(objectOnSight.transform.position.x, transform.position.y, transform.position.z);
+        int teethDirection = isFacingRight ? 1 : 0;
+        oldManTeeth.SetActive(true);
+        if (teethDirection == 1) //Teeth going right->
+        {
+            //looks left
+        }
+        else if (teethDirection == 1) //Teeth going right->
+        {
+            //looksright
+        }
+        oldManTeeth.GetComponent<TeethSc>().ChasePlayer();
+        Debug.DrawLine(oldManTeeth.transform.position, target, Color.blue);
     }
 
     IEnumerator EnemigoCapturado()

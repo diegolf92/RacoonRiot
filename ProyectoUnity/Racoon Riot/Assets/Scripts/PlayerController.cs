@@ -151,6 +151,7 @@ public class PlayerController : MonoBehaviour
             coroutineStopper = true;
             enemyChasing.ChangeEnemyState(1);
             StartCoroutine(EscapeTime());
+            StopCoroutine(ParryCoroutine());
             yield break;
         }
 
@@ -176,11 +177,11 @@ public class PlayerController : MonoBehaviour
         currentState = PlayerState.NORMAL;
         if (isFacingRight)
         {
-            Vector3 offset = new Vector3(2f, 0, 0);
+            Vector3 offset = new Vector3(1.5f, 0, 0);
             transform.position = enemyChasing.transform.position + offset;
         }
         else {
-            Vector3 offset = new Vector3(-2f, 0, 0);
+            Vector3 offset = new Vector3(-1.5f, 0, 0);
             transform.position = enemyChasing.transform.position + offset;
         }
         playerSprite.GetComponent<SpriteRenderer>().enabled = true;
