@@ -45,6 +45,8 @@ public class ElevatorSc : MonoBehaviour
     public void ActivateElevator()
     {
         isActivated = true;
+        SoundManager.Instance?.PlayElevatorSound();  // Reproducir el sonido del elevador
+
         if (targetPosition == lowerPoint.position)
         {
             targetPosition = upperPoint.position;

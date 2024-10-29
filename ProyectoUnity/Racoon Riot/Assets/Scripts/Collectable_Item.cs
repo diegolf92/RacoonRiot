@@ -31,7 +31,11 @@ public class Collectable_Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            OnCollect?.Invoke(item, transform.position);
+            // Reproduce el sonido de recolección
+            SoundManager.Instance.PlayItemCollectSound();
+
+            // Implementación adicional para el ítem (destruirlo, ocultarlo, etc.)
+            Destroy(gameObject);
         }
     }
 }
