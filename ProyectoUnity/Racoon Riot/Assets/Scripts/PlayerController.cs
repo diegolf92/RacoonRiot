@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //game design patterns
     public GameObject playerSprite;
     public bool coroutineStopper;
     EnemyAi enemyChasing;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     bool coolDown;
     public bool isCaptured = false;
     bool canCrouch = true;
+    bool busy = false;
 
     [Header("Sonido")]
     public AudioSource audioSource;
@@ -120,8 +122,13 @@ public class PlayerController : MonoBehaviour
 
 
             case PlayerState.CAPTURADO:
+                Debug.Log("Capturado Lanza Corrutine");
                 gameObject.layer = 0;
-                StartCoroutine(ParryCoroutine());
+                if (!busy)
+                {
+                    busy = true;
+                    StartCoroutine(ParryCoroutine());
+                } 
                 break;
 
             case PlayerState.MURIENDO:
@@ -132,42 +139,42 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ParryCoroutine()
     {
+        float timer = 0f;
         isCaptured = true;
-        if (coroutineStopper)
-        {
-            yield break; // Exit the coroutine if it has already run
-        }
-
         playerSprite.GetComponent<SpriteRenderer>().enabled = false;
-        
-        //if you get caught and parry 3 times while enemy canParry is true you escape, else you lose
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        while(parryCount < 5 && timer < 3)
         {
-            parryCount++;
+            Debug.Log(parryCount);
+            timer += Time.deltaTime;
+            //if you get caught and parry 3 times while enemy canParry is true you escape, else you lose
+            if (Input.GetAxis("Jump") > 0.9f)
+            {
+                parryCount++;
+            }
+
+            yield return new WaitForEndOfFrame();
         }
 
-        if (parryCount > 5)
+        Debug.Log(parryCount);
+        if (parryCount >= 5)
         {
-            coroutineStopper = true;
+            busy = false;
             enemyChasing.ChangeEnemyState(1);
             StartCoroutine(EscapeTime());
-            StopCoroutine(ParryCoroutine());
-            yield break;
         }
-
-        yield return new WaitForSeconds(3f);
-
-        if (isCaptured)
+        else if(isCaptured)
         {
-            damage.EnemyDamage();
-            currentState = PlayerState.NORMAL;
-            gameObject.layer = 7;
-            playerSprite.GetComponent<SpriteRenderer>().enabled = true;
-            enemyChasing.ChangeEnemyState(1);
-            StartCoroutine(EscapeTime());
-            enemyChasing = null;
-            isCaptured = false;
-            yield break;
+            
+             damage.EnemyDamage();
+             currentState = PlayerState.NORMAL;
+             gameObject.layer = 7;
+             playerSprite.GetComponent<SpriteRenderer>().enabled = true;
+             enemyChasing.ChangeEnemyState(1);
+             StartCoroutine(EscapeTime());
+             enemyChasing = null;
+             isCaptured = false;
+             busy = false;
         }
     }
 
@@ -242,7 +249,7 @@ public class PlayerController : MonoBehaviour
 
     private void WallSlide()
     {
-        if (DetectWall() && !isGrounded)
+        if (DetectWall() && !isGrounded && rb.velocity.y <= 0)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
@@ -313,7 +320,7 @@ public class PlayerController : MonoBehaviour
 
     private void WallJump()
     {
-        if (isWallSliding)
+        if (rb.velocity.y <= 0 && isWallSliding)
         {
             isWallJumping = false;
             wallJumpDirection = -transform.localScale.x;

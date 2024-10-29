@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int roomPlayerIsOn = 0;
+    /*public int roomPlayerIsOn = 0;
     public GameObject[] enemies;
 
     void Update()
@@ -42,5 +42,5 @@ public class GameManager : MonoBehaviour
                 enemies[3].SetActive(false);
                 break;
         }
-    }
+    }*/
 }

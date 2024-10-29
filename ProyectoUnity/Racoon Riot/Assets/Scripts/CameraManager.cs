@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public GameObject roomCam;
-    public int roomNumber;
+    //public int roomNumber;
     GameManager gm;
 
     private void Start()
@@ -19,7 +19,7 @@ public class CameraManager : MonoBehaviour
         if(other.CompareTag("Player") && !other.isTrigger)   
         {
             roomCam.SetActive(true);
-            gm.roomPlayerIsOn = roomNumber;
+            //gm.roomPlayerIsOn = roomNumber;
         }     
     }
 
