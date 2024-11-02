@@ -173,11 +173,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4994839382063259201}
   - {fileID: 1244567044655982504}
   - {fileID: 3228320898094635678}
   - {fileID: 2901701838477706549}
   - {fileID: 8075131879909913843}
-  - {fileID: 4994839382063259201}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2821414135453689960
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25648d93aeaddc40a0ec46d1358e30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 15
+  maxDistance: 20
   enemies:
   - {fileID: 0}
   - {fileID: 0}

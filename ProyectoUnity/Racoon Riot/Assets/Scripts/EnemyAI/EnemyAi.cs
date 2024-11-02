@@ -267,7 +267,6 @@ public class EnemyAi : MonoBehaviour
                 transform.localScale = localScale;
                 isFacingRight = !isFacingRight;
             }
-        
     }
 
     void FlipWithoutCoroutine()
