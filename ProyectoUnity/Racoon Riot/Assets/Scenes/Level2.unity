@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 1808687416}
-  roomNumber: 3
 --- !u!1001 &21602379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -872,7 +871,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 484034502}
-  roomNumber: 2
 --- !u!1001 &237622033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1027,7 +1025,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 1693702392}
-  roomNumber: 3
 --- !u!1 &277693131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 1693134980}
-  roomNumber: 2
 --- !u!4 &336334900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5497860461725942362, guid: 3cc8b82fa0e09ed4d9db3eb3bc1f3f12, type: 3}
@@ -1995,7 +1991,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 1899406412}
-  roomNumber: 3
 --- !u!1001 &594316971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2250,7 +2245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 830182102}
-  roomNumber: 2
 --- !u!4 &629805671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
@@ -2472,7 +2466,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 1568472866}
-  roomNumber: 2
 --- !u!1001 &703243382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28336,7 +28329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 1291291818}
-  roomNumber: 2
 --- !u!1001 &1271489972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29237,7 +29229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 1948496515}
-  roomNumber: 1
 --- !u!1001 &1589644564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39741,7 +39732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 2063880273}
-  roomNumber: 3
 --- !u!1 &1899406412
 GameObject:
   m_ObjectHideFlags: 0
@@ -40170,7 +40160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCam: {fileID: 602486506}
-  roomNumber: 2
 --- !u!4 &2020073014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
@@ -40999,8 +40988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d922042dd500c2d49881c28955635db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPlayerIsOn: 0
-  enemies: []
 --- !u!1001 &2183186657347267154
 PrefabInstance:
   m_ObjectHideFlags: 0
