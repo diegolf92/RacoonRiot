@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class EnemyStateMachine : MonoBehaviour
 {
     private EnemyBaseState currentState;
+    public GameObject player;
 
     // States
     private GuardState guardState;
@@ -15,13 +16,17 @@ public class EnemyStateMachine : MonoBehaviour
     private ChaseState chaseState;
     private CaptureState captureState;
 
+    //variables
+    public FieldOfView fov;
+    [SerializeField] Transform[] limitPoints;
+
     void Start()
     {
         // Initialize the guardState and other states with this object's transform
-        guardState = new GuardState(transform);
+        guardState = new GuardState(this,transform, fov);
         patrolState = new PatrolState(transform);
         alertState = new AlertState(transform);
-        chaseState = new ChaseState(transform);
+        chaseState = new ChaseState(player, this, transform, limitPoints[0], limitPoints[1], fov);
         captureState = new CaptureState(transform);
 
         // Start in the GUARD state
