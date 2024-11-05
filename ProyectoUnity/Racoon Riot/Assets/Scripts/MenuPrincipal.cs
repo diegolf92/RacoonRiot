@@ -11,6 +11,7 @@ public class MenuPrincipal : MonoBehaviour
     public Vector3 offset;    // Offset para la posición de la imagen respecto al botón
     public AudioSource hoverSound;  // Sonido al pasar sobre un botón
     public AudioSource clickSound;  // Sonido al hacer clic en un botón
+    private GameObject lastSelected;
 
     // Array para referenciar los botones del menú
     public Button[] botones;
@@ -40,6 +41,34 @@ public class MenuPrincipal : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Get the currently selected GameObject
+        GameObject currentSelected = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+
+        // Check if the selected object is different from the last frame
+        if (currentSelected != lastSelected)
+        {
+            // If a button is selected, simulate hover behavior
+            Button selectedButton = currentSelected?.GetComponent<Button>();
+            if (selectedButton != null)
+            {
+                OnPointerEnter(selectedButton);
+                lastSelected = currentSelected;
+            }
+        }
+
+        // Detect "Space" or "Enter" key press for button click
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        {
+            Button selectedButton = currentSelected?.GetComponent<Button>();
+            if (selectedButton != null)
+            {
+                OnButtonClick();
+                selectedButton.onClick.Invoke(); // Trigger the button click
+            }
+        }
+    }
     public void jugar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -54,13 +83,20 @@ public class MenuPrincipal : MonoBehaviour
     private void OnPointerEnter(Button boton)
     {
         hoverImage.gameObject.SetActive(true);
-        hoverImage.transform.position = boton.transform.position + offset;
 
-        // Reproduce el sonido al pasar el mouse sobre el botón
+        // Get the RectTransforms of the button and hoverImage
+        RectTransform buttonRect = boton.GetComponent<RectTransform>();
+        RectTransform hoverRect = hoverImage.GetComponent<RectTransform>();
+
+        // Set the hoverImage position relative to the button position plus the offset
+        hoverRect.position = buttonRect.position + offset;
+
+        // Play the hover sound if set
         if (hoverSound != null) hoverSound.Play();
     }
 
-    private void OnPointerExit()
+
+        private void OnPointerExit()
     {
         hoverImage.gameObject.SetActive(false);
     }
