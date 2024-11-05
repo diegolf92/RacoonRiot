@@ -902,7 +902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3170529928863659628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -998,6 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd1750b3ef6afd45aa5b46f65d7c81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstButton: {fileID: 1981008959260453292}
 --- !u!1 &2018114045970920588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,6 +2696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd1750b3ef6afd45aa5b46f65d7c81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstButton: {fileID: 3042416403769266697}
 --- !u!1 &5912379440613473004
 GameObject:
   m_ObjectHideFlags: 0
@@ -3364,7 +3366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5019608, g: 0.38431373, b: 0.38431373, a: 1}
+  m_Color: {r: 0.38823533, g: 0.28627452, b: 0.28627452, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
