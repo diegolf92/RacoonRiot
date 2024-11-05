@@ -9,13 +9,11 @@ public class GuardState : EnemyBaseState
     private Transform enemyTransform;
     private float flipInterval = 2f;  // Time in seconds between flips
     private float flipTimer;
-    private bool isFacingRight = true;
+    //private bool isFacingRight = true;
 
     SpriteRenderer FOV;
     FieldOfView fovEnemy;
     Color whiteColor = new Color(1, 1, 1, 0.3f);
-    Color yellowColor = new Color(1, 1, 0, 0.3f);
-    Color redColor = new Color(1, 0, 0, 0.3f);
     public LayerMask obstacleLayer;
     public LayerMask playerLayer;
 
@@ -42,12 +40,12 @@ public class GuardState : EnemyBaseState
         // Check if it's time to flip
         if (flipTimer <= 0f)
         {
-            Flip();
+            fovEnemy.Flip();
             flipTimer = flipInterval;  // Reset the timer
         }
 
         //Check for player within FOV
-        fovEnemy.DetectLayers(isFacingRight);
+        fovEnemy.DetectLayers();
         if (fovEnemy.playerDetected == true)
         {
             fsm.Chase();
@@ -56,19 +54,7 @@ public class GuardState : EnemyBaseState
 
     public override void Exit()
     {
+        fovEnemy.playerDetected = false;
         fovEnemy.gameObject.SetActive(false);
-        Debug.Log("Exiting GUARD state.");
-        // Cleanup if necessary
-    }
-
-    private void Flip()
-    {
-        // Toggle the facing direction
-        isFacingRight = !isFacingRight;
-
-        // Flip the enemy's scale on the X-axis
-        Vector3 scale = enemyTransform.localScale;
-        scale.x *= -1;
-        enemyTransform.localScale = scale;
     }
 }

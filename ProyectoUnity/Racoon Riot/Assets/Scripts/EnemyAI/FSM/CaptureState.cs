@@ -14,7 +14,7 @@ public class CaptureState : EnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("Entering state.");
+        Debug.Log("Entering Capture state.");
         // Add initialization for GUARD behavior here
     }
 

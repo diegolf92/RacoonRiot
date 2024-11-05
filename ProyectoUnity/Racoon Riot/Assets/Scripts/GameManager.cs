@@ -4,43 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    /*public int roomPlayerIsOn = 0;
-    public GameObject[] enemies;
-
-    void Update()
+    public GameObject menu;
+    int escCount = 0;
+    private void Update()
     {
-        switch (roomPlayerIsOn)
+        if (Input.GetKeyDown(KeyCode.Escape) && escCount == 0)
         {
-            case 3:
-                enemies[0].SetActive(true);
-                enemies[1].SetActive(false);
-                enemies[2].SetActive(false);
-                enemies[3].SetActive(false);
-                break;
-            case 4:
-                enemies[0].SetActive(false);
-                enemies[1].SetActive(true);
-                enemies[2].SetActive(false);
-                enemies[3].SetActive(false);
-                break;
-            case 5:
-                enemies[0].SetActive(false);
-                enemies[1].SetActive(false);
-                enemies[2].SetActive(true);
-                enemies[3].SetActive(false);
-                break;
-            case 6:
-                enemies[0].SetActive(false);
-                enemies[1].SetActive(false);
-                enemies[2].SetActive(false);
-                enemies[3].SetActive(true);
-                break;
-            default:
-                enemies[0].SetActive(false);
-                enemies[1].SetActive(false);
-                enemies[2].SetActive(false);
-                enemies[3].SetActive(false);
-                break;
+            menu.SetActive(true);
+            escCount = 1;
+            Time.timeScale = 0;
         }
-    }*/
+        else if (Input.GetKeyDown(KeyCode.Escape) && escCount == 1)
+        {
+            menu.SetActive(false);
+            escCount = 0;
+            Time.timeScale = 1;
+        }
+    }
 }

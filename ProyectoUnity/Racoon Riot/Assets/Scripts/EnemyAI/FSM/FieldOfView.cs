@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
@@ -11,8 +12,19 @@ public class FieldOfView : MonoBehaviour
     public LayerMask obstacleLayer;
     public LayerMask triggerLayer;
     public bool playerDetected = false;
+    public GameObject enemySprite;
+    public GameObject enemyScripts;
+    public bool isFacingRight = true;
 
-    public void DetectLayers(bool isFacingRight)
+    private void Update()
+    {
+        if (transform.position.x > enemySprite.transform.position.x)
+        {
+            isFacingRight = true;
+        } else { isFacingRight = false; }
+    }
+
+    public void DetectLayers()
     {
         float angleStep = fovAngle / (rayCount - 1);
         float startAngle = -fovAngle / 2;
@@ -62,13 +74,20 @@ public class FieldOfView : MonoBehaviour
 
     private void HandleObstacleDetection(Collider2D obstacle)
     {
-        Debug.Log("Obstacle detected!");
-        // Add behavior for when an obstacle is detected
     }
 
     private void HandleTriggerDetection(Collider2D trigger)
     {
         Debug.Log("Trigger detected!");
         // Add behavior for when a trigger is detected
+    }
+
+    public bool Flip()
+    {
+        // Flip the enemy's scale on the X-axis
+        Vector3 scale = enemyScripts.transform.localScale;
+        scale.x *= -1;
+        enemyScripts.transform.localScale = scale;
+        return true;
     }
 }
