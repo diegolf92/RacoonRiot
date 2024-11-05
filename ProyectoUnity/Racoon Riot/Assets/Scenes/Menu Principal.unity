@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec33d80e328f1824d83e2e83279b51c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImage: {fileID: 0}
+  hoverImage: {fileID: 485671706}
   offset: {x: 0, y: 0, z: 0}
   hoverSound: {fileID: 686936353}
   clickSound: {fileID: 756379025}
@@ -1268,16 +1268,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095321077}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.055688538, w: 0.9984482}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.3886824, y: 2.3886824, z: 2.3886824}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 469224262}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.385}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 606, y: -309}
+  m_AnchoredPosition: {x: 648, y: -299}
   m_SizeDelta: {x: 230, y: 145.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1095321079
