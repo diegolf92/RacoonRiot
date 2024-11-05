@@ -683,7 +683,7 @@ GameObject:
   - component: {fileID: 4355516902795643952}
   - component: {fileID: 1311892983123663106}
   m_Layer: 5
-  m_Name: Restart (1)
+  m_Name: NextLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -793,7 +793,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1485330884757430461}
         m_TargetAssemblyTypeName: MenuGameOver, Assembly-CSharp
-        m_MethodName: Nivel2
+        m_MethodName: LoadNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3170529928863659628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3616,7 +3616,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1485330884757430461}
         m_TargetAssemblyTypeName: MenuGameOver, Assembly-CSharp
-        m_MethodName: Nivel2
+        m_MethodName: Reiniciar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
