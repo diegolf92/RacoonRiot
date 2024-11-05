@@ -7,6 +7,10 @@ using UnityEngine.UIElements;
 public class EnemyStateMachine : MonoBehaviour
 {
     private EnemyBaseState currentState;
+    public Animator anim;
+    public GameObject player;
+    public bool canPatrol;
+    float originalPos;
 
     // States
     private GuardState guardState;
@@ -15,17 +19,24 @@ public class EnemyStateMachine : MonoBehaviour
     private ChaseState chaseState;
     private CaptureState captureState;
 
+    //variables
+    public FieldOfView fov;
+    [SerializeField] Transform[] limitPoints;
+
     void Start()
     {
+        originalPos = transform.position.x;
+
         // Initialize the guardState and other states with this object's transform
-        guardState = new GuardState(transform);
-        patrolState = new PatrolState(transform);
-        alertState = new AlertState(transform);
-        chaseState = new ChaseState(transform);
+        guardState = new GuardState(this,transform, fov);
+        patrolState = new PatrolState(this,transform,fov, limitPoints[0], limitPoints[1]);
+        alertState = new AlertState(this, transform, fov, originalPos);
+        chaseState = new ChaseState(player, this, transform, limitPoints[0], limitPoints[1], fov);
         captureState = new CaptureState(transform);
 
         // Start in the GUARD state
-        TransitionToState(guardState);
+        if(!canPatrol)TransitionToState(guardState);
+        else TransitionToState(patrolState);
     }
 
     void Update()
@@ -45,6 +56,11 @@ public class EnemyStateMachine : MonoBehaviour
     }
 
     // Example methods to trigger state transitions
+    public void Guard()
+    {
+        TransitionToState(guardState);
+    }
+
     public void Alert()
     {
         TransitionToState(alertState);
@@ -63,5 +79,13 @@ public class EnemyStateMachine : MonoBehaviour
     public void Capture()
     {
         TransitionToState(captureState);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.transform.tag == "Player")
+        {
+            Capture();
+        }
     }
 }
