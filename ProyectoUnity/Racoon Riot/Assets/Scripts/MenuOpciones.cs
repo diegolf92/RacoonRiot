@@ -5,8 +5,6 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-
-
 public class MenuOpciones : MonoBehaviour
 
 {
