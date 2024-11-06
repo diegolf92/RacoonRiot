@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8157929885525210245}
   - component: {fileID: 7348690165387202596}
-  - component: {fileID: 9182325023426287937}
+  - component: {fileID: 103471071418179898}
   - component: {fileID: 5484536453816431874}
   - component: {fileID: 7234285172821578402}
   - component: {fileID: 6809503592756719726}
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4107142848126040033}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.23, y: -0.4130001, z: 0}
-  m_LocalScale: {x: 1, y: 1.15, z: 1}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7992291095318208911}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7348690165387202596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 584409809
+  m_SortingLayer: -1
+  m_SortingOrder: -1
   m_Sprite: {fileID: -1279588278, guid: 8acb0af67bfda294498b1de76278dd4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &9182325023426287937
+--- !u!60 &103471071418179898
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,13 +118,13 @@ PolygonCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.15625, y: 5.6875}
+    oldSize: {x: 5.6875, y: 0.15625}
     newSize: {x: 0.15625, y: 5.6875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,14 +132,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.017581692, y: 2.84375}
-      - {x: -0.078125134, y: 2.3030264}
-      - {x: -0.0781252, y: -2.3144746}
-      - {x: 0.017184723, y: -2.842919}
-      - {x: 0.078125, y: -2.84375}
-      - {x: -0.017457694, y: -2.3071873}
-      - {x: -0.022472758, y: 2.301163}
-      - {x: 0.078125, y: 2.84375}
+    - - {x: 2.3070126, y: -0.019405201}
+      - {x: -2.3002677, y: -0.015376754}
+      - {x: -2.84375, y: 0.078125}
+      - {x: -2.8451889, y: 0.016815357}
+      - {x: -2.3074584, y: -0.07812501}
+      - {x: 2.3144116, y: -0.07812501}
+      - {x: 2.842312, y: 0.006745793}
+      - {x: 2.84375, y: 0.078125}
   m_UseDelaunayMesh: 0
 --- !u!50 &5484536453816431874
 Rigidbody2D:
