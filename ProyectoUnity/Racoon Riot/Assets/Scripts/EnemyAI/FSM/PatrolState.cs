@@ -15,6 +15,8 @@ public class PatrolState : EnemyBaseState
     float waitTime = 3f;
     Transform pointA, pointB;
     bool patrolRight = true;
+    LayerMask obstacleLayer;
+    LayerMask playerLayer;
 
     public PatrolState(EnemyStateMachine enemyStateMachine, Transform transform, FieldOfView fov, Transform pointA, Transform pointB)
     {
@@ -27,12 +29,21 @@ public class PatrolState : EnemyBaseState
 
     public override void Enter()
     {
+        obstacleLayer = 3;
+        playerLayer = 7;
         fovEnemy.gameObject.SetActive(true);
         fovEnemy.transform.parent.GetComponent<SpriteRenderer>().color = whiteColor;
     }
 
     public override void Update()
     {
+        //Check for player within FOV
+        fovEnemy.DetectLayers();
+        if (fovEnemy.playerDetected == true)
+        {
+            fsm.Chase();
+        }
+
         if (patrolRight)
         {
             //store player pos
@@ -81,7 +92,6 @@ public class PatrolState : EnemyBaseState
 
     public override void Exit()
     {
-        Debug.Log("Exiting state.");
-        // Cleanup if necessary
+        fovEnemy.playerDetected = false;
     }
 }

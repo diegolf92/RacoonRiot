@@ -6,16 +6,17 @@ using UnityEngine;
 public class CaptureState : EnemyBaseState
 {
     private Transform enemyTransform;
+    EnemyStateMachine fsm;
 
-    public CaptureState(Transform transform)
+    public CaptureState(Transform transform, EnemyStateMachine fsm)
     {
         enemyTransform = transform;
+        this.fsm = fsm;
     }
 
     public override void Enter()
     {
-        Debug.Log("Entering Capture state.");
-        // Add initialization for GUARD behavior here
+        fsm.anim.SetTrigger("isAttack");
     }
 
     public override void Update()

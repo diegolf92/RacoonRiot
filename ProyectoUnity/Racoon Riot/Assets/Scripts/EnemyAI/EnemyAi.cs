@@ -483,7 +483,7 @@ public class EnemyAi : MonoBehaviour
         {
             //looksright
         }
-        oldManTeeth.GetComponent<TeethSc>().ChasePlayer();
+        //oldManTeeth.GetComponent<TeethSc>().ChasePlayer();
         Debug.DrawLine(oldManTeeth.transform.position, target, Color.blue);
     }
 

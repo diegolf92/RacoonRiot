@@ -48,7 +48,8 @@ public class GuardState : EnemyBaseState
         fovEnemy.DetectLayers();
         if (fovEnemy.playerDetected == true)
         {
-            fsm.Chase();
+            if(fsm.oldMan == true) fsm.RangeAttack();
+            else fsm.Chase();
         }
     }
 

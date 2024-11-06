@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class TeethSc : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed = 1f;
     public Transform target;
     Transform originalPos;
     public bool specialOn;
     bool goBack;
-    public EnemyAi parentEnemy;
 
     private void Start()
     {
         originalPos = transform;
+        target = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        StartCoroutine(TargetLocation());
     }
 
     private void Update()
     {
         if(specialOn)transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        if(goBack)transform.position = Vector3.MoveTowards(transform.position, this.transform.parent.position, speed * Time.deltaTime);
-    }
-
-    public void ChasePlayer()
-    {
-        StartCoroutine(TargetLocation());
+        if(goBack)transform.position = Vector3.MoveTowards(transform.position, originalPos.position, speed * Time.deltaTime);
     }
 
     IEnumerator TargetLocation()
@@ -42,8 +38,6 @@ public class TeethSc : MonoBehaviour
     {
         goBack = true;
         yield return new WaitForSeconds(2.1f);
-        parentEnemy.ChangeEnemyState(4);
-        parentEnemy.specialOn = false;
         goBack = false;
         gameObject.SetActive(false);
     }
@@ -56,8 +50,6 @@ public class TeethSc : MonoBehaviour
             if (playerDamager != null)
             {
                 playerDamager.EnemyDamage();
-                parentEnemy.ChangeEnemyState(4);
-                parentEnemy.specialOn = false;
             }
         }
     }

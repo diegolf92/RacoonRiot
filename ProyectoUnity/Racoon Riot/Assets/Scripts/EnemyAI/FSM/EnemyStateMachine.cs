@@ -10,7 +10,9 @@ public class EnemyStateMachine : MonoBehaviour
     public Animator anim;
     public GameObject player;
     public bool canPatrol;
+    public bool oldMan;
     float originalPos;
+    [SerializeField] GameObject oldManTeeth;
 
     // States
     private GuardState guardState;
@@ -18,6 +20,7 @@ public class EnemyStateMachine : MonoBehaviour
     private AlertState alertState;
     private ChaseState chaseState;
     private CaptureState captureState;
+    private RangeAttackState rangeAttackState;
 
     //variables
     public FieldOfView fov;
@@ -32,7 +35,8 @@ public class EnemyStateMachine : MonoBehaviour
         patrolState = new PatrolState(this,transform,fov, limitPoints[0], limitPoints[1]);
         alertState = new AlertState(this, transform, fov, originalPos);
         chaseState = new ChaseState(player, this, transform, limitPoints[0], limitPoints[1], fov);
-        captureState = new CaptureState(transform);
+        rangeAttackState = new RangeAttackState(player, this, transform, fov);
+        captureState = new CaptureState(transform, this);
 
         // Start in the GUARD state
         if(!canPatrol)TransitionToState(guardState);
@@ -76,6 +80,11 @@ public class EnemyStateMachine : MonoBehaviour
         TransitionToState(chaseState);
     }
 
+    public void RangeAttack()
+    {
+        TransitionToState(rangeAttackState);
+    }
+
     public void Capture()
     {
         TransitionToState(captureState);
@@ -87,5 +96,10 @@ public class EnemyStateMachine : MonoBehaviour
         {
             Capture();
         }
+    }
+
+    public void Instantiator()
+    {
+        Instantiate(oldManTeeth, fov.transform.position, Quaternion.identity);
     }
 }
