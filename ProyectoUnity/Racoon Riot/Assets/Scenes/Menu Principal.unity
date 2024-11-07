@@ -580,7 +580,6 @@ GameObject:
   - component: {fileID: 469224262}
   - component: {fileID: 469224264}
   - component: {fileID: 469224263}
-  - component: {fileID: 469224265}
   m_Layer: 5
   m_Name: MenuPrincipal
   m_TagString: Untagged
@@ -651,26 +650,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469224261}
   m_CullTransparentMesh: 1
---- !u!114 &469224265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469224261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec33d80e328f1824d83e2e83279b51c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverImage: {fileID: 485671706}
-  offset: {x: 0, y: 0, z: 0}
-  hoverSound: {fileID: 686936353}
-  clickSound: {fileID: 756379025}
-  botones:
-  - {fileID: 1587263294}
-  - {fileID: 1295921614}
-  - {fileID: 1272769081}
 --- !u!1 &485671705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,10 +1521,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1295921614}
+    m_SelectOnDown: {fileID: 1587263294}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -1675,10 +1654,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1587263294}
+    m_SelectOnDown: {fileID: 1272769081}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -2301,10 +2280,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1272769081}
+    m_SelectOnDown: {fileID: 1295921614}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -2594,11 +2573,8 @@ MonoBehaviour:
   offset: {x: -100, y: 0, z: 0}
   hoverSound: {fileID: 686936353}
   clickSound: {fileID: 756379025}
-  botones:
-  - {fileID: 1587263294}
-  - {fileID: 1295921614}
-  - {fileID: 1272769081}
-  - {fileID: 120185846}
+  eventSystem: {fileID: 1568262640}
+  playButton: {fileID: 1587263292}
 --- !u!114 &1762542678
 MonoBehaviour:
   m_ObjectHideFlags: 0
