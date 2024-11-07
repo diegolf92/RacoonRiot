@@ -11,63 +11,28 @@ public class MenuPrincipal : MonoBehaviour
     public Vector3 offset;    // Offset para la posición de la imagen respecto al botón
     public AudioSource hoverSound;  // Sonido al pasar sobre un botón
     public AudioSource clickSound;  // Sonido al hacer clic en un botón
-    private GameObject lastSelected;
+    public EventSystem eventSystem;
+    public GameObject playButton;
 
-    // Array para referenciar los botones del menú
-    public Button[] botones;
 
     void Start()
     {
         hoverImage.gameObject.SetActive(false);
 
-        foreach (Button boton in botones)
-        {
-            EventTrigger trigger = boton.gameObject.AddComponent<EventTrigger>();
-
-            // PointerEnter
-            EventTrigger.Entry pointerEnter = new EventTrigger.Entry();
-            pointerEnter.eventID = EventTriggerType.PointerEnter;
-            pointerEnter.callback.AddListener((data) => { OnPointerEnter(boton); });
-            trigger.triggers.Add(pointerEnter);
-
-            // PointerExit
-            EventTrigger.Entry pointerExit = new EventTrigger.Entry();
-            pointerExit.eventID = EventTriggerType.PointerExit;
-            pointerExit.callback.AddListener((data) => { OnPointerExit(); });
-            trigger.triggers.Add(pointerExit);
-
-            // OnClick
-            boton.onClick.AddListener(() => OnButtonClick());
-        }
     }
 
     private void Update()
     {
-        // Get the currently selected GameObject
-        GameObject currentSelected = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-
-        // Check if the selected object is different from the last frame
-        if (currentSelected != lastSelected)
+        if(Input.GetAxis("Submit") > 0.1f)
         {
-            // If a button is selected, simulate hover behavior
-            Button selectedButton = currentSelected?.GetComponent<Button>();
-            if (selectedButton != null)
-            {
-                OnPointerEnter(selectedButton);
-                lastSelected = currentSelected;
-            }
+            eventSystem.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
         }
 
-        // Detect "Space" or "Enter" key press for button click
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        if (eventSystem.currentSelectedGameObject == null) //si el jugador perdio el boton activo
         {
-            Button selectedButton = currentSelected?.GetComponent<Button>();
-            if (selectedButton != null)
-            {
-                OnButtonClick();
-                selectedButton.onClick.Invoke(); // Trigger the button click
-            }
+            eventSystem.SetSelectedGameObject( playButton.gameObject);
         }
+
     }
     public void jugar()
     {
