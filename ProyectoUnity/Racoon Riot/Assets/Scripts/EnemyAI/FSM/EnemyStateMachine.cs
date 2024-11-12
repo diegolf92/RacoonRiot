@@ -14,7 +14,7 @@ public class EnemyStateMachine : MonoBehaviour
     public bool oldMan;
     public bool isDog;
     float originalPos;
-    [SerializeField] GameObject oldManTeeth;
+    [SerializeField] GameObject rangeAttackObject;
     float objectPos;
 
     // States
@@ -129,6 +129,16 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Instantiator()
     {
-        Instantiate(oldManTeeth, fov.transform.position, Quaternion.identity);
+        if (oldMan)
+        {
+            Instantiate(rangeAttackObject, fov.transform.position, Quaternion.identity);
+        }
+
+        if(isDog)
+        {
+            GameObject var = Instantiate(rangeAttackObject, fov.transform.position, Quaternion.identity);
+            if (fov.isFacingRight) var.GetComponent<DogWaves>().direction = 1;
+            else var.GetComponent<DogWaves>().direction = 0;
+        }
     }
 }

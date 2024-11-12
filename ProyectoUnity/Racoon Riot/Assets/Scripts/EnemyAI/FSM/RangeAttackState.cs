@@ -25,6 +25,7 @@ public class RangeAttackState : EnemyBaseState
 
     public override void Enter()
     {
+        fsm.anim.SetTrigger("isIdle");
         fsm.anim.SetTrigger("specialAttack");
         fsm.Instantiator();
         fovEnemy.gameObject.SetActive(false);
@@ -33,23 +34,35 @@ public class RangeAttackState : EnemyBaseState
 
     public override void Update()
     {
-        //boomerang locks on player transform
-        Vector3 target = new Vector3(player.transform.position.x, fsm.transform.position.y, fsm.transform.position.z);
-        int teethDirection = fovEnemy.isFacingRight ? 1 : 0;
-        if (teethDirection == 1) //Teeth going right->
+        if (fsm.oldMan)
         {
-            //looks left
-        }
-        else if (teethDirection == 1) //Teeth going right->
-        {
-            //looksright
-        }
+            //boomerang locks on player transform
+            Vector3 target = new Vector3(player.transform.position.x, fsm.transform.position.y, fsm.transform.position.z);
+            int teethDirection = fovEnemy.isFacingRight ? 1 : 0;
+            if (teethDirection == 1) //Teeth going right->
+            {
+                //looks left
+            }
+            else if (teethDirection == 1) //Teeth going right->
+            {
+                //looksright
+            }
 
-        waitTime -= Time.deltaTime;
-        if (waitTime <= 0f)
-        {
-            fsm.Alert();
+            waitTime -= Time.deltaTime;
+            if (waitTime <= 0f)
+            {
+                fsm.Alert();
+            }
         }
+        else if (fsm.isDog)
+        {
+            waitTime -= Time.deltaTime;
+            if (waitTime <= 0f)
+            {
+                fsm.Alert();
+            }
+        }
+        
     }
 
     public override void Exit()

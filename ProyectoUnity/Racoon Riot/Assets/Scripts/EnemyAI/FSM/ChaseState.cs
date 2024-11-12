@@ -36,7 +36,6 @@ public class ChaseState : EnemyBaseState
 
     public override void Update()
     {
-        
         //store player pos
         Vector3 boundaryTest = CheckIfEnemyWithinBoundaries(player.transform);
         Vector3 target = new Vector3(boundaryTest.x, fsm.gameObject.transform.position.y, fsm.gameObject.transform.position.z);
@@ -93,6 +92,7 @@ public class ChaseState : EnemyBaseState
 
     public override void Exit()
     {
+        fsm.anim.SetTrigger("isIdle");
         chaseSpeed = 5f;
         noMove = false;
         flipTime = 1f;

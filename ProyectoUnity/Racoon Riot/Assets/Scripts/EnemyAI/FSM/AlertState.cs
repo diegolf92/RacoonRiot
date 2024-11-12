@@ -35,28 +35,9 @@ public class AlertState : EnemyBaseState
         waitTime -= Time.deltaTime;
         if (waitTime <= 0f)
         {
-            fsm.Guard();
+            if(!fsm.canPatrol)fsm.Guard();
+            else fsm.Patrol();
         }
-
-        /*
-        //store player pos
-        Vector3 target = new Vector3(startXPos, fsm.gameObject.transform.position.y, fsm.gameObject.transform.position.z);
-        fsm.gameObject.transform.position = Vector3.MoveTowards(fsm.gameObject.transform.position, target, speed * Time.deltaTime);
-
-        //calcular distancia hacia jugador
-        float distanceToPos = Vector3.Distance(fsm.gameObject.transform.position, target);
-        if (distanceToPos < 0.5f) fsm.anim.SetTrigger("isIdle");
-        else fsm.anim.SetTrigger("isWalking");
-
-        if (distanceToPos == 0)
-        {
-            //wait few seconds
-            waitTime -= Time.deltaTime;
-            if (waitTime <= 0f)
-            {
-                fsm.Guard();
-            }
-        }*/
     }
 
     public override void Exit()

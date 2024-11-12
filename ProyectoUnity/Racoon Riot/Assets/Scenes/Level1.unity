@@ -58755,6 +58755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewEnemyPrototype (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2516694620952559756, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2887564812628741865, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.73
@@ -68800,6 +68804,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewEnemyPrototype (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2516694620952559756, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2887564812628741865, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.18
@@ -68890,6 +68898,10 @@ PrefabInstance:
     - target: {fileID: 2516694620952559756, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_Name
       value: NewEnemyPrototype
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516694620952559756, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2887564812628741865, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70486,6 +70498,10 @@ PrefabInstance:
       value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3825508222787137448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825508222787137448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: enemies.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -70539,11 +70555,11 @@ PrefabInstance:
       objectReference: {fileID: 1024908046}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.26
+      value: -7.1
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.41
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z

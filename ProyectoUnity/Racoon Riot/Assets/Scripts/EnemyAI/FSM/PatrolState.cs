@@ -41,8 +41,7 @@ public class PatrolState : EnemyBaseState
         fovEnemy.DetectLayers();
         if (fovEnemy.playerDetected == true)
         {
-            if(fsm.oldMan == true) fsm.RangeAttack();
-            if(fsm.isDog == true) fsm.JumpAttack();
+            if(fsm.oldMan || fsm.isDog) fsm.RangeAttack();
             else fsm.Chase();
         }
 
@@ -94,6 +93,7 @@ public class PatrolState : EnemyBaseState
 
     public override void Exit()
     {
+        fsm.anim.SetTrigger("isIdle");
         fovEnemy.playerDetected = false;
     }
 }
