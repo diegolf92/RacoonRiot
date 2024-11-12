@@ -10,11 +10,13 @@ public class Victory : MonoBehaviour
     public GameObject victoryMenu; // Referencia al menú de victoria
     PlayerController playerController;
     public bool canWin;
+    public GameObject win_text;
 
     void Start()
     {
         playerInventory = GetComponent<Player_Inventory>();
         victoryMenu.SetActive(false); // Asegurarse de que el menú esté desactivado al inicio
+        win_text.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -55,6 +57,7 @@ public class Victory : MonoBehaviour
     IEnumerator Victoria()
     {
         playerController.GetComponent<PlayerController>().anim.SetBool("washing", true);
+        win_text.SetActive(true);
         yield return new WaitForSeconds(3f);
         playerController.GetComponent<PlayerController>().anim.SetBool("washing", false);
         // Mostrar el menú de victoria
