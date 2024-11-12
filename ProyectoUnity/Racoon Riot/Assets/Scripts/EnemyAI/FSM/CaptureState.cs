@@ -21,14 +21,12 @@ public class CaptureState : EnemyBaseState
 
     public override void Update()
     {
-        Debug.Log("Updating state.");
         // Add GUARD logic here
     }
 
     public override void Exit()
     {
-        Debug.Log("Exiting state.");
-        // Cleanup if necessary
+        fsm.anim.SetTrigger("isIdle");
     }
 }
 

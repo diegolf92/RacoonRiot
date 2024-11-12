@@ -152,7 +152,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 761586647}
   - {fileID: 556120285}
   - {fileID: 1035698757}
   - {fileID: 1324628235}
@@ -1099,11 +1098,11 @@ PrefabInstance:
       objectReference: {fileID: 728596482}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 107.95
+      value: 87.4
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.49
+      value: 11.38
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2973,7 +2972,7 @@ Transform:
   - {fileID: 66805627}
   - {fileID: 2145822214}
   - {fileID: 5069626454420459057}
-  m_Father: {fileID: 11664411}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &761755381
 PrefabInstance:
@@ -45248,6 +45247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewEnemyOldMan
       objectReference: {fileID: 0}
+    - target: {fileID: 2827285158156010182, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 920274888}
     - target: {fileID: 8080064636028286923, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.53
@@ -64146,3 +64149,4 @@ SceneRoots:
   - {fileID: 1786984101857545167}
   - {fileID: 11664411}
   - {fileID: 728596481}
+  - {fileID: 761586647}

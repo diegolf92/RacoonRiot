@@ -10,7 +10,6 @@ public class RangeAttackState : EnemyBaseState
     FieldOfView fovEnemy;
     Transform pointA, pointB;
     GameObject player;
-    float chaseSpeed = 5;
     bool playerLeft;
     bool noMove;
     Color redColor = new Color(1, 0, 0, 0.2f);

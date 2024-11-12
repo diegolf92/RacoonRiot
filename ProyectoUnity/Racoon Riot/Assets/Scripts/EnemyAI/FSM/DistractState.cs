@@ -3,50 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlertState : EnemyBaseState
+public class DistractState : EnemyBaseState
 {
-    private Transform enemyTransform;
+    private float objectTriggerPosition;
     private EnemyStateMachine fsm;
-    float startXPos;
     FieldOfView fovEnemy;
-    //float speed = 4;
+    float speed = 4;
     Color whiteColor = new Color(1, 1, 1, 0.3f);
     Color yellowColor = new Color(1, 1, 0, 0.3f);
     float waitTime = 3f;
 
-    public AlertState(EnemyStateMachine enemyStateMachine, Transform transform, FieldOfView fov, float ogPos)
+    public DistractState(EnemyStateMachine enemyStateMachine, float posX, FieldOfView fov)
     {
-        enemyTransform = transform;
-        startXPos = ogPos;
+        objectTriggerPosition = posX;
         fsm = enemyStateMachine;
         fovEnemy = fov;
     }
 
     public override void Enter()
     {
-        fsm.anim.SetTrigger("isIdle");
+        fsm.anim.SetTrigger("isWalking");
         fovEnemy.gameObject.SetActive(true);
         fovEnemy.transform.parent.GetComponent<SpriteRenderer>().color = yellowColor;
+        if (objectTriggerPosition < fsm.transform.position.x && fovEnemy.isFacingRight || objectTriggerPosition > fsm.transform.position.x && !fovEnemy.isFacingRight)
+        {
+           fovEnemy.Flip();
+        }
     }
 
     public override void Update()
     {
-        //wait few seconds
-        waitTime -= Time.deltaTime;
-        if (waitTime <= 0f)
-        {
-            fsm.Guard();
-        }
-
-        /*
         //store player pos
-        Vector3 target = new Vector3(startXPos, fsm.gameObject.transform.position.y, fsm.gameObject.transform.position.z);
+        Vector3 target = new Vector3(objectTriggerPosition, fsm.gameObject.transform.position.y, fsm.gameObject.transform.position.z);
         fsm.gameObject.transform.position = Vector3.MoveTowards(fsm.gameObject.transform.position, target, speed * Time.deltaTime);
 
         //calcular distancia hacia jugador
         float distanceToPos = Vector3.Distance(fsm.gameObject.transform.position, target);
         if (distanceToPos < 0.5f) fsm.anim.SetTrigger("isIdle");
-        else fsm.anim.SetTrigger("isWalking");
 
         if (distanceToPos == 0)
         {
@@ -54,9 +47,9 @@ public class AlertState : EnemyBaseState
             waitTime -= Time.deltaTime;
             if (waitTime <= 0f)
             {
-                fsm.Guard();
+                fsm.Alert();
             }
-        }*/
+        }
     }
 
     public override void Exit()
@@ -64,6 +57,4 @@ public class AlertState : EnemyBaseState
         waitTime = 3f;
         fovEnemy.transform.parent.GetComponent<SpriteRenderer>().color = whiteColor;
     }
-
 }
-

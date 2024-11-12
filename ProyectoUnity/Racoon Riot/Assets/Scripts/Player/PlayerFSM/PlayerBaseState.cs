@@ -1,12 +1,13 @@
+
 using UnityEngine;
 
-namespace ENEMYAI.FSM
+namespace PLAYERAI.PlayerFSM
 {
-    public abstract class EnemyBaseState 
+    public abstract class PlayerBaseState
     {
-        public enum ENEMY_STATE
+        public enum PLAYER_STATE
         {
-            GUARD, PATROL, ALERT, CHASE, CAPTURE, DISTRACT, RANGEATTACK
+            NORMAL, CAPTURED, RECOVERING
         }
 
         public enum EVENT

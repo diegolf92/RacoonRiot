@@ -20,11 +20,11 @@ public class MenuPrincipal : MonoBehaviour
     public GameObject PanelOpciones;
     public Slider slider;
 
-    private bool libre;
+    //private bool libre;
 
     void Start()
     {
-        libre = true;
+        //libre = true;
         hoverImage.gameObject.SetActive(false);
 
     }

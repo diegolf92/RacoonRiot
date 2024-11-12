@@ -12,7 +12,7 @@ public class NoiseMakingObject : MonoBehaviour
     private AudioSource audioSource;
     public float cooldownTime = 2f;
     private bool isOnCooldown = false;
-    public EnemyAi enemyScript;
+    public EnemyStateMachine enemyScript;
 
     void Start()
     {
@@ -32,10 +32,7 @@ public class NoiseMakingObject : MonoBehaviour
     void MakeNoise()
     {
         audioSource.Play();
-        if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) 
-        {
-            enemyScript.ChangeEnemyState(2, soundXAxis);
-        } 
+        enemyScript.Distract(soundXAxis.position.x);
         StartCoroutine(Cooldown());
         //AlertEnemies();
     }

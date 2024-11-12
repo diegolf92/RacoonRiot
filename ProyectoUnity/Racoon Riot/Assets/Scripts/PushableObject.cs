@@ -5,13 +5,13 @@ using UnityEngine;
 public class PushableObject : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public bool hasFallen = false;
     private Vector2 initialPosition;
     private SpriteRenderer spriteRenderer;
     public Sprite newSprite;
     private Sprite originalSprite;
-    public EnemyAi enemyScript;
-    public float speedSensitivity = -10f;
+    public EnemyStateMachine enemyScript;
+    public float fallingSpeedThreshold = -10f;  // Speed at which to call Distract
+    private bool isFalling = false;         // Track if Distract has been called
 
     void Start()
     {
@@ -22,53 +22,29 @@ public class PushableObject : MonoBehaviour
 
     void Update()
     {
-        if (!hasFallen && rb.velocity.y < speedSensitivity)
+        // Check if the falling speed exceeds the threshold and Distract hasn't been called yet
+        if (rb.velocity.y <= fallingSpeedThreshold && !isFalling)
         {
-            hasFallen = true;
-        }
-
-        if (hasFallen && Mathf.Approximately(rb.velocity.y, 0))
-        {
-
-            rb.bodyType = RigidbodyType2D.Static;
-            if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) enemyScript.DistractEnemy(transform);
-            hasFallen = false;
-            ChangeSprite();
+            isFalling = true;  // Ensure Distract is only called once
         }
     }
 
-    // Reset the object (optional, for testing or level reset purposes)
-    public void ResetObject()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.position = initialPosition;
-        hasFallen = false;
-        if (spriteRenderer != null && newSprite != null)
+        // Check if the object hits the ground
+        if (collision.gameObject.layer == 3 && isFalling)
         {
-            // Assuming you have a reference to the original sprite to reset it
-            spriteRenderer.sprite = originalSprite;
-        }
+            StopMovement();
+        } 
     }
 
-    private void ChangeSprite()
+    void StopMovement()
     {
-        if (newSprite != null)
-        {
-            spriteRenderer.sprite = newSprite;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Pushable"))
-        {
-            if (hasFallen && Mathf.Approximately(rb.velocity.y, 0))
-            {
-                ChangeSprite();
-                rb.bodyType = RigidbodyType2D.Static;
-                if (enemyScript.currentState == EnemyAi.EnemyState.VIGILANDO) enemyScript.DistractEnemy(transform);
-                hasFallen = false;
-            }
-        }
+        isFalling = false;
+        // Stop the object's movement by setting velocity to zero
+        spriteRenderer.sprite = newSprite;
+        enemyScript.Distract(transform.position.x);
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;  // Make the object stop interacting with physics
     }
 }

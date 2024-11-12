@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static PlayerController;
 
 public class EnemyStateMachine : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EnemyStateMachine : MonoBehaviour
     public bool oldMan;
     float originalPos;
     [SerializeField] GameObject oldManTeeth;
+    float objectPos;
 
     // States
     private GuardState guardState;
@@ -21,6 +23,7 @@ public class EnemyStateMachine : MonoBehaviour
     private ChaseState chaseState;
     private CaptureState captureState;
     private RangeAttackState rangeAttackState;
+    private DistractState distractState;
 
     //variables
     public FieldOfView fov;
@@ -37,9 +40,11 @@ public class EnemyStateMachine : MonoBehaviour
         chaseState = new ChaseState(player, this, transform, limitPoints[0], limitPoints[1], fov);
         rangeAttackState = new RangeAttackState(player, this, transform, fov);
         captureState = new CaptureState(transform, this);
+        distractState = new DistractState(this, objectPos, fov);
+
 
         // Start in the GUARD state
-        if(!canPatrol)TransitionToState(guardState);
+        if (!canPatrol)TransitionToState(guardState);
         else TransitionToState(patrolState);
     }
 
@@ -70,6 +75,13 @@ public class EnemyStateMachine : MonoBehaviour
         TransitionToState(alertState);
     }
 
+    public void Distract(float objXPos)
+    {
+        objectPos = objXPos;
+        distractState = new DistractState(this, objectPos, fov);
+        TransitionToState(distractState);
+    }
+
     public void Patrol()
     {
         TransitionToState(patrolState);
@@ -92,9 +104,16 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Player")
+        if(collision.transform.tag == "Player" && !oldMan)
         {
+            //ACTIVATE PLAYER DAMAGE
+            player.GetComponent<PlayerController>().GotCaptured(this);
             Capture();
+        } else if (collision.transform.tag == "Player" && oldMan)
+        {
+            //ACTIVATE PLAYER DAMAGE
+            anim.SetTrigger("isAttack");
+            player.GetComponent<PlayerController>().GotDamaged();
         }
     }
 

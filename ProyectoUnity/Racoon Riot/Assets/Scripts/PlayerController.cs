@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     //game design patterns
     public GameObject playerSprite;
     public bool coroutineStopper;
-    EnemyAi enemyChasing;
-    int parryCount;
+    EnemyStateMachine enemyChasing;
+    int parryCount = 0;
     public Animator anim;
     public GameObject taco;
 
@@ -30,10 +30,9 @@ public class PlayerController : MonoBehaviour
     public Transform pivotPos;
     public Transform pivotPosTwo;
     [SerializeField] private bool isGrounded;
-    bool coolDown;
     public bool isCaptured = false;
     bool canCrouch = true;
-    bool busy = false;
+    //bool busy = false;
 
     [Header("Sonido")]
     public AudioSource audioSource;
@@ -122,13 +121,13 @@ public class PlayerController : MonoBehaviour
 
 
             case PlayerState.CAPTURADO:
-                Debug.Log("Capturado Lanza Corrutine");
-                gameObject.layer = 0;
-                if (!busy)
+                if (isCaptured)
                 {
-                    busy = true;
-                    StartCoroutine(ParryCoroutine());
-                } 
+                    if (Input.GetAxis("Jump") > 0.99f)
+                    {
+                        parryCount++;
+                    }
+                }
                 break;
 
             case PlayerState.MURIENDO:
@@ -137,7 +136,80 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator ParryCoroutine()
+    public void GotDamaged()
+    {
+        damage.EnemyDamage();
+        StartCoroutine(CooldownPlayerWithoutCapture());
+    }
+
+    public void GotCaptured(EnemyStateMachine currentEnemy)
+    {
+        currentState = PlayerState.CAPTURADO;
+        enemyChasing = currentEnemy;
+        StartCoroutine(CanParryCoroutine());
+    }
+
+    IEnumerator CanParryCoroutine()
+    {
+        isCaptured = true;
+        gameObject.transform.tag = "Untagged";
+        playerSprite.GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(3f);
+
+        StartCoroutine(CooldownPlayer());
+
+        if (parryCount < 5)
+        {
+            parryCount = 0;
+            damage.EnemyDamage();
+        }
+        else 
+        {
+            parryCount = 0;
+        }
+    }
+
+    IEnumerator CooldownPlayer()
+    {
+        isCaptured = false;
+        currentState = PlayerState.NORMAL;
+        enemyChasing.Alert();
+        if (isFacingRight)
+        {
+            Vector3 offset = new Vector3(1.5f, 0, 0);
+            transform.position = enemyChasing.transform.position + offset;
+        }
+        else
+        {
+            Vector3 offset = new Vector3(-1.5f, 0, 0);
+            transform.position = enemyChasing.transform.position + offset;
+        }
+        playerSprite.GetComponent<SpriteRenderer>().enabled = true;
+        playerSprite.GetComponent<SpriteRenderer>().color = Color.gray;
+
+        yield return new WaitForSeconds(2f);
+
+        gameObject.transform.tag = "Player";
+        coroutineStopper = false;
+        playerSprite.GetComponent<SpriteRenderer>().color = Color.white;
+        enemyChasing = null;
+        parryCount = 0;
+    }
+
+    IEnumerator CooldownPlayerWithoutCapture()
+    {
+        gameObject.transform.tag = "Untagged";
+        playerSprite.GetComponent<SpriteRenderer>().enabled = true;
+        playerSprite.GetComponent<SpriteRenderer>().color = Color.gray;
+
+        yield return new WaitForSeconds(2f);
+
+        gameObject.transform.tag = "Player";
+        playerSprite.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    /*IEnumerator ParryCoroutine()
     {
         float timer = 0f;
         isCaptured = true;
@@ -145,7 +217,6 @@ public class PlayerController : MonoBehaviour
 
         while(parryCount < 5 && timer < 3)
         {
-            Debug.Log(parryCount);
             timer += Time.deltaTime;
             //if you get caught and parry 3 times while enemy canParry is true you escape, else you lose
             if (Input.GetAxis("Jump") > 0.9f)
@@ -160,7 +231,6 @@ public class PlayerController : MonoBehaviour
         if (parryCount >= 5)
         {
             busy = false;
-            enemyChasing.ChangeEnemyState(1);
             StartCoroutine(EscapeTime());
         }
         else if(isCaptured)
@@ -170,7 +240,6 @@ public class PlayerController : MonoBehaviour
              currentState = PlayerState.NORMAL;
              gameObject.layer = 7;
              playerSprite.GetComponent<SpriteRenderer>().enabled = true;
-             enemyChasing.ChangeEnemyState(1);
              StartCoroutine(EscapeTime());
              enemyChasing = null;
              isCaptured = false;
@@ -200,7 +269,7 @@ public class PlayerController : MonoBehaviour
         enemyChasing = null;
         parryCount = 0;
         coolDown = false;
-    }
+    }*/
 
     void Crouch()
     {
@@ -395,17 +464,10 @@ public class PlayerController : MonoBehaviour
             canCrouch = false;
         }
 
-        if (collision.CompareTag("Enemy") && !coolDown)
+        /*if (collision.CompareTag("Enemy") && !coolDown)
         {
-            enemyChasing = collision.GetComponent<EnemyAi>();
-            enemyChasing.ChangeEnemyState(0);
             currentState = PlayerState.CAPTURADO;
-        }
-        else if (collision.CompareTag("Enemy") && coolDown)
-        {
-            enemyChasing = collision.GetComponent<EnemyAi>();
-            enemyChasing.ChangeEnemyState(1);
-        }
+        }*/
 
         if (collision.CompareTag("Food"))
         {
