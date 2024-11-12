@@ -8,8 +8,12 @@ public class VideoManager : MonoBehaviour
     public VideoPlayer videoPlayer;  // Reference to the VideoPlayer component
     public string nextSceneName;     // Name of the next scene to load
 
+
+
     void Start()
     {
+
+
         // Ensure the video starts playing as soon as the scene loads
         videoPlayer.Play();
 
