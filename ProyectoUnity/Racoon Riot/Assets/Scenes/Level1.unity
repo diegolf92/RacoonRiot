@@ -60480,17 +60480,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1156864755 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5401681862832873505, guid: 6fc667f8ade9b5e4b80d263ecc7dce6e, type: 3}
-  m_PrefabInstance: {fileID: 824926452}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aadc93563b17194fabe9f796415af05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1176361911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62742,7 +62731,7 @@ MonoBehaviour:
   noiseClip: {fileID: 8300000, guid: 060d6114288f3cf49becb7cd8849c8ab, type: 3}
   noiseRadius: 10
   cooldownTime: 2
-  enemyScript: {fileID: 1156864755}
+  enemyScript: {fileID: 0}
 --- !u!82 &1356890622
 AudioSource:
   m_ObjectHideFlags: 0
@@ -71045,11 +71034,11 @@ PrefabInstance:
       objectReference: {fileID: 1024908046}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.1
+      value: -7.58
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
