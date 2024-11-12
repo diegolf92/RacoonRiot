@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour
 
 
             case PlayerState.CAPTURADO:
+                //Reproducir animacion de parry
                 if (isCaptured)
                 {
                     if (Input.GetAxis("Jump") > 0.99f)
