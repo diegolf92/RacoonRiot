@@ -41,7 +41,9 @@ public class PatrolState : EnemyBaseState
         fovEnemy.DetectLayers();
         if (fovEnemy.playerDetected == true)
         {
-            fsm.Chase();
+            if(fsm.oldMan == true) fsm.RangeAttack();
+            if(fsm.isDog == true) fsm.JumpAttack();
+            else fsm.Chase();
         }
 
         if (patrolRight)

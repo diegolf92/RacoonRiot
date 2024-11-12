@@ -12,6 +12,7 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject player;
     public bool canPatrol;
     public bool oldMan;
+    public bool isDog;
     float originalPos;
     [SerializeField] GameObject oldManTeeth;
     float objectPos;
@@ -24,6 +25,7 @@ public class EnemyStateMachine : MonoBehaviour
     private CaptureState captureState;
     private RangeAttackState rangeAttackState;
     private DistractState distractState;
+    private JumpAttackState jumpAttackState;
 
     //variables
     public FieldOfView fov;
@@ -39,13 +41,16 @@ public class EnemyStateMachine : MonoBehaviour
         alertState = new AlertState(this, transform, fov, originalPos);
         chaseState = new ChaseState(player, this, transform, limitPoints[0], limitPoints[1], fov);
         rangeAttackState = new RangeAttackState(player, this, transform, fov);
+        jumpAttackState = new JumpAttackState(player.transform, this, transform, fov, limitPoints[0], limitPoints[1]);
         captureState = new CaptureState(transform, this);
         distractState = new DistractState(this, objectPos, fov);
 
 
         // Start in the GUARD state
         if (!canPatrol)TransitionToState(guardState);
+        //else if (isDog && canPatrol) TransitionToState(jumpAttackState);
         else TransitionToState(patrolState);
+        
     }
 
     void Update()
@@ -97,6 +102,11 @@ public class EnemyStateMachine : MonoBehaviour
         TransitionToState(rangeAttackState);
     }
 
+    public void JumpAttack()
+    {
+        TransitionToState(jumpAttackState);
+    }
+
     public void Capture()
     {
         TransitionToState(captureState);
@@ -104,12 +114,12 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Player" && !oldMan)
+        if(collision.transform.tag == "Player" && !oldMan && !isDog)
         {
             //ACTIVATE PLAYER DAMAGE
             player.GetComponent<PlayerController>().GotCaptured(this);
             Capture();
-        } else if (collision.transform.tag == "Player" && oldMan)
+        } else if (collision.transform.tag == "Player" && oldMan || collision.transform.tag == "Player" && isDog)
         {
             //ACTIVATE PLAYER DAMAGE
             anim.SetTrigger("isAttack");

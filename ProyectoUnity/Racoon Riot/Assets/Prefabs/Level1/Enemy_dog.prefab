@@ -122,6 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5206869542599926085}
   player: {fileID: 0}
+  canPatrol: 1
+  oldMan: 0
+  oldManTeeth: {fileID: 0}
   fov: {fileID: 8749228185991804564}
   limitPoints:
   - {fileID: 3918751987258766459}
@@ -152,8 +155,8 @@ Transform:
   m_GameObject: {fileID: 717010676424582755}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5536, y: -0.55, z: 0}
-  m_LocalScale: {x: 0.613104, y: 0.201918, z: 1}
+  m_LocalPosition: {x: 3.6109, y: -0.55, z: 0}
+  m_LocalScale: {x: 0.34943223, y: 0.201918, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2172673917479101428}
@@ -236,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 1787524295836710941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.030001, y: 0, z: 0}
+  m_LocalPosition: {x: 2.33, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -286,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e9eda430ecfe24ab9609028981e9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 9
+  detectionRadius: 5
   fovAngle: 19
   rayCount: 10
   playerLayer:
