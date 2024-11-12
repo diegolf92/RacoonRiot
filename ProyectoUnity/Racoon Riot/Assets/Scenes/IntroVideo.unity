@@ -395,7 +395,7 @@ PrefabInstance:
     - target: {fileID: 1977495897027026147, guid: 19c94f97d6279c946b7b0676a0bc4381, type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: affff33fbf648c34b9d4ecdc3cd996f5, type: 3}
+      objectReference: {fileID: 32900000, guid: 386bfe5efee8d0e4b99efaaa1f7071ca, type: 3}
     - target: {fileID: 1977495897027026147, guid: 19c94f97d6279c946b7b0676a0bc4381, type: 3}
       propertyPath: m_RenderMode
       value: 2
