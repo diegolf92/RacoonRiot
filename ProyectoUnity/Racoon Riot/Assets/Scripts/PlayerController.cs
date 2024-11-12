@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 boxColSlideSize;
     public PlayerLife damage;
 
+
     public enum PlayerState
     {
         NORMAL,
