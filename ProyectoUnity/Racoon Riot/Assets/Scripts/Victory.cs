@@ -60,6 +60,6 @@ public class Victory : MonoBehaviour
         // Mostrar el menú de victoria
         victoryMenu.SetActive(true);
         // Pausar el juego si es necesario
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 }
