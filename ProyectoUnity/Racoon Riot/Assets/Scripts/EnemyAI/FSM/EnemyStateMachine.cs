@@ -41,7 +41,7 @@ public class EnemyStateMachine : MonoBehaviour
         alertState = new AlertState(this, transform, fov, originalPos);
         chaseState = new ChaseState(player, this, transform, limitPoints[0], limitPoints[1], fov);
         rangeAttackState = new RangeAttackState(player, this, transform, fov);
-        jumpAttackState = new JumpAttackState(player.transform, this, transform, fov, limitPoints[0], limitPoints[1]);
+        //jumpAttackState = new JumpAttackState(player.transform, this, transform, fov, limitPoints[0], limitPoints[1]);
         captureState = new CaptureState(transform, this);
         distractState = new DistractState(this, objectPos, fov);
 
