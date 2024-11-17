@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
 
     public void GotDamaged()
     {
+        anim.SetTrigger("damaged");
         damage.EnemyDamage();
         StartCoroutine(CooldownPlayerWithoutCapture());
     }

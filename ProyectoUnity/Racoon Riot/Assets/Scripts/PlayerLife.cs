@@ -7,6 +7,7 @@ using static PlayerController;
 public class PlayerLife : MonoBehaviour
 {
     public CheckPointManager checkpoint;
+    public Animator anim;
 
     [Header("Vidas del Jugador")]
     public int vidas = 3;  // Número inicial de vidas

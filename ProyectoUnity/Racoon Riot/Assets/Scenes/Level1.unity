@@ -224,6 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom:
+  - {fileID: 1210729515}
   roomCam: {fileID: 1329460600}
 --- !u!1001 &17629375
 PrefabInstance:
@@ -648,6 +650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom:
+  - {fileID: 502773645}
   roomCam: {fileID: 1995368305}
 --- !u!1 &107371396
 GameObject:
@@ -51367,6 +51371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 1303079756}
 --- !u!1001 &213662645
 PrefabInstance:
@@ -53117,6 +53122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom:
+  - {fileID: 321675062}
   roomCam: {fileID: 2070142528}
 --- !u!1001 &361798932
 PrefabInstance:
@@ -55140,6 +55147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 184052822}
 --- !u!4 &635714152 stripped
 Transform:
@@ -55877,6 +55885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 46513294}
 --- !u!1 &693867883
 GameObject:
@@ -56990,6 +56999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 1882938941}
 --- !u!1 &783970228
 GameObject:
@@ -58366,6 +58376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 198741447}
 --- !u!4 &941239400 stripped
 Transform:
@@ -66377,6 +66388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom:
+  - {fileID: 445006166}
   roomCam: {fileID: 783970228}
 --- !u!1001 &1709135961
 PrefabInstance:
@@ -68201,6 +68214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 807508761}
 --- !u!1001 &1856356957
 PrefabInstance:
@@ -68948,6 +68962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 997654908}
 --- !u!4 &1966008809 stripped
 Transform:
@@ -70066,6 +70081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 1731531025}
 --- !u!1 &2123825979
 GameObject:
@@ -71673,11 +71689,11 @@ PrefabInstance:
       objectReference: {fileID: 1024908046}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.66
+      value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.43
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z

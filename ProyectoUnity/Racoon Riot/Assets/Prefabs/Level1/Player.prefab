@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 2821414135453689960}
   - component: {fileID: 6532993247304029374}
   - component: {fileID: 6575615806620507220}
-  - component: {fileID: 3825508222787137448}
   - component: {fileID: 113536721008397521}
   - component: {fileID: 6319778923258195255}
   - component: {fileID: 7981176780823859448}
@@ -265,25 +264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 5203e320c24b03749a035079150ed2ed, type: 2}
---- !u!114 &3825508222787137448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2267176713318269432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f25648d93aeaddc40a0ec46d1358e30b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 20
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &113536721008397521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,6 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 0}
+  anim: {fileID: 0}
   vidas: 2
   vidaImages:
   - {fileID: 0}

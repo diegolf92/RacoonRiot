@@ -25,7 +25,6 @@ public class RangeAttackState : EnemyBaseState
 
     public override void Enter()
     {
-        fsm.anim.SetTrigger("isIdle");
         fsm.anim.SetTrigger("specialAttack");
         fsm.Instantiator();
         fovEnemy.gameObject.SetActive(false);
