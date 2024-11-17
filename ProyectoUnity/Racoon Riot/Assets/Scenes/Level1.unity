@@ -54387,7 +54387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d922042dd500c2d49881c28955635db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 1690642757}
+  menu: {fileID: 1936794516}
 --- !u!1 &491692799
 GameObject:
   m_ObjectHideFlags: 0
@@ -62849,6 +62849,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1384435804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5052302445596519866, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+  m_PrefabInstance: {fileID: 1024908043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1394805798
 GameObject:
   m_ObjectHideFlags: 0
@@ -68108,6 +68113,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1936794516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1194145704161474913, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+  m_PrefabInstance: {fileID: 1024908043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1947557092
 GameObject:
   m_ObjectHideFlags: 0
@@ -70433,6 +70443,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 927311663}
     m_Modifications:
     - target: {fileID: 4349801204715764943, guid: ad541737b4f9af144abfb7ee26e24d7f, type: 3}
+      propertyPath: win_text
+      value: 
+      objectReference: {fileID: 1384435804}
+    - target: {fileID: 4349801204715764943, guid: ad541737b4f9af144abfb7ee26e24d7f, type: 3}
       propertyPath: victoryMenu
       value: 
       objectReference: {fileID: 1690642757}
@@ -70476,6 +70490,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6155545265242855484, guid: ad541737b4f9af144abfb7ee26e24d7f, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6155545265242855484, guid: ad541737b4f9af144abfb7ee26e24d7f, type: 3}
       propertyPath: m_Name
       value: Victory
@@ -71685,6 +71703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sky_bg
       objectReference: {fileID: 0}
+    - target: {fileID: 8327766377075359455, guid: e474ca00647f3e444a3b7d875d605da7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8530551639287821044, guid: e474ca00647f3e444a3b7d875d605da7, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.2690878
@@ -71699,11 +71721,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8530551639287821044, guid: e474ca00647f3e444a3b7d875d605da7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 98.01
+      value: 96.64
       objectReference: {fileID: 0}
     - target: {fileID: 8530551639287821044, guid: e474ca00647f3e444a3b7d875d605da7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.59
+      value: 11.25
       objectReference: {fileID: 0}
     - target: {fileID: 8530551639287821044, guid: e474ca00647f3e444a3b7d875d605da7, type: 3}
       propertyPath: m_LocalPosition.z
