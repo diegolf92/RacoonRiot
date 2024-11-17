@@ -30,7 +30,7 @@ public class ChaseState : EnemyBaseState
     public override void Enter()
     {
         fsm.anim.SetTrigger("isWalking");
-        fovEnemy.gameObject.SetActive(false);
+        fovEnemy.gameObject.SetActive(true);
         fovEnemy.transform.parent.GetComponent<SpriteRenderer>().color = redColor;
     }
 
@@ -61,22 +61,6 @@ public class ChaseState : EnemyBaseState
             }
         }
         
-        //calcular distancia hacia jugador
-        float distanceToPlayerPos = Vector3.Distance(fsm.gameObject.transform.position, target);
-        
-        if (distanceToPlayerPos < 1.5f)
-        {
-            //fsm.Alert();
-        }
-        else if (distanceToPlayerPos > 10)
-        {
-            //send to alert so it recharges player position coordinates
-            //fsm.Alert();
-        } else 
-        {
-            //Debug.Log("Chasing");
-        }
-
         //check if hits limits point
         if (playerLeft && fsm.transform.position.x <= pointA.position.x || !playerLeft && fsm.transform.position.x >= pointB.position.x)
         {
@@ -92,7 +76,6 @@ public class ChaseState : EnemyBaseState
 
     public override void Exit()
     {
-        fsm.anim.SetTrigger("isIdle");
         chaseSpeed = 5f;
         noMove = false;
         flipTime = 1f;

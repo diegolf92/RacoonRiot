@@ -26,7 +26,6 @@ public class CaptureState : EnemyBaseState
 
     public override void Exit()
     {
-        fsm.anim.SetTrigger("isIdle");
     }
 }
 

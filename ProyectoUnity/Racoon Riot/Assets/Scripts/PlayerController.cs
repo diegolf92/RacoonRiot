@@ -210,69 +210,6 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.tag = "Player";
         playerSprite.GetComponent<SpriteRenderer>().color = Color.white;
     }
-
-    /*IEnumerator ParryCoroutine()
-    {
-        float timer = 0f;
-        isCaptured = true;
-        playerSprite.GetComponent<SpriteRenderer>().enabled = false;
-
-        while(parryCount < 5 && timer < 3)
-        {
-            timer += Time.deltaTime;
-            //if you get caught and parry 3 times while enemy canParry is true you escape, else you lose
-            if (Input.GetAxis("Jump") > 0.9f)
-            {
-                parryCount++;
-            }
-
-            yield return new WaitForEndOfFrame();
-        }
-
-        Debug.Log(parryCount);
-        if (parryCount >= 5)
-        {
-            busy = false;
-            StartCoroutine(EscapeTime());
-        }
-        else if(isCaptured)
-        {
-            
-             damage.EnemyDamage();
-             currentState = PlayerState.NORMAL;
-             gameObject.layer = 7;
-             playerSprite.GetComponent<SpriteRenderer>().enabled = true;
-             StartCoroutine(EscapeTime());
-             enemyChasing = null;
-             isCaptured = false;
-             busy = false;
-        }
-    }
-
-    IEnumerator EscapeTime()
-    {
-        coolDown = true;
-        currentState = PlayerState.NORMAL;
-        if (isFacingRight)
-        {
-            Vector3 offset = new Vector3(1.5f, 0, 0);
-            transform.position = enemyChasing.transform.position + offset;
-        }
-        else {
-            Vector3 offset = new Vector3(-1.5f, 0, 0);
-            transform.position = enemyChasing.transform.position + offset;
-        }
-        playerSprite.GetComponent<SpriteRenderer>().enabled = true;
-        playerSprite.GetComponent<SpriteRenderer>().color = Color.gray;
-        yield return new WaitForSeconds(3f);
-        gameObject.layer = 7;
-        coroutineStopper = false;
-        playerSprite.GetComponent<SpriteRenderer>().color = Color.white;
-        enemyChasing = null;
-        parryCount = 0;
-        coolDown = false;
-    }*/
-
     void Crouch()
     {
         if (isCrouching || isCeiling)

@@ -60227,6 +60227,17 @@ Transform:
   - {fileID: 2011860998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150910651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 651342236766117842, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
+  m_PrefabInstance: {fileID: 448010008}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13059228be160d843a88177bc4e7c5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1155663346
 GameObject:
   m_ObjectHideFlags: 0
@@ -62622,7 +62633,7 @@ MonoBehaviour:
   noiseClip: {fileID: 8300000, guid: 060d6114288f3cf49becb7cd8849c8ab, type: 3}
   noiseRadius: 10
   cooldownTime: 2
-  enemyScript: {fileID: 0}
+  enemyScript: {fileID: 1150910651}
 --- !u!82 &1356890622
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64951,7 +64962,7 @@ PrefabInstance:
       objectReference: {fileID: 338618435}
     - target: {fileID: 651342236766117842, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: canPatrol
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2516694620952559756, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_Name
@@ -70984,11 +70995,11 @@ PrefabInstance:
       objectReference: {fileID: 1024908046}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.1
+      value: -6.98
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -3.37
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z

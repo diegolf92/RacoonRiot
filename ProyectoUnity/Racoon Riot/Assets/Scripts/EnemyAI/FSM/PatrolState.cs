@@ -53,7 +53,7 @@ public class PatrolState : EnemyBaseState
 
             //calcular distancia hacia jugador
             float distanceToPos = Vector3.Distance(fsm.gameObject.transform.position, target);
-            if (distanceToPos < 0.3f) 
+            if (distanceToPos < 0.2f) 
             {
                 fsm.anim.SetTrigger("isIdle");
                 //wait few seconds
@@ -75,7 +75,7 @@ public class PatrolState : EnemyBaseState
 
             //calcular distancia hacia jugador
             float distanceToPos = Vector3.Distance(fsm.gameObject.transform.position, target);
-            if (distanceToPos < 0.3f)
+            if (distanceToPos < 0.2f)
             {
                 fsm.anim.SetTrigger("isIdle");
                 //wait few seconds
@@ -95,5 +95,6 @@ public class PatrolState : EnemyBaseState
     {
         fsm.anim.SetTrigger("isIdle");
         fovEnemy.playerDetected = false;
+        fovEnemy.gameObject.SetActive(false);
     }
 }
