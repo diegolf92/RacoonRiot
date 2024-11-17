@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 boxColCrouchSize;
     public Vector2 boxColSlideSize;
     public PlayerLife damage;
+    public GameObject spacebar;
 
 
     public enum PlayerState
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
         playerCollider = GetComponent<BoxCollider2D>();
         boxColNormalSize = playerCollider.size;
         currentState = PlayerState.NORMAL;
+        spacebar.SetActive(false);
     }
 
     void Update()
@@ -90,7 +92,8 @@ public class PlayerController : MonoBehaviour
         switch (currentState)
         {
             case PlayerState.NORMAL:
-                
+
+                spacebar.SetActive(false);
                 if (isGrounded)
                 {
                     isJumping = false;
@@ -125,6 +128,7 @@ public class PlayerController : MonoBehaviour
                 //Reproducir animacion de parry
                 if (isCaptured)
                 {
+                    spacebar.SetActive(true);
                     if (Input.GetAxis("Jump") > 0.99f)
                     {
                         parryCount++;
