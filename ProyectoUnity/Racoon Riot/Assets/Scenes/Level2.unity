@@ -1056,11 +1056,11 @@ PrefabInstance:
       objectReference: {fileID: 728596482}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.72
+      value: 113.76
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.04
+      value: 24.15
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -48982,6 +48982,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewEnemyOldMan
       objectReference: {fileID: 0}
+    - target: {fileID: 2827285158156010182, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 920274888}
+    - target: {fileID: 2827285158156010182, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
+      propertyPath: rangeAttackObject
+      value: 
+      objectReference: {fileID: 27251015190063012, guid: 3224923faa763bd42b332dfc71dd7ba1, type: 3}
     - target: {fileID: 8411064283476631256, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 112.3
