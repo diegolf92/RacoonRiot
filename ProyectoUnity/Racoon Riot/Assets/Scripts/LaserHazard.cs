@@ -46,7 +46,10 @@ public class LaserHazard : MonoBehaviour
             PlayerLife playerDamager = other.GetComponent<PlayerLife>();
             if (playerDamager != null)
             {
-                playerDamager.ApplyDamage(); 
+                playerDamager.ApplyDamage();
+
+                // Reproducir sonido desde el SoundManager
+                SoundManager.Instance?.PlayLaserHitSound();
             }
         }
     }

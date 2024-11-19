@@ -52,5 +52,9 @@ public class LevelMusicManager : MonoBehaviour
         levelMusicSource.clip = levelMusic;
         levelMusicSource.Play();
     }
+    public void StopMusic()
+    {
+        levelMusicSource.Stop();
+    }
 }
     

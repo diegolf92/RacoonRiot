@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Audio;
-//using UnityEngine.UIElements;
 
 public class MenuPrincipal : MonoBehaviour
 {
-    public Image hoverImage;  // La imagen que se mostrará al pasar el mouse
+    public Image hoverImage;  // Imagen que se mostrará al pasar el mouse
     public Vector3 offset;    // Offset para la posición de la imagen respecto al botón
-    public AudioSource hoverSound;  // Sonido al pasar sobre un botón
-    public AudioSource clickSound;  // Sonido al hacer clic en un botón
+    public AudioSource hoverSound;  // Sonido al seleccionar un botón con teclado
+    public AudioSource clickSound;  // Sonido al confirmar selección con teclado
     public EventSystem eventSystem;
     public GameObject playButton;
     [SerializeField] private AudioMixer audioMixer;
@@ -20,51 +17,58 @@ public class MenuPrincipal : MonoBehaviour
     public GameObject PanelOpciones;
     public Slider slider;
 
-    //private bool libre;
+    private GameObject lastSelectedButton; // Para detectar cambios en el botón seleccionado
 
     void Start()
     {
-        //libre = true;
         hoverImage.gameObject.SetActive(false);
 
+        // Inicializar el botón seleccionado al inicio
+        if (playButton != null)
+        {
+            eventSystem.SetSelectedGameObject(playButton);
+            lastSelectedButton = playButton;
+        }
     }
 
     private void Update()
     {
-        /*
-        if(libre & Input.GetButtonUp("Submit"))
+        if (eventSystem.currentSelectedGameObject != null)
         {
-            libre = false;
-            Debug.Log(eventSystem.currentSelectedGameObject.name);
-            eventSystem.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
-        }
-        else
-        {
-            libre = true;
-        }
-        */
-
-        if (eventSystem.currentSelectedGameObject != null ) //si el jugador perdio el boton activo
-        {
-            if(eventSystem.currentSelectedGameObject != null)
+            // Verificar si el botón seleccionado cambió
+            if (eventSystem.currentSelectedGameObject != lastSelectedButton)
+            {
+                // Actualizar la imagen de hover
                 HighLight(eventSystem.currentSelectedGameObject);
-            //eventSystem.SetSelectedGameObject( playButton.gameObject);
+
+                // Reproducir sonido al cambiar de selección
+                if (hoverSound != null)
+                {
+                    hoverSound.Play();
+                }
+
+                // Actualizar el último botón seleccionado
+                lastSelectedButton = eventSystem.currentSelectedGameObject;
+            }
+
+            // Confirmar selección al presionar la tecla Enter o Espacio
+            if (Input.GetButtonDown("Submit"))
+            {
+                OnButtonClick();
+            }
         }
     }
 
     public void OpenOptionsMenu()
     {
-        Debug.Log("OpenOptionsMenu");
-        PanelMenuPrincipal.SetActive(false);  // Hide the main menu
-        PanelOpciones.SetActive(true); // Show the options menu
+        PanelMenuPrincipal.SetActive(false);  // Ocultar el menú principal
+        PanelOpciones.SetActive(true);        // Mostrar el menú de opciones
     }
 
-    // Function to go back to the main menu from options menu
     public void CloseOptionsMenu()
     {
-        Debug.Log("CloseOptionsMenu");
-        PanelOpciones.SetActive(false); // Hide the options menu
-        PanelMenuPrincipal.SetActive(true);    // Show the main menu
+        PanelOpciones.SetActive(false); // Ocultar el menú de opciones
+        PanelMenuPrincipal.SetActive(true); // Mostrar el menú principal
     }
 
     public void jugar()
@@ -74,40 +78,20 @@ public class MenuPrincipal : MonoBehaviour
 
     public void salir()
     {
-        Debug.Log("saliendo del juego");
         Application.Quit();
-    }
-
-    private void OnPointerEnter(Button boton)
-    {
-        hoverImage.gameObject.SetActive(true);
-
-        // Get the RectTransforms of the button and hoverImage
-        RectTransform buttonRect = boton.GetComponent<RectTransform>();
-        RectTransform hoverRect = hoverImage.GetComponent<RectTransform>();
-
-        // Set the hoverImage position relative to the button position plus the offset
-        hoverRect.position = buttonRect.position + offset;
-
-        // Play the hover sound if set
-        //if (hoverSound != null) hoverSound.Play();
     }
 
     private void HighLight(GameObject target)
     {
         hoverImage.gameObject.SetActive(true);
 
-        // Get the RectTransforms of the button and hoverImage
+        // Obtener RectTransform del botón y de la imagen
         RectTransform buttonRect = target.GetComponent<RectTransform>();
         RectTransform hoverRect = hoverImage.GetComponent<RectTransform>();
 
-        // Set the hoverImage position relative to the button position plus the offset
+        // Posicionar la imagen hover cerca del botón
         hoverRect.position = buttonRect.position + offset;
-
-        // Play the hover sound if set
-        //if (hoverSound != null) hoverSound.Play();
     }
-
 
     private void OnPointerExit()
     {
@@ -116,7 +100,7 @@ public class MenuPrincipal : MonoBehaviour
 
     private void OnButtonClick()
     {
-        // Reproduce el sonido al hacer clic en el botón
+        // Reproducir sonido al confirmar la selección
         if (clickSound != null) clickSound.Play();
     }
 

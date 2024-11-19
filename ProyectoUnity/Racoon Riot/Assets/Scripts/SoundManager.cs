@@ -13,6 +13,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip doorOpenSound;
     public AudioClip leverSwitchSound;
     public AudioClip elevatorSound;
+    public AudioClip laserHitSound;
+    public AudioClip victorymusic;
     // Agrega otros clips según los objetos interactuables que tengas en la escena
 
     private void Awake()
@@ -53,7 +55,24 @@ public class SoundManager : MonoBehaviour
     {
         PlaySound(elevatorSound);
     }
+    public void PlayLaserHitSound()
+    {
+        PlaySound(laserHitSound);
+    }
 
+    public void PlayVictoryMusic()
+    {
+        if (victorymusic != null)
+        {
+            sfxAudioSource.clip = victorymusic;
+            sfxAudioSource.loop = false; // No se necesita bucle para música de victoria
+            sfxAudioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Clip de música de victoria no asignado en el SoundManager.");
+        }
+    }
     // Método general para reproducir cualquier sonido
     private void PlaySound(AudioClip clip)
     {

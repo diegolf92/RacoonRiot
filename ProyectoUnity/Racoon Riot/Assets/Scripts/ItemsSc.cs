@@ -30,9 +30,18 @@ public class ItemsSc : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && isKeyItem)
+        if (other.CompareTag("Player"))
         {
-            victory.canWin = true;
+            // Reproducir el sonido del ítem al ser recogido
+            SoundManager.Instance?.PlayItemCollectSound();
+
+            if (isKeyItem)
+            {
+                victory.canWin = true;
+            }
+
+            // Destruir el objeto para simular que fue recogido
+            Destroy(gameObject);
         }
     }
 }

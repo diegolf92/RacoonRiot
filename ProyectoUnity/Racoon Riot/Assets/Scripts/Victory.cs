@@ -11,6 +11,8 @@ public class Victory : MonoBehaviour
     PlayerController playerController;
     public bool canWin;
     public GameObject win_text;
+    [Header("Gestión de Música")]
+    public LevelMusicManager musicManager; // Referencia al LevelMusicManager
 
     void Start()
     {
@@ -56,13 +58,31 @@ public class Victory : MonoBehaviour
 
     IEnumerator Victoria()
     {
+        // Detener la música de nivel
+        if (musicManager != null)
+        {
+            musicManager.StopMusic();
+        }
+
+        // Reproducir música de victoria desde el SoundManager
+        SoundManager.Instance?.PlayVictoryMusic();
+
+        // Activar la animación
         playerController.GetComponent<PlayerController>().anim.SetBool("washing", true);
+
+        // Mostrar texto de victoria
         win_text.SetActive(true);
+
+        // Esperar 3 segundos para completar la animación
         yield return new WaitForSeconds(3f);
+
+        // Detener la animación
         playerController.GetComponent<PlayerController>().anim.SetBool("washing", false);
+
         // Mostrar el menú de victoria
         victoryMenu.SetActive(true);
-        // Pausar el juego si es necesario
-        //Time.timeScale = 0f;
+
+        // Opcional: Pausar el juego
+        // Time.timeScale = 0f;
     }
 }
