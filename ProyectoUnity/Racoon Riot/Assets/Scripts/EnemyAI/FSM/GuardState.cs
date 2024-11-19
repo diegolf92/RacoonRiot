@@ -49,7 +49,7 @@ public class GuardState : EnemyBaseState
         if (fovEnemy.playerDetected == true)
         {
             if(fsm.oldMan == true) fsm.RangeAttack();
-            if(fsm.isDog == true) fsm.JumpAttack();
+            else if(fsm.isDog == true) fsm.JumpAttack();
             else fsm.Chase();
         }
     }

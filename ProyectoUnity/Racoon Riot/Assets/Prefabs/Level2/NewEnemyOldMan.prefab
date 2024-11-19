@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2504685765967729468}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 116, y: 18.25, z: -0.15979956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -185,7 +185,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.5225868, y: -0.1400001, z: 0.060886778}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2077112257225710201}
@@ -278,9 +278,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 9089170830903278233}
   player: {fileID: 0}
-  canPatrol: 0
+  canPatrol: 1
   oldMan: 1
-  oldManTeeth: {fileID: 27251015190063012, guid: 3224923faa763bd42b332dfc71dd7ba1, type: 3}
+  isDog: 0
+  rangeAttackObject: {fileID: 27251015190063012, guid: 3224923faa763bd42b332dfc71dd7ba1, type: 3}
   fov: {fileID: 2718779554228210135}
   limitPoints:
   - {fileID: 602556107758245371}
