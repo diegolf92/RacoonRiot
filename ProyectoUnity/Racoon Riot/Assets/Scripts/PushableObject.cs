@@ -29,22 +29,22 @@ public class PushableObject : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Check if the object hits the ground
-        if (collision.gameObject.layer == 3 && isFalling)
-        {
-            StopMovement();
-        } 
-    }
-
     void StopMovement()
     {
+        Debug.Log("sadasd");
         isFalling = false;
         // Stop the object's movement by setting velocity to zero
         spriteRenderer.sprite = newSprite;
         enemyScript.Distract(transform.position.x);
         rb.velocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Static;  // Make the object stop interacting with physics
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Pushable") && isFalling)
+        {
+            StopMovement();
+        }
     }
 }

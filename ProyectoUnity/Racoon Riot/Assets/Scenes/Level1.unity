@@ -53369,7 +53369,7 @@ Transform:
   m_GameObject: {fileID: 392344592}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.56, y: -3.95, z: 0}
+  m_LocalPosition: {x: 32.56, y: -4.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63347,7 +63347,7 @@ MonoBehaviour:
   noiseClip: {fileID: 8300000, guid: 060d6114288f3cf49becb7cd8849c8ab, type: 3}
   noiseRadius: 10
   cooldownTime: 2
-  enemyScript: {fileID: 0}
+  enemyScript: {fileID: 1872143719}
 --- !u!82 &1356890622
 AudioSource:
   m_ObjectHideFlags: 0
@@ -65789,6 +65789,17 @@ Transform:
   - {fileID: 967959936}
   m_Father: {fileID: 927311663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1605348351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 651342236766117842, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
+  m_PrefabInstance: {fileID: 2005584362}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13059228be160d843a88177bc4e7c5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1610502347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68888,6 +68899,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
   m_PrefabInstance: {fileID: 1862577423}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1872143719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 651342236766117842, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
+  m_PrefabInstance: {fileID: 448010008}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13059228be160d843a88177bc4e7c5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1882938941
 GameObject:
   m_ObjectHideFlags: 0
@@ -69673,10 +69695,14 @@ PrefabInstance:
     - target: {fileID: 8409832018333690602, guid: 4dba92d28939830438aa049ec185176e, type: 3}
       propertyPath: enemyScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1605348351}
     - target: {fileID: 8409832018333690602, guid: 4dba92d28939830438aa049ec185176e, type: 3}
       propertyPath: speedSensitivity
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409832018333690602, guid: 4dba92d28939830438aa049ec185176e, type: 3}
+      propertyPath: fallingSpeedThreshold
+      value: -8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -72182,11 +72208,11 @@ PrefabInstance:
       objectReference: {fileID: 1024908046}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.34
+      value: 27.61
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.52
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
