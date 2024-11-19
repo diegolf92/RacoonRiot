@@ -54690,7 +54690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d922042dd500c2d49881c28955635db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 1936794516}
+  menu: {fileID: 1690642757}
 --- !u!1 &491692799
 GameObject:
   m_ObjectHideFlags: 0
@@ -69190,11 +69190,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1936794516 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1194145704161474913, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
-  m_PrefabInstance: {fileID: 1024908043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1947557092
 GameObject:
   m_ObjectHideFlags: 0

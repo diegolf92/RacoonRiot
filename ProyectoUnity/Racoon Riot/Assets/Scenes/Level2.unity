@@ -313,11 +313,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4853876253258202328, guid: 4de916b518df9b743958fd8c1a4dc83b, type: 3}
   m_PrefabInstance: {fileID: 1271164612}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &88679797 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1194145704161474913, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
-  m_PrefabInstance: {fileID: 728596481}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &106187903
 GameObject:
   m_ObjectHideFlags: 0
@@ -50621,7 +50616,7 @@ PrefabInstance:
     - target: {fileID: 2669782173021775038, guid: bb8378a505ae7f7418c9391b749ac14f, type: 3}
       propertyPath: menu
       value: 
-      objectReference: {fileID: 88679797}
+      objectReference: {fileID: 859893492}
     - target: {fileID: 4008532171763537778, guid: bb8378a505ae7f7418c9391b749ac14f, type: 3}
       propertyPath: player
       value: 
