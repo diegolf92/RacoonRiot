@@ -128,7 +128,6 @@ public class PlayerController : MonoBehaviour
                 //Reproducir animacion de parry
                 if (isCaptured)
                 {
-                    spacebar.SetActive(true);
                     if (Input.GetAxis("Jump") > 0.99f)
                     {
                         parryCount++;
@@ -153,6 +152,8 @@ public class PlayerController : MonoBehaviour
     {
         currentState = PlayerState.CAPTURADO;
         enemyChasing = currentEnemy;
+        spacebar.SetActive(true);
+        spacebar.GetComponent<FollowPlayer>().ShowBar(this.transform);
         StartCoroutine(CanParryCoroutine());
     }
 

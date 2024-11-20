@@ -26,6 +26,7 @@ public class FieldOfView : MonoBehaviour
 
     public void DetectLayers()
     {
+        
         float angleStep = fovAngle / (rayCount - 1);
         float startAngle = -fovAngle / 2;
 
@@ -36,6 +37,7 @@ public class FieldOfView : MonoBehaviour
             if(!isFacingRight)direction *= -1;
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRadius);
+            Debug.Log(detectionRadius.ToString() + " ?? " + direction.ToString());
 
             if (hit.collider != null)
             {
@@ -51,10 +53,6 @@ public class FieldOfView : MonoBehaviour
                 {
                     HandleTriggerDetection(hit.collider);
                 }
-            }
-            else
-            {
-                playerDetected = false;
             }
 
             Debug.DrawRay(transform.position, direction * detectionRadius, Color.grey);
