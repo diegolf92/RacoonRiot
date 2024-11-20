@@ -60697,7 +60697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1140827853
 Transform:
   m_ObjectHideFlags: 0
@@ -69879,6 +69879,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewEnemyPrototype
       objectReference: {fileID: 0}
+    - target: {fileID: 2516694620952559756, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2887564812628741865, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.95
@@ -72208,11 +72212,11 @@ PrefabInstance:
       objectReference: {fileID: 1024908046}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.36
+      value: 28.61
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.41
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
