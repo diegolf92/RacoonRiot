@@ -51423,6 +51423,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: normal_bg (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5845368791248406234, guid: 68f334ab40b66b749ab1a7ef6a7b0d44, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6830437676256014970, guid: 68f334ab40b66b749ab1a7ef6a7b0d44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 85.13
@@ -55309,7 +55313,7 @@ PrefabInstance:
       objectReference: {fileID: 338618435}
     - target: {fileID: 651342236766117842, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: canPatrol
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2516694620952559756, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_Name
@@ -55317,7 +55321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2887564812628741865, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.01
+      value: -6.7
       objectReference: {fileID: 0}
     - target: {fileID: 5606732425976404465, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55361,7 +55365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7618656826644116444, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.22
+      value: 2.58
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -63610,7 +63614,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 1948479283, guid: 3391ac1a91813634f9b51b4f291a54ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -72265,11 +72269,11 @@ PrefabInstance:
       objectReference: {fileID: 437300889}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 78.85
+      value: -7.41
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.34
+      value: -3.48
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
