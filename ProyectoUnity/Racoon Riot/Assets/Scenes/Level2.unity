@@ -1091,11 +1091,11 @@ PrefabInstance:
       objectReference: {fileID: 112976826}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 113.32
+      value: 108.09
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.29
+      value: 14.16
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49014,6 +49014,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 761586647}
     m_Modifications:
+    - target: {fileID: 602556107758245371, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.48
+      objectReference: {fileID: 0}
     - target: {fileID: 2504685765967729468, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
       propertyPath: m_Name
       value: NewEnemyOldMan
@@ -49022,6 +49026,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 920274888}
+    - target: {fileID: 8080064636028286923, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.36
+      objectReference: {fileID: 0}
     - target: {fileID: 8411064283476631256, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 112.3
