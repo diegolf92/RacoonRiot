@@ -1147,7 +1147,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1587263294}
     m_SelectOnDown: {fileID: 1272769081}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 828707416}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
   m_Colors:
@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OPTIONS
+  m_text: SURVEY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 196c73166eef9d245933a0bb1165eb77, type: 2}
   m_sharedMaterial: {fileID: 5513928806239315023, guid: 196c73166eef9d245933a0bb1165eb77, type: 2}
@@ -1815,10 +1815,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1587263294}
+    m_SelectOnUp: {fileID: 1272769081}
     m_SelectOnDown: {fileID: 1272769081}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1587263294}
+    m_SelectOnRight: {fileID: 1272769081}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2242,7 +2242,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 654565378}
     m_SelectOnDown: {fileID: 1587263294}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 828707416}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
   m_Colors:
@@ -2705,7 +2705,7 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1272769081}
     m_SelectOnDown: {fileID: 654565378}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 828707416}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
   m_Colors:
