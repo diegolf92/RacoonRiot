@@ -10,9 +10,9 @@ public class PlayerLife : MonoBehaviour
     public Animator anim;
 
     [Header("Vidas del Jugador")]
-    public int vidas = 3;  // Número inicial de vidas
+    public int vidas = 6;  // Número inicial de vidas
     public List<Image> vidaImages; // Lista de imágenes que representan las vidas
-    int vidaCount = 2;
+    int vidaCount = 5;
 
     [Header("Sonido de Muerte")]
     public AudioSource audioSource;  // Fuente de audio para reproducir el sonido
