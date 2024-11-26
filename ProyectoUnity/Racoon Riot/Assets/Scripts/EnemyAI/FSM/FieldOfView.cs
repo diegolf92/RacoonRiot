@@ -44,18 +44,21 @@ public class FieldOfView : MonoBehaviour
                 if (((1 << hit.collider.gameObject.layer) & playerLayer) != 0)
                 {
                     HandlePlayerDetection(hit.collider);
+                    Debug.DrawRay(transform.position, direction * detectionRadius, Color.green);
                 }
                 else if (((1 << hit.collider.gameObject.layer) & obstacleLayer) != 0)
                 {
                     HandleObstacleDetection(hit.collider);
+                    Debug.DrawRay(transform.position, direction * detectionRadius, Color.red);
                 }
                 else if (((1 << hit.collider.gameObject.layer) & triggerLayer) != 0)
                 {
                     HandleTriggerDetection(hit.collider);
-                }
+                    Debug.DrawRay(transform.position, direction * detectionRadius, Color.yellow);
+                } else Debug.DrawRay(transform.position, direction * detectionRadius, Color.grey);
             }
 
-            Debug.DrawRay(transform.position, direction * detectionRadius, Color.grey);
+            
         }
     }
 

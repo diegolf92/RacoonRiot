@@ -1092,11 +1092,11 @@ PrefabInstance:
       objectReference: {fileID: 112976826}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.56
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.09
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3166,6 +3166,10 @@ PrefabInstance:
     - target: {fileID: 2504685765967729468, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
       propertyPath: m_Name
       value: NewEnemyOldMan (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718779554228210135, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
+      propertyPath: fovAngle
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2827285158156010182, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
       propertyPath: player
@@ -53103,6 +53107,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 920274888}
+    - target: {fileID: 6057710076490210583, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6659775
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057710076490210583, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.33298874
+      objectReference: {fileID: 0}
     - target: {fileID: 8080064636028286923, guid: 4b7efae44856c634387e2bc3eeb3f61e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.36
