@@ -427,8 +427,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 0}
   anim: {fileID: 0}
-  vidas: 7
+  vidas: 8
   vidaImages:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
