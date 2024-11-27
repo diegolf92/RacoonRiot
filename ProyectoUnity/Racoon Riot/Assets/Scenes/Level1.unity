@@ -640,8 +640,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 5.536117}
-      - {x: -9.131577, y: 5.5429983}
+    - - {x: 9.147039, y: 5.4497604}
+      - {x: -0.046619415, y: 5.4894977}
+      - {x: -9.131577, y: 5.496379}
       - {x: -9.156007, y: -4.802351}
       - {x: 9.194777, y: -4.8023505}
       - {x: 9.170346, y: 5.542999}
@@ -55558,8 +55559,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 3.5637028, y: 7.8564105}
       - {x: -10.584249, y: 7.816208}
-      - {x: -10.572897, y: -2.3302574}
-      - {x: 3.5691335, y: -2.3504777}
+      - {x: -10.544353, y: -2.2018085}
+      - {x: 3.6833103, y: -2.1934848}
       - {x: 3.5942729, y: 4.588037}
   m_UseDelaunayMesh: 0
 --- !u!114 &635324342
@@ -56298,11 +56299,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.04449463, y: 6.1748033}
-      - {x: -5.616461, y: 6.053948}
+    - - {x: -0.021473885, y: 5.998565}
+      - {x: -0.10287385, y: 5.995774}
+      - {x: -6.2610507, y: 6.0098886}
       - {x: -6.1019306, y: -4.646475}
       - {x: 6.2144904, y: -4.8023505}
-      - {x: 6.2781625, y: 5.926211}
+      - {x: 6.2303796, y: 5.987178}
   m_UseDelaunayMesh: 0
 --- !u!114 &692137622
 MonoBehaviour:
@@ -57416,11 +57418,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 5.536117}
-      - {x: -9.131577, y: 5.5429983}
-      - {x: -9.156007, y: -4.980695}
-      - {x: 9.194777, y: -4.9806943}
-      - {x: 9.170346, y: 5.542999}
+    - - {x: 0, y: 5.3289275}
+      - {x: -9.1315775, y: 5.309931}
+      - {x: -9.045801, y: -4.857396}
+      - {x: 9.466688, y: -4.844738}
+      - {x: 9.469621, y: 5.3818507}
   m_UseDelaunayMesh: 0
 --- !u!114 &776864835
 MonoBehaviour:
@@ -70617,7 +70619,7 @@ MonoBehaviour:
   doorOpenSound: {fileID: 0}
   leverSwitchSound: {fileID: 0}
   elevatorSound: {fileID: 8300000, guid: 5ab344175fab4404bb4f72319ce4867b, type: 3}
-  laserHitSound: {fileID: 8300000, guid: c539867967f0a124ea5f78b3dff97bbe, type: 3}
+  laserHitSound: {fileID: 8300000, guid: c1d6b6665d20c304b9108c234ebf6b5b, type: 3}
   victorymusic: {fileID: 8300000, guid: 63e29ce88dd510f48ae43e88ab22b165, type: 3}
 --- !u!1 &1439012221
 GameObject:
@@ -76286,10 +76288,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 5.2094984, y: 7.8564105}
+    - - {x: 5.528102, y: 7.7695174}
       - {x: -10.584249, y: 7.816208}
       - {x: -10.572897, y: -2.3302574}
-      - {x: 5.214925, y: -2.3504777}
+      - {x: 5.5335283, y: -2.3504777}
   m_UseDelaunayMesh: 0
 --- !u!114 &1948959077
 MonoBehaviour:
@@ -79506,11 +79508,11 @@ PrefabInstance:
       objectReference: {fileID: 437300889}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.35
+      value: -7.34
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.47
+      value: -3.44
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
