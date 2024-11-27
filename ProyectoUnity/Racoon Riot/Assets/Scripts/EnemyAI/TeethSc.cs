@@ -5,6 +5,7 @@ using UnityEngine;
 public class TeethSc : MonoBehaviour
 {
     public float speed = 1f;
+    public float chaseTime = 3f;
     public Transform target;
     Transform originalPos;
     public bool specialOn;
@@ -27,7 +28,7 @@ public class TeethSc : MonoBehaviour
     {
         specialOn = true;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(chaseTime);
 
         specialOn = false;
 

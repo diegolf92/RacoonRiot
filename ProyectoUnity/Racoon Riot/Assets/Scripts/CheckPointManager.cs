@@ -29,7 +29,8 @@ public class CheckPointManager : MonoBehaviour
 
     private IEnumerator RevivePlayer()
     {
-        player.gameObject.transform.position = currentCheckpoint.transform.position;
+        Vector3 offsettingPos = new Vector3(currentCheckpoint.transform.position.x, currentCheckpoint.transform.position.y + 1f, currentCheckpoint.transform.position.z);
+        player.gameObject.transform.position = offsettingPos;
         yield return new WaitForSeconds(2);
     }
 }
