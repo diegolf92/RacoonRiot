@@ -112,12 +112,12 @@ public class PlayerController : MonoBehaviour
                 WallSlide();
                 WallJump();
 
-                if (Input.GetButtonDown("Jump") && isGrounded)
+                if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) && isGrounded) // space, alt o botonA, botonY  sirven para saltar
                 {
                     Jump();
                 }
 
-                if (Input.GetKeyDown(KeyCode.LeftControl) && canCrouch)
+                if ( (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetButtonDown("Fire2"))  && canCrouch) // leftCtrl, botonB agacharse
                 {
                     isCrouching = !isCrouching;
                 }
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
                 //Reproducir animacion de parry
                 if (isCaptured)
                 {
-                    if (Input.GetAxis("Jump") > 0.99f)
+                    if (Input.GetAxis("Jump") > 0.99f || Input.GetAxis("Fire1") > 0.99f)
                     {
                         parryCount++;
                     }
@@ -347,7 +347,7 @@ public class PlayerController : MonoBehaviour
             wallJumpCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump") && wallJumpCounter > 0f)
+        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) && wallJumpCounter > 0f)
         {
             anim.SetTrigger("wallJump");
             isWallJumping = true;
