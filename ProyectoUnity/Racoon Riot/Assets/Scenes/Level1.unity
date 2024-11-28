@@ -54665,7 +54665,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d922042dd500c2d49881c28955635db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventSystem: {fileID: 338618289}
   menu: {fileID: 180955239}
+  firstSelectedPause: {fileID: 966645624}
 --- !u!1 &491692799
 GameObject:
   m_ObjectHideFlags: 0
@@ -59378,6 +59380,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &966645624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1339878641591019731, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+  m_PrefabInstance: {fileID: 1024908043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &967959935
 GameObject:
   m_ObjectHideFlags: 0
@@ -60312,6 +60319,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1895786184112686191, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2780747369247074172, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 2
@@ -60450,6 +60461,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4385177856506590531, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887916331453617830, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8758160594184055135, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
