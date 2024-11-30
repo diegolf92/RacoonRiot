@@ -48,11 +48,9 @@ public class GuardState : EnemyBaseState
         fovEnemy.DetectLayers();
         if (fovEnemy.playerDetected == true)
         {
-            Debug.Log("Check");
             if(fsm.oldMan == true) fsm.RangeAttack();
             else if(fsm.isDog == true) fsm.JumpAttack();
             else fsm.Chase();
-            //fovEnemy.playerDetected = false;
         }
     }
 

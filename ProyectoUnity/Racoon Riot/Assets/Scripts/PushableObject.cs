@@ -31,7 +31,6 @@ public class PushableObject : MonoBehaviour
 
     void StopMovement()
     {
-        Debug.Log("sadasd");
         isFalling = false;
         // Stop the object's movement by setting velocity to zero
         spriteRenderer.sprite = newSprite;

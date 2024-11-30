@@ -54667,7 +54667,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 338618289}
   menu: {fileID: 180955239}
-  firstSelectedPause: {fileID: 966645624}
+  firstSelectedPause:
+  - {fileID: 0}
+  menuAbierto: 0
 --- !u!1 &491692799
 GameObject:
   m_ObjectHideFlags: 0
@@ -59380,11 +59382,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &966645624 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1339878641591019731, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
-  m_PrefabInstance: {fileID: 1024908043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &967959935
 GameObject:
   m_ObjectHideFlags: 0
@@ -60318,7 +60315,7 @@ PrefabInstance:
     - target: {fileID: 1736146213243243986, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1768853504}
+      objectReference: {fileID: 0}
     - target: {fileID: 1736146213243243986, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
@@ -60454,7 +60451,7 @@ PrefabInstance:
     - target: {fileID: 4324860687112558399, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1968027999}
+      objectReference: {fileID: 0}
     - target: {fileID: 4324860687112558399, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
@@ -73971,11 +73968,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7700711120052757193, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
   m_PrefabInstance: {fileID: 1024908043}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1768853504 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3322890656460439531, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
-  m_PrefabInstance: {fileID: 1024908043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1771831222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76431,11 +76423,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 927311663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1968027999 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5207997686133940735, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
-  m_PrefabInstance: {fileID: 1024908043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1969880787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78666,6 +78653,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0120f35f4f6f25c438f4cf1bfc78be03, type: 3}
+--- !u!1 &2763448422435538857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9044633532381159461, guid: 0120f35f4f6f25c438f4cf1bfc78be03, type: 3}
+  m_PrefabInstance: {fileID: 2763448422435538856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2825003325725953642
 GameObject:
   m_ObjectHideFlags: 3
@@ -79461,6 +79453,10 @@ PrefabInstance:
       propertyPath: jumpSound
       value: 
       objectReference: {fileID: 8300000, guid: 7360621d13e9f8e4caf9c00af17aedbf, type: 3}
+    - target: {fileID: 113536721008397521, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
+      propertyPath: parryCanvas
+      value: 
+      objectReference: {fileID: 2763448422435538857}
     - target: {fileID: 2267176713318269432, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_Name
       value: Player

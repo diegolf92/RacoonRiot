@@ -37,7 +37,6 @@ public class FieldOfView : MonoBehaviour
             if(!isFacingRight)direction *= -1;
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRadius);
-            Debug.Log(detectionRadius.ToString() + " ?? " + direction.ToString());
 
             if (hit.collider != null)
             {
@@ -79,7 +78,6 @@ public class FieldOfView : MonoBehaviour
 
     private void HandleTriggerDetection(Collider2D trigger)
     {
-        Debug.Log("Trigger detected!");
         // Add behavior for when a trigger is detected
     }
 

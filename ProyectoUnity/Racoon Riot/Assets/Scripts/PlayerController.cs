@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public bool coroutineStopper;
     EnemyStateMachine enemyChasing;
     int parryCount = 0;
+    public int parryLimit = 500;
+    public GameObject parryCanvas;
+    Slider parryBar;
     public Animator anim;
     public GameObject taco;
 
@@ -85,6 +89,7 @@ public class PlayerController : MonoBehaviour
         boxColNormalSize = playerCollider.size;
         currentState = PlayerState.NORMAL;
         spacebar.SetActive(false);
+        parryBar = parryCanvas.transform.GetChild(0).GetComponent<Slider>();
     }
 
     void Update()
@@ -133,6 +138,8 @@ public class PlayerController : MonoBehaviour
                         parryCount++;
                     }
                 }
+
+                parryBar.value = parryCount;
                 break;
 
             case PlayerState.MURIENDO:
@@ -164,10 +171,10 @@ public class PlayerController : MonoBehaviour
         playerSprite.GetComponent<SpriteRenderer>().enabled = false;
 
         yield return new WaitForSeconds(3f);
-
+        
         StartCoroutine(CooldownPlayer());
 
-        if (parryCount < 5)
+        if (parryCount < parryLimit)
         {
             parryCount = 0;
             damage.EnemyDamage();
@@ -176,6 +183,7 @@ public class PlayerController : MonoBehaviour
         {
             parryCount = 0;
         }
+
     }
 
     IEnumerator CooldownPlayer()

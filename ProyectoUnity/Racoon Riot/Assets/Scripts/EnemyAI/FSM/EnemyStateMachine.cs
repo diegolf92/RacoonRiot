@@ -7,6 +7,7 @@ using static PlayerController;
 
 public class EnemyStateMachine : MonoBehaviour
 {
+    public string Enemy_State;
     private EnemyBaseState currentState;
     public Animator anim;
     public GameObject player;
@@ -57,6 +58,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         // Call the current state's Update method
         currentState?.Update();
+        Enemy_State = currentState.ToString();
     }
 
     public void TransitionToState(EnemyBaseState newState)
