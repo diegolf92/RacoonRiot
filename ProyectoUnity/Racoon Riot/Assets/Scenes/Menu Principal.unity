@@ -1906,7 +1906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605235ca0ef2e654aa47869982ba10d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direccionweb: http;//google.com
+  direccionweb: https://docs.google.com/forms/d/e/1FAIpQLSeA2ZVLDKyxppJwxvOsdiSPFTJc_UkNpw43HwSPbPf5WLHvAQ/viewform?usp=sf_link
 --- !u!1 &955530925
 GameObject:
   m_ObjectHideFlags: 0
