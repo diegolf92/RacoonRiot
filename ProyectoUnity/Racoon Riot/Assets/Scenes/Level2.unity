@@ -1121,11 +1121,11 @@ PrefabInstance:
       objectReference: {fileID: 878894628}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.53
+      value: 92.5
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: -3.8
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -54179,7 +54179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2516694620952559756, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_Name
-      value: NewEnemyPrototype (1)
+      value: NewEnemyPrototype2
       objectReference: {fileID: 0}
     - target: {fileID: 2887564812628741865, guid: bc715ced1485e6a47b15774d84ff7b02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57472,8 +57472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebeb0787eeee33469c2b4cdf191cc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabOnRoom:
-  - {fileID: 1016262149}
+  enemyPrefabOnRoom: []
   roomCam: {fileID: 1373370765}
 --- !u!1001 &1566820536
 PrefabInstance:
