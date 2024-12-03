@@ -1080,6 +1080,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7981176780823859448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
+      propertyPath: maxTime
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7981176780823859448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: deathMenu
       value: 
       objectReference: {fileID: 1031400251}
@@ -1121,11 +1125,11 @@ PrefabInstance:
       objectReference: {fileID: 878894628}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 92.5
+      value: -8.66
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 8088531440699099815, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3212,6 +3216,14 @@ PrefabInstance:
     - target: {fileID: 4385177856506590531, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107261152467559008, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107261152467559008, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5842760495853593214, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: eventSystem
@@ -58537,7 +58549,7 @@ MonoBehaviour:
   leverSwitchSound: {fileID: 0}
   elevatorSound: {fileID: 8300000, guid: 5ab344175fab4404bb4f72319ce4867b, type: 3}
   laserHitSound: {fileID: 8300000, guid: c539867967f0a124ea5f78b3dff97bbe, type: 3}
-  victorymusic: {fileID: 8300000, guid: 63e29ce88dd510f48ae43e88ab22b165, type: 3}
+  victorymusic: {fileID: 8300000, guid: 6aab468b7ccd3fc40abcbd7b1e37a353, type: 3}
 --- !u!4 &1741725801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7728159738104733441, guid: e0fa9033a139b6a43a755ceda52a318a, type: 3}
