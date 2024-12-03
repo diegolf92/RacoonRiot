@@ -47973,7 +47973,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.92679405, y: 0.31107953, z: -9.77789}
+  m_LocalPosition: {x: -0.92679405, y: 0.3110796, z: -9.77789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48576,7 +48576,7 @@ MonoBehaviour:
   leverSwitchSound: {fileID: 0}
   elevatorSound: {fileID: 8300000, guid: 5ab344175fab4404bb4f72319ce4867b, type: 3}
   laserHitSound: {fileID: 8300000, guid: c539867967f0a124ea5f78b3dff97bbe, type: 3}
-  victorymusic: {fileID: 8300000, guid: 63e29ce88dd510f48ae43e88ab22b165, type: 3}
+  victorymusic: {fileID: 8300000, guid: 6aab468b7ccd3fc40abcbd7b1e37a353, type: 3}
 --- !u!1 &626091287
 GameObject:
   m_ObjectHideFlags: 0
@@ -49902,11 +49902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.73
+      value: 75.56
       objectReference: {fileID: 0}
     - target: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.66
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55491,6 +55491,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1485330884757430461, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 338618289}
+    - target: {fileID: 1485330884757430461, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 490515169}
     - target: {fileID: 1736146213243243986, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 2
@@ -55543,6 +55551,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI CANVAS
       objectReference: {fileID: 0}
+    - target: {fileID: 3066141102519386349, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 338618289}
+    - target: {fileID: 3066141102519386349, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 490515169}
     - target: {fileID: 3940600461590883982, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -55655,6 +55671,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5842760495853593214, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 338618289}
+    - target: {fileID: 5842760495853593214, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 490515169}
     - target: {fileID: 8758160594184055135, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_Alpha
       value: 1
