@@ -47868,7 +47868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d922042dd500c2d49881c28955635db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 0}
+  eventSystem: {fileID: 338618289}
   menu: {fileID: 1881801699}
   firstSelectedPause: []
   menuAbierto: 0
@@ -49888,11 +49888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.73
+      value: 75.56
       objectReference: {fileID: 0}
     - target: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.66
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8408819547607029789, guid: bd879bb66c4c1c842a35b90448946de7, type: 3}
       propertyPath: m_LocalPosition.z
