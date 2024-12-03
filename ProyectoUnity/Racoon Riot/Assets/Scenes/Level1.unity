@@ -60289,6 +60289,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1485330884757430461, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 338618289}
+    - target: {fileID: 1485330884757430461, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 490515169}
     - target: {fileID: 1736146213243243986, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 2
@@ -60345,6 +60353,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI CANVAS
       objectReference: {fileID: 0}
+    - target: {fileID: 3066141102519386349, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 338618289}
+    - target: {fileID: 3066141102519386349, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 490515169}
     - target: {fileID: 3940600461590883982, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -60457,6 +60473,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5842760495853593214, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 338618289}
+    - target: {fileID: 5842760495853593214, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 490515169}
     - target: {fileID: 5887916331453617830, guid: 9d68aef1671b4c24b92a2e87702e0eba, type: 3}
       propertyPath: m_IsActive
       value: 0

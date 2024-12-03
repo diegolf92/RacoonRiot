@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd1750b3ef6afd45aa5b46f65d7c81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstButton: {fileID: 2796871012941937763}
+  firstButton: {fileID: 6016967829438679614}
   eventSystem: {fileID: 0}
   menuAbierto: 0
   gameManager: {fileID: 0}
@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 1981008959260453292}
     m_SelectOnDown: {fileID: 2408987449156364012}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -4891,7 +4891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 84, y: 222.77002}
+  m_AnchoredPosition: {x: 84, y: 243}
   m_SizeDelta: {x: 800, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2682370372491616602
@@ -5422,7 +5422,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1311892983123663106}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 8954406354176433051}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
