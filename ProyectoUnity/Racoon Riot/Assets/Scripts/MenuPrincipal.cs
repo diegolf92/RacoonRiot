@@ -15,7 +15,11 @@ public class MenuPrincipal : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
     public GameObject PanelMenuPrincipal;
     public GameObject PanelOpciones;
+    public GameObject PanelControles;
     public Slider slider;
+    public GameObject firstSelectMainMenu;
+    public GameObject firstSelectOption;
+    public GameObject firstSelectControls;
 
     private GameObject lastSelectedButton; // Para detectar cambios en el botón seleccionado
 
@@ -33,6 +37,11 @@ public class MenuPrincipal : MonoBehaviour
 
     private void Update()
     {
+        if (eventSystem.currentSelectedGameObject == null)
+        {
+            eventSystem.SetSelectedGameObject( eventSystem.firstSelectedGameObject );
+        }
+
         if (eventSystem.currentSelectedGameObject != null)
         {
             // Verificar si el botón seleccionado cambió
@@ -61,14 +70,35 @@ public class MenuPrincipal : MonoBehaviour
 
     public void OpenOptionsMenu()
     {
+        eventSystem.SetSelectedGameObject(firstSelectOption);
+        eventSystem.firstSelectedGameObject = firstSelectOption;
         PanelMenuPrincipal.SetActive(false);  // Ocultar el menú principal
         PanelOpciones.SetActive(true);        // Mostrar el menú de opciones
     }
 
     public void CloseOptionsMenu()
     {
+        eventSystem.SetSelectedGameObject(firstSelectMainMenu);
+        eventSystem.firstSelectedGameObject = firstSelectMainMenu;
         PanelOpciones.SetActive(false); // Ocultar el menú de opciones
         PanelMenuPrincipal.SetActive(true); // Mostrar el menú principal
+    }
+
+    public void OpenControlsMenu()
+    {
+        eventSystem.SetSelectedGameObject(firstSelectControls);
+        eventSystem.firstSelectedGameObject = firstSelectControls;
+        PanelControles.SetActive(true); // Mostrar el menú principal
+        PanelOpciones.SetActive(false); // Ocultar el menú de opciones
+        
+    }
+
+    public void CloseControlsMenu()
+    {
+        eventSystem.SetSelectedGameObject(firstSelectOption);
+        eventSystem.firstSelectedGameObject = firstSelectOption;
+        PanelOpciones.SetActive(true); // Ocultar el menú de opciones
+        PanelControles.SetActive(false); // Mostrar el menú principal
     }
 
     public void jugar()

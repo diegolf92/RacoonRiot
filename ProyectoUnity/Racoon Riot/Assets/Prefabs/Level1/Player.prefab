@@ -278,6 +278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 689641810753608115}
   coroutineStopper: 0
+  parryLimit: 500
+  parryCanvas: {fileID: 0}
   anim: {fileID: 7857777316123083808}
   taco: {fileID: 0}
   speed: 5
@@ -426,8 +428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 0}
-  anim: {fileID: 0}
-  vidas: 8
+  anim: {fileID: 7857777316123083808}
+  vidas: 7
   vidaImages:
   - {fileID: 0}
   - {fileID: 0}

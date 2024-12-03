@@ -21,11 +21,12 @@ public class CaptureState : EnemyBaseState
 
     public override void Update()
     {
-        // Add GUARD logic here
+        fsm.anim.SetBool("isCaptured", true);
     }
 
     public override void Exit()
     {
+        fsm.anim.SetBool("isCaptured", false);
     }
 }
 

@@ -10,7 +10,7 @@ public class InteractiveObject : MonoBehaviour
 
     void Update()
     {
-        if(canTrigger && Input.GetKeyDown(KeyCode.E))
+        if(canTrigger && (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire3")))
         {
             //objectToTrigger.ActionsListInt();
             //enemigo camine hacia objectToTrigger
