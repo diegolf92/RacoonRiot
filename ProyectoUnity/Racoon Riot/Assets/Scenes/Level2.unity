@@ -1069,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 1769590660}
     - target: {fileID: 113536721008397521, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: parryLimit
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 113536721008397521, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: parryCanvas
@@ -58716,10 +58716,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: player_spacebar_sprite
       objectReference: {fileID: 0}
-    - target: {fileID: 49928440801340525, guid: 0120f35f4f6f25c438f4cf1bfc78be03, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 474735741471832509, guid: 0120f35f4f6f25c438f4cf1bfc78be03, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -58764,14 +58760,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1244306550}
-    - target: {fileID: 6628435580222256840, guid: 0120f35f4f6f25c438f4cf1bfc78be03, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9044633532381159461, guid: 0120f35f4f6f25c438f4cf1bfc78be03, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

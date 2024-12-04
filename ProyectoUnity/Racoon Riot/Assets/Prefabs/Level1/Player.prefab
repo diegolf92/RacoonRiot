@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 689641810753608115}
   coroutineStopper: 0
-  parryLimit: 500
+  parryLimit: 200
   parryCanvas: {fileID: 0}
   anim: {fileID: 7857777316123083808}
   taco: {fileID: 0}
@@ -299,7 +299,7 @@ MonoBehaviour:
   isGrounded: 0
   isCaptured: 0
   audioSource: {fileID: 6319778923258195255}
-  jumpSound: {fileID: 8300000, guid: f583f74fb161eb9448079d2b0a5365ee, type: 3}
+  jumpSound: {fileID: 8300000, guid: 7360621d13e9f8e4caf9c00af17aedbf, type: 3}
   ceilingLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -329,7 +329,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: c02d5b1036ce3e54b99bbb4aa2a43e85, type: 2}
-  m_audioClip: {fileID: 8300000, guid: f583f74fb161eb9448079d2b0a5365ee, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7360621d13e9f8e4caf9c00af17aedbf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
@@ -339,7 +339,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.56757075
+  MinDistance: 3.5812912
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

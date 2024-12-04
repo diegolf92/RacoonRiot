@@ -79915,52 +79915,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 707032428}
     - target: {fileID: 113536721008397521, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 7360621d13e9f8e4caf9c00af17aedbf, type: 3}
-    - target: {fileID: 113536721008397521, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: parryCanvas
       value: 
       objectReference: {fileID: 2763448422435538857}
     - target: {fileID: 2267176713318269432, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3825508222787137448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: enemies.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3825508222787137448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: enemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 502773645}
-    - target: {fileID: 3825508222787137448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: enemies.Array.data[1]
-      value: 
-      objectReference: {fileID: 321675062}
-    - target: {fileID: 3825508222787137448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: enemies.Array.data[2]
-      value: 
-      objectReference: {fileID: 445006166}
-    - target: {fileID: 3825508222787137448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: enemies.Array.data[3]
-      value: 
-      objectReference: {fileID: 1210729515}
-    - target: {fileID: 3825508222787137448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: enemies.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319778923258195255, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: MinDistance
-      value: 3.5812912
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319778923258195255, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 7360621d13e9f8e4caf9c00af17aedbf, type: 3}
-    - target: {fileID: 7981176780823859448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: maxTime
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7981176780823859448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: deathMenu
@@ -79974,10 +79934,6 @@ PrefabInstance:
       propertyPath: timeSlider
       value: 
       objectReference: {fileID: 1024908045}
-    - target: {fileID: 7981176780823859448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
-      propertyPath: vidaImages.Array.size
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 7981176780823859448, guid: 43c958f28994f2149b8ca5c5dd43643f, type: 3}
       propertyPath: vidaImages.Array.data[0]
       value: 
