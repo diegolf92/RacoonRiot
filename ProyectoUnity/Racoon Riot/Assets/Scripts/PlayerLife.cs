@@ -79,9 +79,8 @@ public class PlayerLife : MonoBehaviour
             }
         }
         else if (vidas == 0){
-            vidaImages[vidaCount].enabled = false; // Desactivar la imagen correspondiente
-            checkpoint.Reviver();
-            isDead = true;
+            //vidaImages[vidaCount].enabled = false; // Desactivar la imagen correspondiente
+            
             StartCoroutine(HandlePlayerDeath()); // Aplicar daño al jugador
         }
     }
@@ -128,11 +127,11 @@ public class PlayerLife : MonoBehaviour
 
     IEnumerator HandlePlayerDeath()
     {
-        //gameObject.SetActive(false); // Desactivar el jugador
+        checkpoint.Reviver();
         player.currentState = PlayerState.MURIENDO;
         //checkpoint.Reviver();
-        yield return new WaitForSeconds(3f);
-
+        yield return new WaitForSeconds(1f);
+        isDead = true;
         if (deathMenu != null)
         {
             deathMenu.SetActive(true);

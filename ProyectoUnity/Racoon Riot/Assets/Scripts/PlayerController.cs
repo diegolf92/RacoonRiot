@@ -380,6 +380,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        rb.velocity = Vector2.zero;
         anim.SetBool("muerteHambre", true);
         anim.SetBool("isJumping", false);
     }
