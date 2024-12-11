@@ -17,14 +17,14 @@ public class OneWayPlatform : MonoBehaviour
     void Update()
     {
         // When the player presses down, allow them to fall through
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("Vertical") < -0.8f)
         {
             effector.rotationalOffset = 180f;  // Temporarily rotate to allow passing through
             waitTime = originalWaitTime;       // Reset wait time countdown
         }
 
         // Restore platform's pass-through state after the wait time
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("Vertical") < -0.8f)
         {
             waitTime -= Time.deltaTime;
             if (waitTime <= 0)
@@ -35,7 +35,7 @@ public class OneWayPlatform : MonoBehaviour
         }
 
         // Reset rotation if the player stops pressing down
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+        if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetAxis("Vertical") >= 0f)
         {
             effector.rotationalOffset = 0;
             waitTime = originalWaitTime;

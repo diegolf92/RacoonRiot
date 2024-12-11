@@ -58548,7 +58548,7 @@ MonoBehaviour:
   doorOpenSound: {fileID: 0}
   leverSwitchSound: {fileID: 0}
   elevatorSound: {fileID: 8300000, guid: 5ab344175fab4404bb4f72319ce4867b, type: 3}
-  laserHitSound: {fileID: 8300000, guid: c539867967f0a124ea5f78b3dff97bbe, type: 3}
+  laserHitSound: {fileID: 8300000, guid: 6c8d50e983349b14284a5484f26724b0, type: 3}
   victorymusic: {fileID: 8300000, guid: 6aab468b7ccd3fc40abcbd7b1e37a353, type: 3}
 --- !u!4 &1741725801 stripped
 Transform:
